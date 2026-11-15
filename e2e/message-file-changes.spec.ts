@@ -92,7 +92,7 @@ test('shows final-response file changes and opens the selected diff preview', as
     })
   const card = page.getByTestId('message-file-changes').first()
   await expect(card).toBeVisible()
-  await expect(card).toContainText(/已编辑 4 个文件|Edited 4 files/)
+  await expect(card).toContainText(/Edited 4 files/)
   await expect(card.locator('[data-testid^="message-file-change-"]')).toHaveCount(3)
 
   await card.getByTestId('message-file-changes-expand').click()
@@ -104,7 +104,7 @@ test('shows final-response file changes and opens the selected diff preview', as
 
   const missingEvidence = page.getByTestId('message-file-changes-missing')
   await expect(missingEvidence).toBeVisible()
-  await expect(missingEvidence).toContainText(/未检测到文件改动|No file changes detected/)
+  await expect(missingEvidence).toContainText(/No file changes detected/)
   await page.screenshot({ path: path.join(qaDir, 'message-file-changes-missing.png') })
 
   await card.getByTestId('message-file-change-artifact-app').click()
@@ -120,8 +120,8 @@ test('shows final-response file changes and opens the selected diff preview', as
   await expect(page.getByTestId('message-activity').first()).toBeVisible()
   await expect(card.getByTestId('message-file-changes-undo')).toBeEnabled()
   await card.getByTestId('message-file-changes-undo').click()
-  await page.getByRole('dialog').getByRole('button', { name: '撤销', exact: true }).click()
-  await expect(card.getByTestId('message-file-changes-undo')).toHaveText('已撤销')
+  await page.getByRole('dialog').getByRole('button', { name: 'Undo', exact: true }).click()
+  await expect(card.getByTestId('message-file-changes-undo')).toHaveText('Undone')
   expect(fs.readFileSync(path.join(workspaceRoot, 'src/app.ts'), 'utf8')).toBe(
     'export const before = true\n'
   )
@@ -365,7 +365,7 @@ function seedSession(piAgentDir: string, workspaceRoot: string) {
           content: Array.from(
             { length: 8 },
             (_, i) =>
-              `第 ${i + 1} 项：检查当前工作区的主题和消息排版，保留现有文件、会话和工具功能。`
+              `Item ${i + 1}: check the current workspace theme and message layout, keeping existing files, sessions and tools working.`
           ).join('\n\n'),
           timestamp: Date.parse(timestamp)
         }
@@ -411,7 +411,7 @@ function seedSession(piAgentDir: string, workspaceRoot: string) {
           model: 'gpt-5',
           provider: 'openai',
           stopReason: 'stop',
-          content: [{ type: 'text', text: '已完成文件改动预览。' }]
+          content: [{ type: 'text', text: 'Finished the file change preview.' }]
         }
       },
       {
@@ -421,7 +421,7 @@ function seedSession(piAgentDir: string, workspaceRoot: string) {
         timestamp: '2026-09-27T08:00:04.000Z',
         message: {
           role: 'user',
-          content: '在当前目录生成 pelican-bike.html',
+          content: 'Generate pelican-bike.html in the current directory',
           timestamp: Date.parse('2026-09-27T08:00:04.000Z')
         }
       },
@@ -438,7 +438,7 @@ function seedSession(piAgentDir: string, workspaceRoot: string) {
           content: [
             {
               type: 'text',
-              text: '我已经在当前目录下生成了完整页面，文件名为 `pelican-bike.html`。'
+              text: 'I have generated the complete page in the current directory, named `pelican-bike.html`.'
             }
           ]
         }
@@ -498,7 +498,7 @@ function seedHarnessData(testUserData: string, workspaceRoot: string) {
             finishedAt: startedAt + 3_000,
             model: 'gpt-5',
             provider: 'openai',
-            prompt: '实现文件改动预览卡片',
+            prompt: 'Implement the file change preview card',
             usage: {
               inputTokens: 0,
               outputTokens: 0,
@@ -509,7 +509,7 @@ function seedHarnessData(testUserData: string, workspaceRoot: string) {
             toolCallCount: 1,
             toolFailureCount: 0,
             contextUsage: null,
-            result: '已完成文件改动预览。',
+            result: 'Finished the file change preview.',
             error: null,
             budgetExceeded: null,
             steps: [],
@@ -534,7 +534,7 @@ function seedHarnessData(testUserData: string, workspaceRoot: string) {
             finishedAt: startedAt + 5_000,
             model: 'step-3.7-flash',
             provider: 'step-plan',
-            prompt: '在当前目录生成 pelican-bike.html',
+            prompt: 'Generate pelican-bike.html in the current directory',
             usage: {
               inputTokens: 0,
               outputTokens: 0,
@@ -545,7 +545,7 @@ function seedHarnessData(testUserData: string, workspaceRoot: string) {
             toolCallCount: 0,
             toolFailureCount: 0,
             contextUsage: null,
-            result: '我已经在当前目录下生成了完整页面，文件名为 pelican-bike.html。',
+            result: 'I have generated the complete page in the current directory, named pelican-bike.html.',
             error: null,
             budgetExceeded: null,
             steps: [],

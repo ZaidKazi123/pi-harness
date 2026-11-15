@@ -406,13 +406,13 @@ describe('workspace projects', () => {
     window.piSwitch = workspaceApi({})
 
     try {
-      await workspace.ensureDefaultWorkspace('默认工作区')
+      await workspace.ensureDefaultWorkspace('Default workspace')
 
       expect(workspace.canChat).toBe(true)
       expect(workspace.currentCwd).toBe('/app-data/workspaces/default')
       expect(workspace.hasDraftSession).toBe(true)
       expect(workspace.sessionProjectGroups[0]).toMatchObject({
-        name: '默认工作区',
+        name: 'Default workspace',
         projectRoot: '/app-data/workspaces/default',
         sessions: []
       })

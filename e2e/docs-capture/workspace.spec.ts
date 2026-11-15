@@ -123,7 +123,7 @@ async function nativeShot(
 
 test('capture workspace and code editor', async ({ page }) => {
   await openDemo(page)
-  await shot(page, '功能界面/经典主题/工作区.png')
+  await shot(page, 'screenshots/classic/workspace.png')
 
   await page.getByTestId('workspace-toggle-files').click()
   await expect(page.getByTestId('workspace-files-panel')).toBeVisible()
@@ -133,7 +133,7 @@ test('capture workspace and code editor', async ({ page }) => {
   const editor = page.getByTestId('file-code-view').locator('.cm-content')
   await expect(editor).toBeVisible()
   await expect(editor).toContainText('--accent: #7a5bd3')
-  await shot(page, '功能界面/经典主题/代码编辑.png')
+  await shot(page, 'screenshots/classic/file-editing.png')
 })
 
 test('capture conversation history cleanup and Git', async ({ page }) => {
@@ -148,7 +148,7 @@ test('capture conversation history cleanup and Git', async ({ page }) => {
   await historySession.click()
   await expect(page.getByTestId('history-messages')).toContainText('Start with a clear content hierarchy')
   await expect(page.getByTestId('history-session-list')).not.toContainText('Loading')
-  await shot(page, '功能界面/经典主题/会话历史.png')
+  await shot(page, 'screenshots/classic/session-history.png')
 
   await page.locator('a[href="#/settings"]').click()
   await page.getByTestId('settings-section-session-cleanup').click()
@@ -157,7 +157,7 @@ test('capture conversation history cleanup and Git', async ({ page }) => {
   await page.getByRole('option', { name: /All historical sessions/ }).click()
   await page.getByTestId('session-cleanup-scan').click()
   await expect(page.getByTestId('session-cleanup-preview')).toContainText('6')
-  await shot(page, '功能界面/经典主题/会话清理.png')
+  await shot(page, 'screenshots/classic/session-cleanup.png')
 
   await page.locator('a[href="#/workspace"]').click()
   await openOverflowPage(page, 'git')
@@ -166,7 +166,7 @@ test('capture conversation history cleanup and Git', async ({ page }) => {
   await expect(graph.locator(':scope > div')).toHaveCount(3)
   await expect(graph).toContainText('Refine theme tokens')
   await expect(page.getByTestId('git-commit-panel')).toBeVisible()
-  await shot(page, '功能界面/经典主题/Git.png')
+  await shot(page, 'screenshots/classic/Git.png')
 })
 
 test.use({ fakeAudio: true })
@@ -189,7 +189,7 @@ test('capture workspace voice preparation', async ({ page }) => {
   await expect(preparation).toBeVisible()
   await preparation.getByRole('checkbox').check()
   await expect(preparation).toContainText('Only the last 6 plain-text messages are shared')
-  await shot(page, '功能界面/经典主题/工作区语音.png')
+  await shot(page, 'screenshots/classic/workspace-voice.png')
 })
 
 test('capture Harness and multi-agent orchestration', async ({ page }) => {
@@ -211,7 +211,7 @@ test('capture Harness and multi-agent orchestration', async ({ page }) => {
   await expect(consolePanel).toContainText(sessionId)
   await expect(consolePanel).toContainText('openai-compatible / gpt-4o')
   await expect(consolePanel).toContainText('idle')
-  await shot(page, '功能界面/经典主题/工具Harness-1.png')
+  await shot(page, 'screenshots/classic/harness-tools-1.png')
 
   const steering = page.getByPlaceholder('Steer the current run…')
   const followUp = page.getByPlaceholder('Queue work after the current run…')
@@ -226,7 +226,7 @@ test('capture Harness and multi-agent orchestration', async ({ page }) => {
   await consolePanel.getByRole('button', { name: 'Session', exact: true }).click()
   await expect(consolePanel).toContainText(sessionId)
   await expect(consolePanel.getByText('assistant', { exact: true })).toBeVisible()
-  await shot(page, '功能界面/经典主题/工具Harness-2.png')
+  await shot(page, 'screenshots/classic/harness-tools-2.png')
 
   const orchestrationId = await page.evaluate(async (cwd) => {
     const run = await window.piSwitch.orchestration.create({
@@ -295,14 +295,14 @@ test('capture Harness and multi-agent orchestration', async ({ page }) => {
   await expect(orchestration.getByTestId('orchestration-agents-panel')).toContainText('Reviewer')
   await expect(orchestration.getByTestId('orchestration-agents-panel')).toContainText('Builder')
   await expect(orchestration.getByTestId('orchestration-agents-panel')).toContainText('Planner')
-  await shot(page, '功能界面/经典主题/多智能体-团队.png')
+  await shot(page, 'screenshots/classic/multi-agent-team.png')
 
   await orchestration.getByRole('button', { name: 'Tasks', exact: true }).click()
   const tasks = orchestration.getByTestId('orchestration-tasks-panel')
   await expect(tasks.getByTestId('orchestration-task-card')).toHaveCount(3)
   await expect(tasks).toContainText('Depends on')
   await expect(tasks).toContainText('review')
-  await shot(page, '功能界面/经典主题/多智能体-任务依赖.png')
+  await shot(page, 'screenshots/classic/multi-agent-task-dependencies.png')
 })
 
 test('capture project architecture views', async ({ page, electronApp }) => {
@@ -324,7 +324,7 @@ test('capture project architecture views', async ({ page, electronApp }) => {
       })
     )
     .toBeGreaterThan(0)
-  await nativeShot(page, electronApp, '功能界面/经典主题/项目架构-1.png')
+  await nativeShot(page, electronApp, 'screenshots/classic/project-architecture-1.png')
 
   const modules = page.getByTestId('architecture-module-browser')
   const appModule = modules.getByTestId('architecture-module').filter({ hasText: 'src/app.ts' })
@@ -332,12 +332,12 @@ test('capture project architecture views', async ({ page, electronApp }) => {
   const details = page.getByTestId('architecture-module-details')
   await expect(details).toBeVisible()
   await expect(details).toContainText('app.ts')
-  await nativeShot(page, electronApp, '功能界面/经典主题/项目架构-2.png')
+  await nativeShot(page, electronApp, 'screenshots/classic/project-architecture-2.png')
 
   await page.getByTestId('architecture-source').click()
   await expect(page.getByTestId('architecture-code')).toBeVisible()
   await expect(page.getByRole('dialog')).toContainText('Aurora Studio/src/app.ts')
-  await nativeShot(page, electronApp, '功能界面/经典主题/项目架构-3.png')
+  await nativeShot(page, electronApp, 'screenshots/classic/project-architecture-3.png')
 })
 
 test('capture desktop pet settings menu and actions', async ({ page, electronApp, testUserData }) => {
@@ -378,7 +378,7 @@ test('capture desktop pet settings menu and actions', async ({ page, electronApp
   await page.getByTestId('settings-section-desktop-pet').click()
   await expect(page.getByTestId('desktop-pet-section')).toBeVisible()
   await expect(page.getByTestId('desktop-pet-section').getByRole('slider')).toHaveCount(4)
-  await shot(page, '功能界面/经典主题/桌宠设置.png')
+  await shot(page, 'screenshots/classic/pet-settings.png')
 
   await expect
     .poll(() => electronApp.windows().some((win) => win.url().includes('/pet.html')))
@@ -392,10 +392,10 @@ test('capture desktop pet settings menu and actions', async ({ page, electronApp
   const menu = pet.getByRole('menu')
   await expect(menu.getByRole('menuitem', { name: 'Open Pi-Harness', exact: true })).toBeVisible()
   await expect(menu.getByRole('menuitem', { name: /Play action \(193\)/ })).toBeVisible()
-  await shot(pet, '功能界面/经典主题/桌宠菜单.png')
+  await shot(pet, 'screenshots/classic/pet-menu.png')
 
   await menu.getByRole('menuitem', { name: /Play action \(193\)/ }).click()
   await expect(pet.getByRole('searchbox')).toBeVisible()
   await expect(pet.locator('[data-clip]')).toHaveCount(193)
-  await shot(pet, '功能界面/经典主题/桌宠动作.png')
+  await shot(pet, 'screenshots/classic/pet-actions.png')
 })

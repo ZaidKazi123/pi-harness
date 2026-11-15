@@ -53,7 +53,7 @@ test('shows independent runtimes in existing settings and rejects invalid select
         return error
       }
     },
-    path.join(testUserData, 'missing executable 空格')
+    path.join(testUserData, 'missing executable space')
   )
   expect(error).toBeTruthy()
   expect(

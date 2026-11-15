@@ -98,9 +98,9 @@ SOFTWARE.
 
 - Project: [6shenhonghong9/dsh-startup-screen](https://github.com/6shenhonghong9/dsh-startup-screen)
 - Version: 1.3.0
-- Copyright: Copyright (c) 2026 沈宏宏
+- Copyright: Copyright (c) 2026 沈宏宏 (Shen Honghong)
 - License: MIT. The full license text follows.
-- Used as: the boot sequence shown when the 大肥鱼 desktop pet is turned on, and when a rope portrait other than Phoebe is selected.
+- Used as: the boot sequence shown when the Big Fat Fish (大肥鱼) desktop pet is turned on, and when a rope portrait other than Phoebe is selected.
 - The Claude, Gemini, GPT, GLM, Grok, Kimi, and Qwen marks on that sequence are the monochrome icons from [lobehub/lobe-icons](https://github.com/lobehub/lobe-icons) (MIT, Copyright (c) 2023 lobehub). DeepSeek and DeepSeek Pro keep the whale from this sequence.
 - This community integration is not an official DeepSeek product.
 
@@ -144,7 +144,7 @@ SOFTWARE.
 
 - Project: [LeeRolling/dsh-boot-suite](https://github.com/LeeRolling/dsh-boot-suite)
 - Version: 2.16.11
-- Copyright: Copyright (c) 2026 沈宏宏
+- Copyright: Copyright (c) 2026 沈宏宏 (Shen Honghong)
 - License: MIT
 - Used as: the DeepSeek Work Mode theme background (`lib/assets/default-background.jpg`).
 
@@ -189,7 +189,7 @@ SOFTWARE.
 ### Additional character animations
 
 - Source collection: [MerZlin/dsh-pet-indesktop](https://github.com/MerZlin/dsh-pet-indesktop), with animation sources credited to [PC2005-cloud/dsh-pet](https://github.com/PC2005-cloud/dsh-pet).
-- Character OC “溟月”: 上善无形. The source collection's asset notice restricts these additional animations to personal, non-commercial use with attribution and source retained; it describes the terms as CC BY-NC-SA-like. Its MIT code license does not replace those asset-specific terms.
+- Character OC “溟月” (Ming Yue): 上善无形 (Shangshan Wuxing). The source collection's asset notice restricts these additional animations to personal, non-commercial use with attribution and source retained; it describes the terms as CC BY-NC-SA-like. Its MIT code license does not replace those asset-specific terms.
 - The original asset notice and project license are retained in the pet pack as `dsh-pet-indesktop-NOTICE.txt` and `dsh-pet-indesktop-LICENSE.txt`.
 
 ## Our Free Model

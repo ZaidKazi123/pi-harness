@@ -157,7 +157,7 @@ const modelDiscoveryFeedback = ref<{
   source: string
 } | null>(null)
 
-/** Name takes leftover width; other columns hug their content so 标识/操作 aren't crushed. */
+/** Name takes leftover width; other columns hug their content so the ID/Actions columns aren't crushed. */
 const listGrid = {
   gridTemplateColumns: 'minmax(8rem, 1fr) max-content 2.75rem max-content max-content 19rem'
 } as const

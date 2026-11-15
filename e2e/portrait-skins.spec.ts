@@ -26,7 +26,7 @@ test('scene portrait themes use dedicated backgrounds and palettes', async ({
   await page.locator('a[href="#/settings"]').click()
   await page.getByTestId('settings-section-mascot').click()
   await page.getByTestId('mascot-unlock-answer').fill('1024')
-  await page.getByRole('button', { name: /解锁|Unlock/, exact: true }).click()
+  await page.getByRole('button', { name: /Unlock/, exact: true }).click()
 
   for (const theme of [
     {
@@ -142,7 +142,8 @@ test('ming portrait themes render full figures beside parchment conversation sur
         timestamp,
         message: {
           role: 'user',
-          content: '将风格切换界面升级为独立的古风卡片网格，并清理冗余代码。',
+          content:
+            'Upgrade the style switcher to a standalone classical card grid and remove redundant code.',
           timestamp: Date.parse(timestamp)
         }
       },
@@ -156,7 +157,7 @@ test('ming portrait themes render full figures beside parchment conversation sur
           content: [
             {
               type: 'text',
-              text: '已完成界面梳理，人物、场景与会话内容保持独立。\n\n```ts\nconst theme = "ming-dynasty"\n```'
+              text: 'Finished tidying the interface; characters, scenery and conversation content stay separate.\n\n```ts\nconst theme = "ming-dynasty"\n```'
             },
             {
               type: 'toolCall',
@@ -189,7 +190,7 @@ test('ming portrait themes render full figures beside parchment conversation sur
   await page.locator('a[href="#/settings"]').click()
   await page.getByTestId('settings-section-mascot').click()
   await page.getByTestId('mascot-unlock-answer').fill('1024')
-  await page.getByRole('button', { name: /解锁|Unlock/, exact: true }).click()
+  await page.getByRole('button', { name: /Unlock/, exact: true }).click()
 
   for (const [style, skin, paper, menuPaper] of [
     ['mingSnow', 'ming-snow', 'rgba(239, 222, 190, 0.96)', 'rgb(246, 232, 204)'],
@@ -246,7 +247,7 @@ test('ming portrait themes render full figures beside parchment conversation sur
     await expect(page.getByTestId('workspace-refresh')).toBeEnabled()
     await page
       .getByTestId(`session-row-${id}`)
-      .getByRole('button', { name: /将风格切换界面升级/, exact: true })
+      .getByRole('button', { name: /Upgrade the style switcher/, exact: true })
       .click()
 
     const image = page.getByTestId('portrait-skin-image')
@@ -284,12 +285,20 @@ test('ming portrait themes render full figures beside parchment conversation sur
         /status-scroll-wangwei/
       )
       await expect(page.getByTestId('ming-workspace-calligraphy')).not.toContainText(
-        '忽如一夜春风来'
+        'As if overnight the spring breeze came'
       )
-      await expect(page.getByTestId('zhang-edge-scroll-top')).not.toContainText('为天下计')
-      await expect(page.getByTestId('zhang-edge-scroll-bottom')).not.toContainText('居庙堂之高')
-      await expect(page.getByTestId('ming-sidebar-scroll')).not.toContainText('行到水穷处')
-      await expect(page.getByTestId('zhang-titlebar-motto')).not.toContainText('北国风光')
+      await expect(page.getByTestId('zhang-edge-scroll-top')).not.toContainText(
+        'For the good of all'
+      )
+      await expect(page.getByTestId('zhang-edge-scroll-bottom')).not.toContainText(
+        'High in the halls of court'
+      )
+      await expect(page.getByTestId('ming-sidebar-scroll')).not.toContainText(
+        'Walking to where the waters end'
+      )
+      await expect(page.getByTestId('zhang-titlebar-motto')).not.toContainText(
+        'The northern scenery'
+      )
       const titlebarBanner = await page
         .locator('.app-titlebar')
         .evaluate((element) => getComputedStyle(element, '::before').backgroundImage)
@@ -394,7 +403,8 @@ test('ming portrait themes render full figures beside parchment conversation sur
       expect(await editor.evaluate((element) => getComputedStyle(element, '::before').color)).toBe(
         'rgb(210, 189, 152)'
       )
-      const draft = '输入文字清晰可见，背景保持纯色。Readable draft 123.'
+      const draft =
+        'Input text is clearly visible and the background stays solid. Readable draft 123.'
       await editor.fill(draft)
       await expect(editor).toBeFocused()
       await expect(editor).toHaveText(draft)
@@ -585,7 +595,7 @@ test('switches original portrait skins, persists selection and restores plain th
   await page.locator('a[href="#/settings"]').click()
   await page.getByTestId('settings-section-mascot').click()
   await page.getByTestId('mascot-unlock-answer').fill('1024')
-  await page.getByRole('button', { name: /解锁|Unlock/, exact: true }).click()
+  await page.getByRole('button', { name: /Unlock/, exact: true }).click()
 
   for (const [style, id, appearance, filename] of [
     ['noirScholar', 'noir-scholar', 'dark', 'noir-scholar'],
@@ -675,9 +685,9 @@ test('switches original portrait skins, persists selection and restores plain th
       // Input controls must remain above the portrait, even where the two overlap.
       const editor = composer.getByTestId('composer-editor')
       await editor.click()
-      await editor.pressSequentially('测试磨砂输入框')
+      await editor.pressSequentially('Testing the frosted input')
       await expect(editor).toBeFocused()
-      await expect(editor).toHaveText('测试磨砂输入框')
+      await expect(editor).toHaveText('Testing the frosted input')
       await editor.press(process.platform === 'darwin' ? 'Meta+A' : 'Control+A')
       await editor.press('Backspace')
     }
@@ -741,7 +751,7 @@ test('switches original portrait skins, persists selection and restores plain th
             timestamp,
             message: {
               role: 'user',
-              content: '检查主题的阅读效果',
+              content: 'Check the theme readability',
               timestamp: Date.parse(timestamp)
             }
           },
@@ -755,7 +765,7 @@ test('switches original portrait skins, persists selection and restores plain th
               content: [
                 {
                   type: 'text',
-                  text: `主题背景已就绪。\n\n- 人物与场景独立显示\n- 会话正文保持清晰\n- 文件面板随时可用\n\n\`\`\`ts\nconst theme = "${style}"\n\`\`\``
+                  text: `Theme background ready.\n\n- Characters and scenery shown separately\n- Conversation text stays clear\n- File panel always available\n\n\`\`\`ts\nconst theme = "${style}"\n\`\`\``
                 }
               ],
               timestamp: Date.parse(timestamp)
@@ -768,10 +778,10 @@ test('switches original portrait skins, persists selection and restores plain th
       await page.getByTestId('workspace-refresh').click()
       await page
         .getByTestId(`session-row-${id}`)
-        .getByRole('button', { name: '检查主题的阅读效果', exact: true })
+        .getByRole('button', { name: 'Check the theme readability', exact: true })
         .click()
       const assistant = page.locator('[data-message-role="assistant"]')
-      await expect(assistant).toContainText('主题背景已就绪')
+      await expect(assistant).toContainText('Theme background ready')
       await expect(assistant).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)')
       await expect(page.locator('.chat-scroll-content')).not.toHaveCSS(
         'background-color',

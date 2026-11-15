@@ -10,7 +10,7 @@ import { app } from 'electron'
  * Windows additionally disables Chromium's native window occlusion tracking:
  * it frequently misreports occluded Electron windows (especially frameless
  * ones) and throttles or stalls their painting, which users perceive as the
- * whole app feeling "卡". The feature is a Chrome browser optimization with no
+ * whole app feeling laggy. The feature is a Chrome browser optimization with no
  * benefit inside a single Electron window.
  */
 export function applyChromiumGpuWorkarounds(): void {

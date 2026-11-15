@@ -147,12 +147,14 @@ test.describe('Application shell', () => {
   test('shows the particle startup animation on each window load', async ({ page }) => {
     await page.reload()
     await expect(page.getByTestId('startup-animation')).toBeVisible()
-    await expect(page.getByTestId('startup-animation')).toContainText('检测')
+    await expect(page.getByTestId('startup-animation')).toContainText('Check')
     await expect(page.getByTestId('startup-check-network')).toHaveCount(0)
     await expect(page.getByTestId('startup-check-node')).toContainText(
-      /已就绪|未检测到|版本过低|检测失败/
+      /Ready|Not found|Version too old|Check failed/
     )
-    await expect(page.getByTestId('startup-check-npm')).toContainText(/已就绪|未检测到|检测失败/)
+    await expect(page.getByTestId('startup-check-npm')).toContainText(
+      /Ready|Not found|Check failed/
+    )
     await expect(page.getByTestId('startup-animation')).toBeHidden({ timeout: 12_000 })
   })
 
@@ -162,7 +164,7 @@ test.describe('Application shell', () => {
     await expect(page.getByText('Pi-Harness').first()).toBeVisible({ timeout: 30_000 })
     await page.keyboard.press('Meta+K')
 
-    const palette = page.getByRole('dialog', { name: /命令面板|Command Palette/ })
+    const palette = page.getByRole('dialog', { name: /Command Palette/ })
     await expect(palette).toBeVisible()
     await page.mouse.click(5, 5)
     await expect(palette).toBeVisible()
@@ -170,7 +172,7 @@ test.describe('Application shell', () => {
     await expect(palette).toBeHidden()
     await page.keyboard.press('Meta+K')
     await expect(palette).toBeVisible()
-    await palette.getByRole('button', { name: /关闭|Close/ }).click()
+    await palette.getByRole('button', { name: /Close/ }).click()
     await expect(palette).toBeHidden()
   })
 

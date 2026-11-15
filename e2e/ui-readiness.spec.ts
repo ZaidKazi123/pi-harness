@@ -66,7 +66,7 @@ test('keeps model controls and dialog keyboard focus usable across zoom and view
   await page
     .getByTestId('provider-action-cell')
     .first()
-    .getByRole('button', { name: /^(测试|Test)$/ })
+    .getByRole('button', { name: /^(Test)$/ })
     .click()
   const dialog = page.getByRole('dialog')
   await expect(dialog).toHaveAttribute('aria-labelledby', /.+/)

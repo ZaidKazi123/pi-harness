@@ -33,9 +33,7 @@ test('development builds check the public release API from the always-available 
 
   await page.locator('a[href="#/settings"]').click()
   await page.getByTestId('settings-section-updates').click()
-  await expect(
-    page.getByRole('button', { name: /检查更新|Check for updates/ }).first()
-  ).toBeVisible()
+  await expect(page.getByRole('button', { name: /Check for updates/ }).first()).toBeVisible()
   await expect(page.getByTestId('settings-version')).toContainText(APP_VERSION)
 })
 
@@ -60,11 +58,9 @@ test('packaged update recovery offers the manual release download', async ({
   await page.evaluate(() => {
     window.location.hash = '/settings/updates'
   })
-  await page.getByRole('button', { name: /检查更新|Check for updates/ }).click()
+  await page.getByRole('button', { name: /Check for updates/ }).click()
   await expect(
-    page
-      .getByText(new RegExp(`发现新版本 ${nextVersion}|Update ${nextVersion} is available`))
-      .first()
+    page.getByText(new RegExp(`Update ${nextVersion} is available`)).first()
   ).toBeVisible()
   expect(await page.evaluate(() => window.piSwitch.updater.state())).toMatchObject({
     status: 'manual_fallback',
@@ -81,7 +77,7 @@ test('packaged update recovery offers the manual release download', async ({
   }, updaterModuleUrl)
   expect(listenerCount).toBe(0)
 
-  await page.getByRole('button', { name: /前往下载|Go to downloads/ }).click()
+  await page.getByRole('button', { name: /Go to downloads/ }).click()
   await expect
     .poll(() =>
       electronApp.evaluate(
@@ -89,7 +85,7 @@ test('packaged update recovery offers the manual release download', async ({
       )
     )
     .toBe(releasePage)
-  await expect(page.getByRole('button', { name: /安装并重启|Install & Restart/ })).toHaveCount(0)
+  await expect(page.getByRole('button', { name: /Install & Restart/ })).toHaveCount(0)
 
   // Test the actual registered IPC boundary, including rejection of extra URLs.
   const rejected = await electronApp.evaluate(({ ipcMain, BrowserWindow }, channel) => {
@@ -123,8 +119,8 @@ test('confirms the current version when automatic-update metadata is missing', a
   await page.evaluate(() => {
     window.location.hash = '/settings/updates'
   })
-  await page.getByRole('button', { name: /检查更新|Check for updates/ }).click()
-  await expect(page.getByText(/已是最新版本|is up to date/).first()).toBeVisible()
+  await page.getByRole('button', { name: /Check for updates/ }).click()
+  await expect(page.getByText(/is up to date/).first()).toBeVisible()
   expect(await page.evaluate(() => window.piSwitch.updater.state())).toMatchObject({
     status: 'idle',
     available: false
@@ -147,8 +143,8 @@ test('manual download rejects unsigned releases without revealing or installing 
   await page.evaluate(() => {
     window.location.hash = '/settings/updates'
   })
-  await page.getByRole('button', { name: /检查更新|Check for updates/ }).click()
-  await expect(page.getByRole('button', { name: /下载安装包|Download installer/ })).toHaveCount(0)
+  await page.getByRole('button', { name: /Check for updates/ }).click()
+  await expect(page.getByRole('button', { name: /Download installer/ })).toHaveCount(0)
   await page.evaluate(() => window.piSwitch.updater.download())
   await expect
     .poll(() => page.evaluate(() => window.piSwitch.updater.state()))
@@ -157,7 +153,7 @@ test('manual download rejects unsigned releases without revealing or installing 
       downloaded: false,
       downloadProgress: null
     })
-  await expect(page.getByRole('button', { name: /安装并重启|Install & Restart/ })).toHaveCount(0)
+  await expect(page.getByRole('button', { name: /Install & Restart/ })).toHaveCount(0)
   const rejected = await electronApp.evaluate(({ ipcMain, BrowserWindow }, channel) => {
     const handlers = (
       ipcMain as unknown as {

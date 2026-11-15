@@ -1,18 +1,18 @@
 /* ============================================================================
- * dsh-startup-screen — 启动动画运行时（浏览器端，零依赖）
+ * dsh-startup-screen — startup animation runtime (browser side, zero dependencies)
  * ----------------------------------------------------------------------------
- * 由 Host 半侧注入到 index.html，在 React 应用挂载之前接管首屏：
+ * Injected into index.html by the host and takes over the first screen before the app mounts:
  *
- *   第一幕  黑幕 + DeepSeek 鲸鱼标识／"深度求索"／"DEEPSEEK"（字距收紧 + 扫光）
- *   过场    过曝洗白（黑 → 灰 → 暖白底板），对应参考片的硬切洗白
- *   第二幕  暖白"技术档案"底板：左上品牌块左→右擦出、右下 POWERED BY、进度条
- *   序列    需要访问许可 → 身份资料确认 → 接收访问需求 → 读取完毕 → 验证通过
- *           → 欢迎 <身份名称> 访问；每步中文大字 + 英文等宽字幕 + 底部长句日志
- *   交互    第 1、2 步等待用户确认（按钮 / Enter / 空格 / 点击），可跳过
- *   终幕    WELCOME TO / [DEEPSEEK HARNESS] / 鲸鱼标识，青红色散故障后揭幕
+ *   Act 1        black screen + DeepSeek whale mark / "DeepSeek" / "DEEPSEEK" (tracking tightens + light sweep)
+ *   Transition   overexposure wash (black → grey → warm-white plate), matching the reference film's hard-cut wash
+ *   Act 2        warm-white "technical dossier" plate: top-left brand block wipes left→right, POWERED BY bottom-right, progress bar
+ *   Sequence     access permission required → identity verification → access request received → read complete → verified
+ *                → welcome <identity name>; each step has large headline text + monospace English subtitle + a long log line at the bottom
+ *   Interaction  steps 1 and 2 wait for user confirmation (button / Enter / Space / click) and can be skipped
+ *   Finale       WELCOME TO / [DEEPSEEK HARNESS] / whale mark, revealed after a cyan-red chromatic glitch
  *
- * 配置来自 window.__DSH_STARTUP__（Host 侧注入），也可用
- * window.__DSH_STARTUP_API__.replay() 重播。
+ * Configuration comes from window.__DSH_STARTUP__ (injected by the host); it can also be
+ * replayed with window.__DSH_STARTUP_API__.replay().
  * ========================================================================== */
 (function () {
   'use strict'
@@ -22,7 +22,7 @@
 
   var ROOT_ID = 'dsh-startup-root'
 
-  /* ── DeepSeek 官方鲸鱼标识（取自 DSH 自带 favicon.svg 的路径数据）──────── */
+  /* ── Official DeepSeek whale mark (path data taken from DSH's bundled favicon.svg) ──────── */
   var WHALE_PATH =
     'M48.8354 10.0479C48.3232 9.79199 48.1025 10.2798 47.8032 10.5278C47.7007 10.6079 ' +
     '47.6143 10.7119 47.5273 10.8076C46.7793 11.624 45.9048 12.1597 44.7622 12.0957C43.0923 ' +
@@ -67,34 +67,34 @@
     '24.2559 31.7632 24.5117 32.2124 25.208C32.5669 25.752 32.8901 26.312 33.1104 ' +
     '26.9521C33.2446 27.3521 33.0713 27.6802 32.6064 27.8799Z'
 
-  /* ── 默认配置（与 Host 侧 lib/index.js 的 DEFAULTS 保持一致）──────────── */
+  /* ── Default configuration (kept in sync with DEFAULTS in the host's lib/index.js) ──────────── */
   var DEFAULTS = {
     enabled: true,
     mode: 'session',            // always | session | daily
     theme: 'light',             // light | dark
     speed: 1,
-    requireInteraction: true,   // 第 1、2 步等待用户确认
+    requireInteraction: true,   // steps 1 and 2 wait for user confirmation
     allowSkip: true,
-    sound: true,                // 界面音效（WebAudio 合成，无音频文件）
+    sound: true,                // UI sound effects (synthesized with WebAudio, no audio files)
     soundVolume: 0.5,
-    voice: true,                // 女声播报
+    voice: true,                // female voice narration
     voiceLang: 'en',            // en | zh | both
-    voiceName: '',              // '' = 自动挑女声（见 FEMALE_HINTS）
-    voiceRate: 0.88,            // 电影旁白档：比朗读慢，字与字之间才有重量
-    voicePitch: 0.85,           // 压低音调，深沉的 AI 女声
+    voiceName: '',              // '' = pick a female voice automatically (see FEMALE_HINTS)
+    voiceRate: 0.88,            // film-narration pace: slower than reading so each word carries weight
+    voicePitch: 0.85,           // lower pitch for a deep AI voice
     voiceVolume: 0.9,
-    voiceCue: true,             // 念台词前的一声轻提示
-    sfx: 'audio',               // audio=真素材（用户音频里抠的音效）/ synth=现场合成
-    voiceSource: 'asset',       // asset=优先用真声素材 / tts=全部 TTS 合成
-    voiceLead: 240,             // 提示音之后留一小段空白再开口
-    identity: 'JOYCE MOORE',    // ← 设置页可改的"身份名称"
+    voiceCue: true,             // a soft cue tone before each line
+    sfx: 'audio',               // audio = real samples (cut from the user's audio) / synth = synthesized live
+    voiceSource: 'asset',       // asset = prefer recorded voice samples / tts = synthesize everything with TTS
+    voiceLead: 240,             // short pause after the cue tone before speaking
+    identity: 'JOYCE MOORE',    // ← "identity name", editable on the settings page
     identityId: '0087',
     accessLevel: '3',
     brand1: 'DEEPSEEK',
     brand2: 'SYNTHESIZE INTELLIGENCE',
     brand3a: 'HARNESS',
     brand3b: 'OS',
-    orgZh: '深度求索',
+    orgZh: 'DeepSeek',
     orgEn: 'DEEPSEEK',
     orgSub: 'DEEPSEEK HARNESS',
     welcomeBox: 'DEEPSEEK HARNESS',
@@ -104,53 +104,53 @@
     glitchB: '#2971b8'
   }
 
-  /* ── 序列脚本：中文主字 + 英文等宽字幕 + 底部日志 ───────────────────────
-     `say` 是专门给语音播报用的自然语句（照着参考片里女声念状态行的节奏，
-     正好卡在各自文字出现的时间点上）。 */
-  /* ── 序列脚本 ──────────────────────────────────────────────────────────
-     文字与真声素材一一对应（来自你给的音频）：
-       line-1.mp3 = V1 需要访问许可
-       line-2.mp3 = V2 身份资料确认
-       line-3.mp3 = V4 接收访问需求
-       line-4.mp3 = V5 开始读取权限
-       line-5.mp3 = V6 读取完毕 · 核验通过
-     V3 是用户名字独白，按你的要求不用。
-     `say` 是素材拿不到时的 TTS 兜底文本；`audio` 是素材文件名（不含扩展名）。 */
+  /* ── Sequence script: headline text + monospace English subtitle + bottom log ───────────────────────
+     `say` is a natural sentence written for voice narration (following the rhythm of the female voice reading status lines in the reference film,
+     timed to land exactly when each line of text appears). */
+  /* ── Sequence script ──────────────────────────────────────────────────────────
+     Each line of text maps one-to-one to a recorded voice sample (from the supplied audio):
+       line-1.mp3 = V1 Access permission required
+       line-2.mp3 = V2 Identity verification
+       line-3.mp3 = V4 Access request received
+       line-4.mp3 = V5 Permission read started
+       line-5.mp3 = V6 Read complete · verified
+     V3 is the user-name monologue and is intentionally unused.
+     `say` is the TTS fallback text when a sample is unavailable; `audio` is the sample file name (without extension). */
   var STEPS = [
     {
-      zh: '需要访问许可',
+      zh: 'Access permission required',
       en: 'ACCESS PERMISSION REQUIRED',
       say: 'Access permission required.',
       audio: 'line-1',
-      log: '等待用户授权…',
+      log: 'Waiting for user authorization…',
       logEn: 'AWAITING OPERATOR CONSENT',
       badge: 'AUTHORIZATION',
       action: 'grant',
-      btnZh: '授予访问权限',
+      btnZh: 'Grant access',
       btnEn: 'GRANT ACCESS',
       hold: 900,
       progress: 0.34
     },
     {
-      zh: '身份资料确认',
+      zh: 'Identity verification',
       en: 'IDENTITY VERIFICATION',
       say: 'Identity verification.',
       audio: 'line-2',
-      log: '核对身份资料…',
+      log: 'Checking identity record…',
       logEn: 'MATCHING OPERATOR RECORD',
       badge: 'IDENTITY',
       action: 'confirm',
-      btnZh: '确认身份',
+      btnZh: 'Confirm identity',
       btnEn: 'CONFIRM IDENTITY',
       hold: 700,
       progress: 0.5
     },
     {
-      zh: '接收访问需求',
+      zh: 'Access request received',
       en: 'ACCESS REQUEST RECEIVED',
       say: 'Access request received.',
       audio: 'line-3',
-      log: '接收访问需求，建立会话通道…',
+      log: 'Access request received, opening session channel…',
       logEn: 'HANDSHAKE ESTABLISHED',
       badge: 'REQUEST',
       action: 'auto',
@@ -159,11 +159,11 @@
       assembleLogo: true
     },
     {
-      zh: '开始读取权限',
+      zh: 'Permission read started',
       en: 'PERMISSION READ STARTED',
       say: 'Beginning permission read.',
       audio: 'line-4',
-      log: '开始读取权限，索引工作区与会话…',
+      log: 'Reading permissions, indexing workspace and sessions…',
       logEn: 'READING PERMISSION SET',
       badge: 'READ',
       action: 'auto',
@@ -172,11 +172,11 @@
       hex: true
     },
     {
-      zh: '读取完毕 · 核验通过',
+      zh: 'Read complete · verified',
       en: 'READ COMPLETE · VERIFIED',
       say: 'Read complete. Verification passed.',
       audio: 'line-5',
-      log: '读取完毕，核验通过，权限已授予',
+      log: 'Read complete, verification passed, permission granted',
       logEn: 'PERMISSION AUTHORIZED',
       badge: 'VERIFY',
       action: 'auto',
@@ -203,7 +203,7 @@
     }
     out.speed = Math.min(3, Math.max(0.35, Number(out.speed) || 1))
     out.identity = String(out.identity || DEFAULTS.identity).slice(0, 48)
-    /* 代号取身份名称里的字母数字；纯中文名字取不到时退回 OPERATOR */
+    /* The code name uses the letters and digits from the identity name; falls back to OPERATOR for names without any */
     out.identityId = String(out.identityId || out.identity).toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 12)
     if (!out.identityId) out.identityId = 'OPERATOR'
     return out
@@ -211,22 +211,22 @@
 
   var C = cfg()
 
-  /* ── 桌面端标题栏同步（Windows · Windows Controls Overlay）─────────────────
-     DeepSeek Harness Desktop 在 Windows 上用 titleBarOverlay 画最小化/最大化/关闭，
-     底色跟随应用主题。于是启动动画播放时右上角会留一块与应用主题同色的方块：
-     第一幕纯黑时是一条亮带，暖白底板阶段三个深色图标压在浅色块上，色差刺眼。
-     这里把 preload 用来测色的隐藏探针改成完全透明，逼它发出
+  /* ── Desktop title bar sync (Windows · Windows Controls Overlay) ─────────────────
+     DeepSeek Harness Desktop draws minimize/maximize/close with titleBarOverlay on Windows,
+     with a background that follows the app theme. During the startup animation that leaves a theme-colored block in the top-right corner:
+     a bright band during the pure-black first act, and three dark icons on a light block during the warm-white plate, which clashes.
+     So the hidden probe that preload uses to sample the color is made fully transparent, forcing it to send
      setTitleBarOverlay({ color: rgba(0,0,0,0), symbolColor: rgba(0,0,0,0) })：
-     overlay 与按钮图标一起消失，启动界面直接透上来，任何一幕都天然无缝。
-     这正是桌面端欢迎窗自己的写法（titleBarOverlay.color 就是 '#00000000'）。
-     探针的 var() 由最近一层声明解析，只改 <html> 上的 token 会被主题层遮蔽，
-     所以主路径直改探针自身的内联样式，token 一并改当作双保险。
-     揭幕 / 跳过 / 自举失败 / 9 秒兜底一律还原；浏览器与 macOS 下整段空转。
-     任何一步失败都静默降级 —— 标题栏保持原样，动画绝不受影响。 */
+     the overlay and button icons disappear together and the startup screen shows through seamlessly in every act.
+     This is exactly how the desktop welcome window does it (titleBarOverlay.color is '#00000000').
+     The probe's var() resolves from the nearest declaration, so changing only the token on <html> is shadowed by the theme layer;
+     the main path therefore edits the probe's own inline style, and the token is changed too as a second safeguard.
+     Reveal / skip / bootstrap failure / the 9-second fallback all restore it; in browsers and on macOS this whole block is a no-op.
+     Any failure degrades silently — the title bar stays as it was and the animation is never affected. */
   var chromeSync = (function () {
     var CLEAR = 'rgba(0, 0, 0, 0)'
     var VARS = ['--dsw-specific-sidebar-fill', '--dsw-alias-label-primary']
-    var MAX_HOLD_MS = 60000          /* 硬上限：万一动画卡住，别把按钮永久藏住 */
+    var MAX_HOLD_MS = 60000          /* hard limit: if the animation hangs, never hide the buttons forever */
     var rootEl = document.documentElement
     var state = { applied: false, probe: null, settledHits: 0 }
     var savedVars = {}
@@ -239,8 +239,8 @@
         var nav = (typeof window !== 'undefined' && window.navigator) ||
           (typeof navigator !== 'undefined' ? navigator : null)
         if (!nav || !/Win/.test(nav.userAgent || '')) return false
-        /* 判据不只认协议字符串：桌面端还会在文档上打 data-windows-titlebar 标记，
-           任一个命中即认为是 Windows 桌面端，避免协议改名后整段静默失效 */
+        /* Don't rely on the protocol string alone: the desktop app also sets a data-windows-titlebar marker on the document;
+           either match counts as the Windows desktop app, so the block doesn't silently stop working if the protocol is renamed */
         var loc = (typeof window !== 'undefined' && window.location) ||
           (typeof location !== 'undefined' ? location : null)
         if (loc && loc.protocol === 'dsh-app:') return true
@@ -249,13 +249,13 @@
       } catch (e) { return false }
     }
 
-    /* preload 的探针是 span，内联 background-color 的声明值里带这个 token 名 */
+    /* preload's probe is a span whose inline background-color declaration contains this token name */
     function findProbe() {
       try {
         if (!document.querySelector) return null
         var el = document.querySelector('span[style*="dsw-specific-sidebar-fill"]')
         if (el) return el
-        /* 兜底：某些实现不把内联样式暴露给属性选择器 */
+        /* Fallback: some implementations don't expose inline styles to attribute selectors */
         if (!document.querySelectorAll) return null
         var spans = document.querySelectorAll('span')
         for (var i = 0; i < spans.length; i++) {
@@ -264,11 +264,11 @@
           var bg = s.style.getPropertyValue('background-color')
           if (bg && bg.indexOf('--dsw-specific-sidebar-fill') !== -1) return s
         }
-      } catch (e) { /* 兜底不再抛 */ }
+      } catch (e) { /* the fallback never throws */ }
       return null
     }
 
-    /* preload 观察 head 的 childList 与 body 的 style；两条一起打，任一条生效即可 */
+    /* preload observes head's childList and body's style; hit both, either one taking effect is enough */
     function poke() {
       try {
         if (document.head) {
@@ -278,16 +278,16 @@
           document.head.appendChild(st)
           if (st.parentNode) st.parentNode.removeChild(st)
         }
-      } catch (e) { /* 兜底不再抛 */ }
+      } catch (e) { /* the fallback never throws */ }
       try {
         if (document.body && document.body.style) {
           document.body.style.setProperty('--dsu-chrome-poke', String(Date.now() % 1000000))
           document.body.style.removeProperty('--dsu-chrome-poke')
         }
-      } catch (e) { /* 兜底不再抛 */ }
+      } catch (e) { /* the fallback never throws */ }
     }
 
-    /** 探针是否已经真的透明了；拿不到计算样式就当作「未确认」，继续补打。 */
+    /** Whether the probe is actually transparent yet; if the computed style is unavailable treat it as "unconfirmed" and keep retrying. */
     function settled() {
       try {
         var p = state.probe
@@ -299,8 +299,8 @@
 
     function apply() {
       try {
-        /* 探针可能被应用重挂（主题切换 / 热重载）：缓存节点一旦脱离文档就重找，
-           否则会对着死节点空打，标题栏在动画中途突然回到主题色 */
+        /* The probe may be remounted by the app (theme switch / hot reload): once the cached node leaves the document, look it up again,
+           otherwise we'd keep poking a dead node and the title bar would snap back to the theme color mid-animation */
         var probe = state.probe
         if (!probe || probe.isConnected === false) probe = state.probe = findProbe()
         if (probe) {
@@ -309,7 +309,7 @@
         }
         if (rootEl) for (var j = 0; j < VARS.length; j++) rootEl.style.setProperty(VARS[j], CLEAR)
         poke()
-      } catch (e) { /* 兜底不再抛 */ }
+      } catch (e) { /* the fallback never throws */ }
     }
 
     function stopTimers() {
@@ -327,17 +327,17 @@
           state.settledHits = 0
           for (var i = 0; i < VARS.length; i++) savedVars[VARS[i]] = rootEl.style.getPropertyValue(VARS[i])
           state.probe = findProbe()
-          /* 万一动画卡住不揭幕，到点强制还原，绝不把三个按钮永久藏住 */
+          /* If the animation hangs without revealing, force a restore at the deadline; never hide the three buttons forever */
           holdTimer = setTimeout(show, MAX_HOLD_MS)
         }
         apply()
-        /* defer 注入路径下 splash.js 可能早于 preload 装探针：补打几次 */
+        /* With deferred injection, splash.js may run before preload installs the probe: retry a few times */
         for (var r = 0; r < retryTimers.length; r++) clearTimeout(retryTimers[r])
         retryTimers = []
         var delays = [140, 520, 1400]
         for (var d = 0; d < delays.length; d++) retryTimers.push(setTimeout(apply, delays[d]))
-        /* 自愈：应用挂载过程中若它自己重发（主题就绪）也拉回透明；
-           已经连续两次确认透明就收手，别一直空打 IPC */
+        /* Self-heal: if the app re-sends during mount (theme ready), pull it back to transparent;
+           stop after two consecutive confirmations instead of spamming IPC */
         if (!keepAlive) {
           keepAlive = setInterval(function () {
             if (!state.applied) return
@@ -349,7 +349,7 @@
             apply()
           }, 600)
         }
-      } catch (e) { /* 兜底不再抛 */ }
+      } catch (e) { /* the fallback never throws */ }
     }
 
     function show() {
@@ -371,11 +371,11 @@
         poke()
         state.probe = null
         state.settledHits = 0
-      } catch (e) { /* 兜底不再抛 */ }
+      } catch (e) { /* the fallback never throws */ }
     }
 
-    /* 双保险：无论从哪条路退出（揭幕 / 跳过 / 自举失败 / 9 秒兜底），
-       #dsh-startup-root 一被移除就还原标题栏 */
+    /* Second safeguard: whichever path we exit by (reveal / skip / bootstrap failure / 9-second fallback),
+       restore the title bar as soon as #dsh-startup-root is removed */
     var observerInstalled = false
     function installObserver() {
       if (observerInstalled) return
@@ -391,7 +391,7 @@
           }
         })
         mo.observe(document.body, { childList: true })
-      } catch (e) { /* 兜底不再抛 */ }
+      } catch (e) { /* the fallback never throws */ }
     }
     if (document.body) installObserver()
     else if (document.addEventListener) document.addEventListener('DOMContentLoaded', installObserver)
@@ -399,16 +399,16 @@
     return { hide: hide, show: show, isDesktopWin: isDesktopWin }
   })()
 
-  /* 排查 / 冒烟测试用的把手：只读开关，不改变插件行为 */
+  /* Handle for debugging / smoke tests: a read-only switch that doesn't change plugin behavior */
   try { window.__DSH_STARTUP_CHROME__ = chromeSync } catch (e) { /* noop */ }
 
-  /* 代际号：replay 会重新挂一份脚本，旧脚本的时间线必须立刻失效 */
+  /* Generation counter: replay remounts the script, so the old script's timeline must be invalidated immediately */
   var GEN = (window.__DSH_STARTUP_GEN__ = (window.__DSH_STARTUP_GEN__ || 0) + 1)
   function stale() { return window.__DSH_STARTUP_GEN__ !== GEN }
   function noop() {}
 
-  /* 停滞看门狗：任意一幕卡住（音频不 resolve / 音频设备切换 / 音频上下文被挂起）都要放行。
-     每推进一幕重新上弦；等用户操作时 disarm，不把正在犹豫的人踢出去。 */
+  /* Stall watchdog: if any act hangs (audio never resolves / audio device switch / audio context suspended), let it through.
+     Re-armed on every act; disarmed while waiting for user input so a hesitating user isn't kicked out. */
   var STALL_MS = 15000
   var stallTimer = null
   function disarmStall() {
@@ -419,12 +419,12 @@
     stallTimer = setTimeout(function () {
       if (finished || stale()) return
       window.__DSH_STARTUP_STALLED__ = true
-      try { console.warn('[dsh-startup-screen] 时间线停滞超过 ' + STALL_MS + 'ms，强制揭幕') } catch (e) { /* noop */ }
+      try { console.warn('[dsh-startup-screen] Timeline stalled for more than ' + STALL_MS + 'ms, forcing reveal') } catch (e) { /* noop */ }
       finish()
     }, STALL_MS)
   }
 
-  /** 拆掉当前实例：停时间线、清定时器、停语音、解滚动锁、摘根节点。replay 前必须先调它。 */
+  /** Tear down the current instance: stop the timeline, clear timers, stop speech, release the scroll lock, remove the root node. Must be called before replay. */
   function dispose() {
     finished = true
     disarmStall()
@@ -442,27 +442,27 @@
       var r = document.getElementById(ROOT_ID)
       if (r && r.parentNode) r.parentNode.removeChild(r)
     } catch (e) { /* noop */ }
-    /* 把"这一轮的状态"也清干净：新实例要重新置位 RUNNING，
-       否则它自己的 9 秒兜底会因为 RUNNING 还是 true 而永远不生效 */
+    /* Also reset "this round's state": the new instance must set RUNNING again,
+       otherwise its own 9-second fallback would never fire because RUNNING is still true */
     try {
       window.__DSH_STARTUP_RUNNING__ = false
       window.__DSH_STARTUP_FINISHED__ = false
     } catch (e) { /* noop */ }
   }
 
-  /** 重播：先拆旧实例（它整条 run() 链和定时器都还活着），再把运行时脚本重新挂一次。 */
+  /** Replay: tear down the old instance first (its whole run() chain and timers are still alive), then remount the runtime script. */
   function injectSelf() {
     var prev = window.__DSH_STARTUP_API__
     if (prev && typeof prev.dispose === 'function' && prev.dispose !== noop) {
-      try { prev.dispose() } catch (e) { /* 旧实例拆不干净也不能挡住重播 */ }
+      try { prev.dispose() } catch (e) { /* an unclean teardown must not block replay */ }
     }
     window.__DSH_STARTUP_LOADED__ = false
     var old = document.getElementById(ROOT_ID)
     if (old && old.parentNode) old.parentNode.removeChild(old)
     window.__DSH_STARTUP_SKIP__ = false
 
-    /* 先把之前注入过的运行时脚本摘掉：同一个 src 反复挂会留下多条执行上下文，
-       某些浏览器还会因为"同一 URL 已执行过"而直接跳过 —— 重播就静默失效了 */
+    /* Remove previously injected runtime scripts first: remounting the same src repeatedly leaves several execution contexts,
+       and some browsers skip it entirely because "this URL has already run" — replay would silently fail */
     try {
       var stale = document.querySelectorAll('script[data-dsh-startup-runtime]')
       for (var i = 0; i < stale.length; i++) {
@@ -472,8 +472,8 @@
 
     var s = document.createElement('script')
     try { s.setAttribute('data-dsh-startup-runtime', '1') } catch (e) { /* noop */ }
-    /* 正式运行时由 Host 路由提供（加时间戳绕开缓存）；
-       离线预览页会把相对路径写进 __DSH_STARTUP_SCRIPT_URL__，file:// 下不加查询串。 */
+    /* At runtime the host route serves it (with a timestamp to bypass caching);
+       the offline preview page writes a relative path into __DSH_STARTUP_SCRIPT_URL__, and no query string is added under file://. */
     if (window.__DSH_STARTUP_SCRIPT_URL__) {
       s.src = window.__DSH_STARTUP_SCRIPT_URL__
     } else {
@@ -483,8 +483,8 @@
     return s
   }
 
-  /* Host 侧的首屏兜底脚本已经判定"这次不播"（未启用 / 本会话已播 / 今日已播）：
-     这里不再建 DOM，但仍然暴露 API，方便设置页按需重播。 */
+  /* The host's first-screen fallback script already decided "don't play this time" (disabled / already played this session / played today):
+     don't build the DOM, but still expose the API so the settings page can replay on demand. */
   if (window.__DSH_STARTUP_SKIP__ === true) {
     window.__DSH_STARTUP_API__ = {
       replay: injectSelf,
@@ -496,9 +496,9 @@
     return
   }
 
-  /* 最后一道保险：脚本连 run() 都没进去（404 / 语法错 / 被拦）时，9 秒后无条件放行。
-     判的是「有没有开始跑」而不是类名 —— `dsu-boot` 在 run() 之前就被摘掉了，
-     按类名判等于永不生效（这正是旧实现漏掉的那类卡死）。 */
+  /* Last safeguard: if the script never even entered run() (404 / syntax error / blocked), let it through unconditionally after 9 seconds.
+     It checks whether it started running, not a class name — `dsu-boot` is removed before run(),
+     so checking the class name would never fire (exactly the kind of hang the old implementation missed). */
   setTimeout(function () {
     try {
       if (window.__DSH_STARTUP_RUNNING__ === true) return
@@ -507,10 +507,10 @@
       document.documentElement.classList.remove('dsu-lock')
       if (document.body) document.body.style.overflow = ''
       window.__DSH_STARTUP_FAILED__ = true
-    } catch (e) { /* 兜底本身不许再抛 */ }
+    } catch (e) { /* the fallback itself must never throw */ }
   }, 9000)
 
-  /* ── 小工具 ───────────────────────────────────────────────────────────── */
+  /* ── Small utilities ──────────────────────────────────────────────── */
   function el(tag, cls, text) {
     var n = document.createElement(tag)
     if (cls) n.className = cls
@@ -543,7 +543,7 @@
     return svg
   }
 
-  /** 逐字渐显：比逐字截断更稳（居中排版不会因为字宽变化而抖动） */
+  /** Per-character fade-in: steadier than per-character truncation (centered layout doesn't jitter as glyph widths change) */
   function typeIn(host, text, stagger) {
     host.textContent = ''
     var frag = document.createDocumentFragment()
@@ -567,7 +567,7 @@
     node.classList.toggle(cls || 'dsu-in', !!on)
   }
 
-  /* ── DOM 搭建 ─────────────────────────────────────────────────────────── */
+  /* ── DOM construction ─────────────────────────────────────────────── */
   var root = document.getElementById(ROOT_ID)
   if (!root) {
     root = el('div')
@@ -582,10 +582,10 @@
   root.style.setProperty('--dsu-glitch-a', C.glitchA)
   root.style.setProperty('--dsu-glitch-b', C.glitchB)
 
-  /* 液态玻璃：只让「背景层」（底板 / 黑幕）半透明 + 磨砂，
-     文字、线条、鲸鱼标识、读数这些主体素材保持实心 —— 所以稿面还在，只是透出了背后的界面。 */
+  /* Liquid glass: only the background layers (plate / black screen) become translucent + frosted;
+     text, lines, the whale mark and readouts stay solid — so the composition remains, with the interface showing through behind it. */
   var blurredNodes = []
-  /** 兜底：backdrop-filter 不可用时，直接模糊应用本体（除自己的根节点）。 */
+  /** Fallback: when backdrop-filter is unavailable, blur the app itself directly (except our own root node). */
   function blurAppBackdrop(px) {
     try {
       if (!document.body || !document.body.children) return
@@ -596,7 +596,7 @@
         node.style.transition = 'filter 420ms ease'
         node.style.filter = px > 0 ? 'blur(' + px + 'px)' : ''
       }
-    } catch (e) { /* 兜底不抛 */ }
+    } catch (e) { /* the fallback doesn't throw */ }
   }
   function restoreAppBackdrop() {
     for (var i = 0; i < blurredNodes.length; i++) {
@@ -617,17 +617,17 @@
     root.style.setProperty('--dsu-glass-alpha', String(gAlpha))
     root.style.setProperty('--dsu-glass-blur', gBlur + 'px')
     root.style.setProperty('--dsu-glass-sat', gSat + '%')
-    /* 这里刻意不置 transparent：DSH 0.2.1 起启动期 body 被强制白底，
-       一上来透明就会在首帧露出白色，看起来就是「闪一下」。
-       等底板铺满（下方 plate opacity=1 之后）再放开。 */
-    /* 背景模糊：独立一层，专门糊「玻璃背后的东西」，和玻璃自身的磨砂是两个参数 */
+    /* Deliberately not set to transparent here: since DSH 0.2.1 the body is forced to white during startup,
+       so going transparent immediately would expose white on the first frame, which looks like a flash.
+       Release it only once the plate is fully covering (after plate opacity=1 below). */
+    /* Background blur: a separate layer dedicated to blurring what's behind the glass; a separate parameter from the glass's own frosting */
     backdropOn = true
     var backdropBlur = clamp01(C.glassBackdropBlur, 0, 80)
     root.style.setProperty('--dsu-backdrop-blur', backdropBlur + 'px')
-    /* 直接模糊应用本体：backdrop-filter 在跨层级/跨堆叠上下文时会被静默忽略
-       （实测表现是「底板透明了但背后不糊」），所以背景模糊不再依赖它 ——
-       给 body 里除自己以外的根节点加 filter，效果确定、可在 finish/dispose 还原。 */
-    /* 上限 60：再高就只剩一片纯色，看不出「背景变糊」而像「背景没了」 */
+    /* Blur the app itself directly: backdrop-filter is silently ignored across layers/stacking contexts
+       (observed as "the plate is transparent but nothing behind it is blurred"), so the background blur no longer depends on it —
+       a filter is added to the root nodes in body other than our own, which is reliable and can be restored in finish/dispose. */
+    /* Capped at 60: any higher and it's just a flat color that reads as "background gone" rather than "background blurred" */
     if (backdropBlur > 0) blurAppBackdrop(Math.min(60, backdropBlur))
   } else {
     root.classList.remove('dsu-glass')
@@ -693,8 +693,8 @@
 
   root.innerHTML = html
 
-  /* 背景层：只在液态玻璃开启时插入，专门做「背景模糊」——
-     它自己透明、只带 backdrop-filter，所以和底板/黑幕的磨砂互不影响。 */
+  /* Background layer: inserted only when liquid glass is on, dedicated to "background blur" —
+     it is transparent itself and only carries backdrop-filter, so it doesn't interfere with the plate/black-screen frosting. */
   if (backdropOn) {
     var backdropEl = el('div', 'dsu-backdrop')
     root.insertBefore(backdropEl, root.firstChild)
@@ -754,14 +754,14 @@
   ui.meta1 = q('.dsu-meta-1')
   ui.meta2 = q('.dsu-meta-2')
 
-  /* 内容填充 */
+  /* Fill in content */
   ui.brand1.textContent = C.brand1
   ui.brand2.textContent = C.brand2
   ui.brand3b.textContent = C.brand3a
   ui.brand3s.textContent = C.brand3b
   ui.footText.textContent = C.footer
   ui.w2.textContent = C.welcomeBox
-  ui.w4.textContent = '欢迎 ' + C.identity + ' 访问'
+  ui.w4.textContent = 'Welcome, ' + C.identity
   ui.idline.textContent = '· ID CONFIRMED : ' + C.identityId
 
   ;(function blackStage() {
@@ -810,7 +810,7 @@
     }
   })()
 
-  /* 左侧六格阶段柱 + 品牌块下方的小字数据行 + 实时时钟 */
+  /* Six stage bars on the left + a small data line under the brand block + a live clock */
   ;(function slatsAndMeta() {
     for (var i = 0; i < STEPS.length + 1; i++) ui.slats.appendChild(el('i', 'dsu-slat'))
     ui.meta1.textContent = 'REV 0.1.0 · WEB PROFILE'
@@ -836,8 +836,8 @@
     }
     var gA = document.createElementNS(ns, 'g')
     gA.setAttribute('class', 'dsu-ret-rot-a')
-    /* 300° 弧，缺口留在正下方 6 点钟方向：底部字幕永远不会被压到，
-       弧末端圆点落在 5 点钟位置，和原片一致。 */
+    /* 300° arc with the gap at the bottom (6 o'clock): the bottom subtitle is never covered,
+       and the dot at the end of the arc lands at 5 o'clock, matching the original film. */
     var a = arc(200, 200, 150, 215, 505, 'dsu-ring-a', 'round')
     gA.appendChild(a.node)
     var da = document.createElementNS(ns, 'circle')
@@ -872,7 +872,7 @@
     ui.reticle.appendChild(svg)
   })()
 
-  /* ── 时间线引擎 ───────────────────────────────────────────────────────── */
+  /* ── Timeline engine ────────────────────────────────────────────── */
   var timers = []
   var waiters = []
   var skipped = false
@@ -901,7 +901,7 @@
   function waitAction() {
     return new Promise(function (resolve) {
       if (skipped || !C.requireInteraction) return resolve()
-      /* 等用户操作期间不上弦：正在犹豫的人不该被看门狗踢出去 */
+      /* Don't arm while waiting for user input: a hesitating user shouldn't be kicked out by the watchdog */
       disarmStall()
       var done = false
       function fin() {
@@ -942,7 +942,7 @@
     ui.bar.style.width = Math.round(pct * 100) + '%'
   }
 
-  /** 六格阶段柱：走过的压暗、当前的拉满并点亮主题橙 */
+  /** Six stage bars: completed ones dim, the current one fills and lights up in theme orange */
   function setSlats(active) {
     var items = ui.slats.children
     for (var i = 0; i < items.length; i++) {
@@ -952,7 +952,7 @@
     }
   }
 
-  /** 扫描线自上而下扫一遍（底板洗白后一次，验准时再一次） */
+  /** A scan line sweeps top to bottom (once after the plate wash, again at verification) */
   function sweep() {
     if (!ui.scanline) return
     ui.scanline.classList.remove('dsu-go')
@@ -1008,12 +1008,12 @@
     ui.hex.classList.remove('dsu-in')
   }
 
-  /* ── 声音 ──────────────────────────────────────────────────────────────
-   * 两条独立的通道，都不依赖任何音频文件：
-   *   audio —— 界面音效，WebAudio 现场合成（咔哒 / 双音确认 / 噪声扫频 / 和声钟）
-   *   voice —— 女声播报，Web Speech API 念每一行的英文（照参考片的女声节奏：
-   *            7.3-9.3s 念状态行、19.6-21.2s 念 PERMISSION AUTHORIZED）
-   * 浏览器策略要求"先有用户手势"，所以第一次点击/按键会补一次解锁 + 补播。 */
+  /* ── Sound ────────────────────────────────────────────────
+   * Two independent channels, neither depends on any audio file:
+   *   audio —— UI sound effects, synthesized live with WebAudio (click / two-tone confirm / noise sweep / chord chime)
+   *   voice —— female voice narration; the Web Speech API reads each line's English (following the reference film's rhythm:
+   *            status lines at 7.3-9.3s, PERMISSION AUTHORIZED at 19.6-21.2s)
+   * Browser policy requires a user gesture first, so the first click/keypress unlocks audio and replays what was missed. */
   function clamp01(v, lo, hi) {
     var n = Number(v)
     return isFinite(n) ? Math.min(hi, Math.max(lo, n)) : lo
@@ -1022,7 +1022,7 @@
   var audio = (function () {
     var ctx = null
     function ac(force) {
-      /* 语音素材要独立于「界面音效」开关：force=true 时无视 C.sound */
+      /* Voice samples are independent of the UI sound switch: force=true ignores C.sound */
       if (!C.sound && !force) return null
       try {
         var AC = window.AudioContext || window.webkitAudioContext
@@ -1046,7 +1046,7 @@
         g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur)
         o.connect(g); g.connect(c.destination)
         o.start(t0); o.stop(t0 + dur + 0.03)
-      } catch (e) { /* 静默降级 */ }
+      } catch (e) { /* degrade silently */ }
     }
     function noise(dur, gain) {
       var c = ac(); if (!c) return
@@ -1061,10 +1061,10 @@
         var g = c.createGain(); g.gain.value = vol(gain)
         src.connect(f); f.connect(g); g.connect(c.destination)
         src.start()
-      } catch (e) { /* 静默降级 */ }
+      } catch (e) { /* degrade silently */ }
     }
-    /* 从 /dsh-startup/asset/ 拉真素材（用户音频里抠出来的"哒"）并解码缓存；
-       拿不到就自动回落到下面合成的音，功能不依赖网络/素材存在与否。 */
+    /* Fetch real samples from /dsh-startup/asset/ (the "tick" cut from the user's audio), decode and cache them;
+       if unavailable, fall back to the synthesized sound below — nothing depends on network or sample availability. */
     var buffers = {}
     var fetching = {}
     function startupAssetUrl(name) {
@@ -1081,11 +1081,11 @@
           .then(function (r) { return r.ok ? r.arrayBuffer() : null })
           .then(function (ab) { return ab ? ac().decodeAudioData(ab) : null })
           .then(function (buf) { if (buf) buffers[name] = buf })
-          .catch(function () { /* 没素材就走合成音 */ })
-      } catch (e) { /* fetch 不存在也一样降级 */ }
+          .catch(function () { /* no sample: use the synthesized sound */ })
+      } catch (e) { /* degrade the same way if fetch doesn't exist */ }
     }
-    /* 素材预加载：fetch + decodeAudioData 不需要用户手势，所以加载时就拉，
-       这样第一步就能用真声，而不用等用户第一次点击。 */
+    /* Sample preloading: fetch + decodeAudioData don't need a user gesture, so load at startup
+       so the very first step can use the real voice without waiting for the user's first click. */
     var pending = {}
     function ensureAsset(name) {
       if (buffers[name]) return Promise.resolve(true)
@@ -1105,9 +1105,9 @@
       return pending[name]
     }
 
-    /** 播素材并等它播完，resolve 实际时长(ms)。拿不到素材 resolve 0。
-     *  onended 是唯一正常出口，但音频上下文挂起时它永远不会来 —— 加一道超时兜底，
-     *  保证这一步的 Promise 一定会有结果，不会把用户永久锁在黑幕里。 */
+    /** Play a sample and wait for it to finish, resolving the actual duration (ms). Resolves 0 if the sample is unavailable.
+     *  onended is the only normal exit, but it never fires while the audio context is suspended — so a timeout fallback is added,
+     *  guaranteeing this step's Promise always settles and the user is never locked behind the black screen. */
     function playAssetAndWait(name, gain) {
       return new Promise(function (resolve) {
         var c = ac(true)
@@ -1152,14 +1152,14 @@
       preload: function () { loadAsset('sfx-tick'); loadAsset('sfx-ticks-run') },
       ensureAsset: ensureAsset,
       playAssetAndWait: playAssetAndWait,
-      /* 文字渐显 / 阶段推进 / 按钮确认 —— 优先用真素材 */
+      /* Text fade-in / stage advance / button confirm — prefer real samples */
       tick: function () { if (!playAsset('sfx-tick', 0.45)) tone(1760, 0.035, 'square', 0.022) },
       confirm: function () { if (!playAsset('sfx-tick', 0.85)) { tone(660, 0.09, 'triangle', 0.07); tone(990, 0.17, 'triangle', 0.055, 0.085) } },
       tickRun: function () { playAsset('sfx-ticks-run', 0.5) },
       step: function () { if (!playAsset('sfx-tick', 0.6)) { tone(880, 0.05, 'sine', 0.05); tone(1320, 0.07, 'sine', 0.028, 0.045) } },
       hover: function () { tone(2200, 0.02, 'sine', 0.018) },
       sweep: function () { noise(0.75, 0.035) },
-      /* 念台词之前的两声轻提示：这一笔让 TTS 从"浏览器念字"变成"系统播报" */
+      /* Two soft cue tones before speaking a line: this turns TTS from "the browser reading text" into "a system announcement" */
       cue: function () { tone(1046.5, 0.05, 'sine', 0.028); tone(1568, 0.06, 'sine', 0.02, 0.075) },
       rise: function () { tone(220, 1.1, 'sine', 0.032, 0, 990) },
       chime: function () {
@@ -1179,10 +1179,10 @@
     var saidOnce = false
     var pending = { en: '', zh: '' }
 
-    /* 想让它听起来像"AI 播报"，音色本身比什么都重要。
-       同一台机器上，"Microsoft Zira Desktop" 是上世纪拼接合成，念长句塑料味很重；
-       Edge 的 "... Online (Natural)"、Chrome 的 "Google ..."、macOS 的 Siri 才是神经网络音色。
-       所以这里按分数挑，而不是挨个名字第一个命中。 */
+    /* To sound like an "AI announcement", the voice timbre matters more than anything.
+       On the same machine, "Microsoft Zira Desktop" is last-century concatenative synthesis and sounds plasticky on long sentences;
+       Edge's "... Online (Natural)", Chrome's "Google ..." and macOS Siri voices are the neural ones.
+       So voices are picked by score rather than by the first name that matches. */
     var NATURAL_HINTS = ['natural', 'neural', 'online', 'premium', 'enhanced', 'siri', 'google']
     var FEMALE_HINTS = [
       'aria', 'jenny', 'michelle', 'emma', 'ava', 'libby', 'sonia', 'maisie',
@@ -1193,7 +1193,7 @@
     var MALE_HINTS = ['david', 'mark', 'guy', 'ryan', 'george', 'daniel', 'alex', 'fred',
       'male', 'yunxi', 'yunjian', 'kangkang']
 
-    /** 给一个音色打分：神经网络 > 女声 > 语种吻合 > 本地 */
+    /** Score a voice: neural > female > matching language > local */
     function score(v, want) {
       var name = String(v.name || '').toLowerCase()
       var lang = String(v.lang || '').toLowerCase()
@@ -1208,12 +1208,12 @@
         if (name.indexOf(MALE_HINTS[k]) !== -1) { sc -= 45; break }
       }
       if (lang.indexOf(want) === 0) sc += 25
-      if (v.localService) sc += 4          /* 本地音色起播快，不会先卡半秒 */
+      if (v.localService) sc += 4          /* local voices start faster without a half-second stall */
       if (v.default) sc += 3
       return sc
     }
 
-    /** 挑某语种最合适的一个音色（want 传 'en' / 'zh' 这样的两字母前缀） */
+    /** Pick the best voice for a language (want is a two-letter prefix such as 'en' / 'zh') */
     function bestFor(want) {
       if (!voices.length) return null
       if (C.voiceName) {
@@ -1245,7 +1245,7 @@
       picked.zh = bestFor('zh')
     }
 
-    /** 全大写名字有些引擎会一个字母一个字母念，转成 Title Case 更像在叫名字 */
+    /** Some engines spell out all-caps names letter by letter; Title Case sounds more like a name being called */
     function spokenName(name) {
       return String(name || '').replace(/\S+/g, function (w) {
         return (/^[A-Z0-9.\-]+$/.test(w) && w.length > 1) ? w.charAt(0) + w.slice(1).toLowerCase() : w
@@ -1257,8 +1257,8 @@
         var u = new window.SpeechSynthesisUtterance(text)
         var v = lang.indexOf('zh') === 0 ? picked.zh : picked.en
         if (v) { u.voice = v; u.lang = v.lang || lang } else u.lang = lang
-        /* 神经网络音色在 .95 / 1.02 这个档位最像"系统在播报"：
-           再快就赶，再慢就假；音调略抬一点显得干净利落 */
+        /* Neural voices sound most like "the system announcing" around .95 / 1.02:
+           faster feels rushed, slower feels fake; a slightly higher pitch sounds clean and crisp */
         u.rate = clamp01(C.voiceRate, 0.5, 2)
         u.pitch = clamp01(C.voicePitch, 0, 2)
         u.volume = clamp01(C.voiceVolume, 0, 1)
@@ -1270,7 +1270,7 @@
       } catch (e) { return false }
     }
 
-    /** 一句话的时长估算（个别引擎不触发 onend 时兜底；中文按字、英文按字符） */
+    /** Estimated duration of a sentence (fallback for engines that don't fire onend; per character for Chinese, per letter for English) */
     function estimateMs(items) {
       var chars = 0
       var rate = clamp01(C.voiceRate, 0.5, 2) || 1
@@ -1297,18 +1297,18 @@
       attach: function (node) { meter = node },
 
       /**
-       * 念一行，返回"这一行实际花了多久(ms)"的 Promise。
+       * Speak one line and return a Promise of how long it actually took (ms).
        *
-       * 三个关键决定：
-       *  - **不 cancel 上一句**。原来每步都 cancel，用户点快一点、或者
-       *    hold 短于台词长度，语音就被硬生生掐断 —— 那正是要避免的。
-       *    speechSynthesis 本身是队列，不 cancel 就是顺序播报。
-       *  - 提示音响过之后留 `voiceLead` 的空白再开口，这是旁白的呼吸感。
-       *  - 等 `onend` 才 resolve，动画据此决定这一步停多久；个别引擎不触发
-       *    onend 时按估算兜底，绝不把动画卡死。
+       * Three key decisions:
+       *  - **Don't cancel the previous line.** Previously every step cancelled, so if the user clicked quickly or
+       *    the hold was shorter than the line, the voice was cut off mid-sentence — exactly what we want to avoid.
+       *    speechSynthesis is a queue itself, so not cancelling means sequential narration.
+       *  - After the cue tone, wait `voiceLead` before speaking; this gives the narration room to breathe.
+       *  - Resolve only on `onend`; the animation uses it to decide how long this step lasts. When an engine doesn't
+       *    fire onend, fall back to the estimate so the animation never hangs.
        */
       line: function (en, zh, asset) {
-        /* 有真声素材就优先用素材（音色就是你给的那个）；拿不到再回落 TTS */
+        /* Prefer the recorded sample when available (the voice is the one supplied); otherwise fall back to TTS */
         if (asset && C.voice && C.voiceSource !== 'tts' && !finished) {
           return audio.ensureAsset(asset).then(function (ok) {
             if (!ok || finished) return 0
@@ -1325,17 +1325,17 @@
         return ttsLine(en, zh)
       },
 
-      /** TTS 路径：素材缺失 / voiceSource=tts / 终幕那条动态名字 */
+      /** TTS path: sample missing / voiceSource=tts / the dynamic name in the finale */
       tts: function (en, zh) { return ttsLine(en, zh) },
 
-      /** 不等待的版本：设置页试听 / 任何"念完就行"的场合 */
+      /** Non-waiting variant: settings-page preview / anywhere it just needs to be spoken */
       say: function (en, zh) { return this.line(en, zh) },
 
-      /** 浏览器要求"先有用户手势"才放声：第一次点击/按键解锁 + 补播当前行 */
+      /** Browsers require a user gesture before playing sound: the first click/keypress unlocks and replays the current line */
       unlock: function () {
         try { if (supported) window.speechSynthesis.resume() } catch (e) {}
         audio.resume()
-        /* 预热：先无声念一个空格，把引擎唤醒，避免第一句被吃掉开头半个字 */
+        /* Warm-up: speak a silent space first to wake the engine so the first line doesn't lose its first half-syllable */
         if (supported && !saidOnce) {
           try {
             var w = new window.SpeechSynthesisUtterance(' ')
@@ -1354,11 +1354,11 @@
         return a === b ? a : (a + (b ? '  /  ' + b : ''))
       },
       listVoices: function () { return voices.slice() },
-      /** 只有这里才真的掐断语音（跳过 / 揭幕） */
+      /** The only place that actually cuts speech off (skip / reveal) */
       stop: function () { try { if (supported) window.speechSynthesis.cancel() } catch (e) {} setMeter(false) }
     }
 
-    /** TTS 合成并等它念完，resolve 实际时长(ms)；拿不到引擎时 resolve 0。 */
+    /** Synthesize with TTS and wait for it to finish, resolving the actual duration (ms); resolves 0 if no engine is available. */
     function ttsLine(en, zh) {
       return new Promise(function (resolve) {
         if (!supported || !C.voice || finished) { resolve(0); return }
@@ -1407,12 +1407,12 @@
     }
   })()
 
-  /* 语音/音效接线：声卡要等用户手势才能出声，这里挂一次性解锁 */
+  /* Voice/sound wiring: the sound card can't play until a user gesture, so attach a one-time unlock here */
   voice.attach(q('.dsu-voice'))
   ;(function preloadVoices() {
     if (C.voiceSource === 'tts') return
     for (var i = 0; i < STEPS.length; i++) if (STEPS[i].audio) audio.ensureAsset(STEPS[i].audio)
-    audio.ensureAsset('line-6')   /* 终幕欢迎语 */
+    audio.ensureAsset('line-6')   /* finale welcome line */
   })()
   ;(function wireSound() {
     voice.load()
@@ -1433,15 +1433,15 @@
     document.addEventListener('touchstart', unlock, true)
   })()
 
-  /* ── 时间线 ───────────────────────────────────────────────────────────── */
+  /* ── Timeline ─────────────────────────────────────────────── */
   function run() {
-    /* 标记「时间线真的跑起来了」：9 秒兜底只放行"压根没跑"的情况，不误杀正常播放 */
+    /* Mark that the timeline really started: the 9-second fallback only releases runs that never started, without killing normal playback */
     window.__DSH_STARTUP_RUNNING__ = true
     armStall()
-    /* 第一幕就是纯黑：先把桌面端标题栏整层透明化，按钮与色块一并消失 */
+    /* Act 1 is pure black: first make the whole desktop title bar transparent so the buttons and color block disappear */
     chromeSync.hide()
     return Promise.resolve()
-      /* 第一幕：黑幕 --> DeepSeek 标识 */
+      /* Act 1: black screen --> DeepSeek mark */
       .then(function () { return wait(820) })
       .then(function () {
         ui.blackInner.classList.add('dsu-in')
@@ -1456,7 +1456,7 @@
         ui.sweep.classList.add('dsu-go')
         return wait(760)
       })
-      /* 过场：过曝洗白 */
+      /* Transition: overexposure wash */
       .then(function () {
         ui.blackInner.classList.add('dsu-out')
         audio.sweep()
@@ -1467,7 +1467,7 @@
       .then(function () {
         ui.plate.style.transition = 'opacity ' + ms(900) + 'ms ease'
         ui.plate.style.opacity = '1'
-        /* 底板铺满之后才让根节点透出去；多留 60ms，避免收尾帧仍露出 body 白底。 */
+        /* Let the root show through only once the plate is fully covering; wait an extra 60ms so the final frame doesn't expose the white body. */
         if (C.glass) {
           setTimeout(function () {
             try { root.style.background = 'transparent' } catch (e) { /* noop */ }
@@ -1481,7 +1481,7 @@
         ui.black.style.opacity = '0'
         return wait(760)
       })
-      /* 第二幕：品牌块 / 页脚 / 进度条 */
+      /* Act 2: brand block / footer / progress bar */
       .then(function () {
         ui.brand.classList.add('dsu-in')
         ui.foot.classList.add('dsu-in')
@@ -1495,17 +1495,17 @@
         setProgress(0.12)
         setStepCount(0, 'BOOT')
         setSlats(0)
-        setSubtitle('系统自检中…', 'SYSTEM SELF-CHECK')
+        setSubtitle('Running system self-check…', 'SYSTEM SELF-CHECK')
         if (C.allowSkip) ui.skip.classList.add('dsu-in')
         return wait(700)
       })
       .then(function () { ui.black.style.display = 'none'; sweep() })
-      /* 六个阶段 */
+      /* Six stages */
       .then(function () { return stepLoop() })
-      /* 终幕 */
+      /* Finale */
       .then(function () { return finale() })
       .catch(function (err) {
-        try { console.warn('[dsh-startup-screen] 动画异常，直接揭幕：', err) } catch (e2) {}
+        try { console.warn('[dsh-startup-screen] Animation error, revealing immediately:', err) } catch (e2) {}
         return finish()
       })
   }
@@ -1517,19 +1517,19 @@
         if (finished || stale()) return
         armStall()
         var n = i + 1
-        /* 身份读数讲的是「身份已确认」，只属于前两幕。第 3 幕起是「接收访问需求」，
-           这句信息已经过期，跟着身份核验一起退场，不再一路挂到终幕。 */
+        /* The identity readout says "identity confirmed" and only belongs to the first two acts. From act 3 it's "access request received";
+           that information is stale, so it exits with the identity check instead of staying until the finale. */
         if (i >= 2) ui.idline.classList.remove('dsu-in')
         setStepCount(n, step.badge)
         setSlats(n)
         setProgress(step.progress)
         setSubtitle(step.log, step.logEn)
         audio.step()
-        /* 语音在这里起头，但**不阻塞**下面的文字渐显 —— 两者同时发生 */
+        /* Speech starts here but **does not block** the text fade-in below — both happen at the same time */
         var spoke = voice.line(step.say, step.zh, step.audio)
 
         ui.status.classList.toggle('dsu-zhline', true)
-        /* 先摘掉 dsu-in 并强制一次样式计算，新的逐字 span 才会重新走渐显动画 */
+        /* Remove dsu-in and force a style recalculation first so the new per-character spans replay the fade-in animation */
         ui.status.classList.remove('dsu-in')
         ui.subEn.classList.remove('dsu-in')
         void ui.status.offsetWidth
@@ -1545,7 +1545,7 @@
 
         if (step.assembleLogo) assembleLogo()
         if (step.reticle) {
-          /* 照原片：准星出现时中央只留状态字，鲸鱼标识和虚线收掉，别挤成一团 */
+          /* As in the original film: when the reticle appears only the status text remains in the center; the whale mark and dashed line exit so nothing crowds together */
           ui.logo.classList.remove('dsu-in')
           ui.dots.hidden = true
           ui.reticle.classList.add('dsu-in')
@@ -1553,8 +1553,8 @@
         }
         if (step.hex) startHex()
 
-        /* 这一步停多久 = max(视觉基准, 实际播报时长 + 收尾留白) —— 台词长就多停，
-           台词短也不会干等。用户点得快时同样等这一句念完，不掐断。 */
+        /* How long this step lasts = max(visual baseline, actual narration duration + tail pause) — longer lines hold longer,
+           short lines don't wait idly. Even when the user clicks quickly, wait for the line to finish instead of cutting it off. */
         function holdFor(spoken) {
           var target = Math.max(ms(step.hold), (spoken || 0) + ms(240))
           return wait(Math.max(0, target - (spoken || 0)))
@@ -1590,7 +1590,7 @@
         path.style.strokeWidth = '1.1'
         path.style.strokeDasharray = len
         path.style.strokeDashoffset = len
-        /* 参考片的"一笔画成"：先勾线，再落墨成面 */
+        /* The reference film's "single stroke": outline first, then fill */
         path.animate(
           [{ strokeDashoffset: len }, { strokeDashoffset: 0 }],
           { duration: ms(1400), easing: 'cubic-bezier(.55,.06,.24,1)', fill: 'forwards' }
@@ -1600,7 +1600,7 @@
           path.style.fill = ''
           path.style.strokeWidth = '0'
         }, ms(1450))
-      } catch (err) { /* Web Animations 不可用时直接落墨 */ }
+      } catch (err) { /* fill immediately when Web Animations is unavailable */ }
     }
     return wait(300)
   }
@@ -1611,11 +1611,11 @@
     ui.card.hidden = step.action !== 'confirm'
     if (step.action === 'confirm') {
       ui.card.innerHTML = ''
-      /* 纯中文标签 + 数字/名称，去掉英文双写与主机行，别堆信息 */
+      /* Labels + numbers/names only, without duplicated English and the host line, to avoid clutter */
       var rows = [
-        ['身份名称', C.identity, true],
-        ['身份编号', C.identityId, false],
-        ['权限等级', C.accessLevel, false]
+        ['Identity name', C.identity, true],
+        ['Identity ID', C.identityId, false],
+        ['Access level', C.accessLevel, false]
       ]
       rows.forEach(function (r) {
         var row = el('div', 'dsu-card-row')
@@ -1624,7 +1624,7 @@
         ui.card.appendChild(row)
       })
     }
-    ui.hint.innerHTML = '按 <kbd>Enter</kbd> / <kbd>Space</kbd>，或点击按钮继续'
+    ui.hint.innerHTML = 'Press <kbd>Enter</kbd> / <kbd>Space</kbd>, or click the button to continue'
     ui.action.classList.add('dsu-in')
     ui.btn.classList.add('dsu-pulse')
   }
@@ -1640,11 +1640,11 @@
     setStepCount(6, 'WELCOME')
     setSlats(6)
     setProgress(1)
-    /* 底部日志和终幕里的「欢迎 xxx 访问」区分开，避免同一句出现两遍 */
-    setSubtitle('身份验证完成，会话已建立', 'IDENTITY VERIFIED · SESSION ESTABLISHED')
+    /* Keep the bottom log distinct from the finale's "Welcome, xxx" so the same sentence doesn't appear twice */
+    setSubtitle('Identity verified, session established', 'IDENTITY VERIFIED · SESSION ESTABLISHED')
     audio.chime()
-    /* 终幕欢迎语：自制落幕词素材 line-6（3.73 秒），在欢迎文案亮起的同一刻开念。
-       素材缺失 / voiceSource=tts / voice 关闭时静音（调用时 en、zh 都传 null，不会念出合成腔）。 */
+    /* Finale welcome line: the custom closing sample line-6 (3.73 seconds) starts at the same moment the welcome text lights up.
+       Silent when the sample is missing / voiceSource=tts / voice is off (both en and zh are passed as null, so no synthetic voice is heard). */
     var welcome = null
 
     ui.status.classList.remove('dsu-in')
@@ -1652,7 +1652,7 @@
     ui.rule.classList.remove('dsu-in')
     ui.reticle.classList.remove('dsu-in')
     stopHex()
-    /* 中央区（状态行/分隔线/鲸鱼/虚线）整体退场：不清掉会和 WELCOME 版式叠字 */
+    /* The whole center area (status line / divider / whale / dashed line) exits: otherwise it overlaps the WELCOME layout */
     ui.center.classList.add('dsu-off')
     ui.dots.hidden = true
 
@@ -1660,30 +1660,30 @@
       .then(function () {
         ui.welcome.classList.add('dsu-in')
         ui.idline.classList.remove('dsu-in')
-        /* 欢迎文案亮起的同一刻开口 —— 早于画面会让人以为「话没说完画面就跳了」 */
+        /* Speak at the same moment the welcome text lights up — earlier than the visuals makes it feel like the screen jumped before the line finished */
         welcome = voice.line(null, null, 'line-6')
         return wait(420)
       })
       .then(function () {
-        /* 结尾色散故障：分片位移 + 0.5px 模糊 + 混合模式，读起来像镜头色散 */
+        /* Closing chromatic glitch: sliced offsets + 0.5px blur + blend modes, reading as lens chromatic aberration */
         var targets = [ui.w1, ui.w2, ui.w4]
         targets.forEach(function (t) {
           t.classList.add('dsu-glitch')
           t.setAttribute('data-text', t.textContent)
         })
-        ui.w2.classList.add('dsu-glitch-box')   /* 黑底白字那块换加色混合 */
+        ui.w2.classList.add('dsu-glitch-box')   /* the white-on-black block switches to additive blending */
         void ui.welcome.offsetWidth
         targets.forEach(function (t) { t.classList.add('dsu-on') })
         return wait(640)
       })
-      /* 光晕从中心炸开 + 变形光条横扫 + 文字青色 halation */
+      /* A glow bursts from the center + an anamorphic light streak sweeps across + cyan halation on the text */
       .then(function () {
         root.classList.add('dsu-peak')
         ui.bloom.classList.add('dsu-go')
         ui.streak.classList.add('dsu-go')
         return wait(430)
       })
-      /* 光晕最亮那一下补一记极短高光（是"眨一下"，不是长时间糊白） */
+      /* At the glow's brightest moment add a very short highlight (a "blink", not a long white wash) */
       .then(function () {
         ui.flash.style.transition = 'opacity ' + ms(70) + 'ms linear'
         ui.flash.style.opacity = '0.72'
@@ -1694,9 +1694,9 @@
         ui.flash.style.opacity = '0'
         return wait(320)
       })
-      /* 欢迎语没播完就不揭幕（素材缺失时这个 Promise 立刻 resolve，不影响节奏） */
+      /* Don't reveal until the welcome line has finished (this Promise resolves immediately when the sample is missing, so pacing is unaffected) */
       .then(function () { return welcome })
-      /* 揭幕：整个机位后撤 + 轻微失焦，比单纯淡出更有镜头感 */
+      /* Reveal: the whole camera pulls back + slight defocus, more cinematic than a plain fade-out */
       .then(function () {
         root.classList.add('dsu-handoff')
         return wait(780)
@@ -1709,7 +1709,7 @@
     finished = true
     window.__DSH_STARTUP_FINISHED__ = true
     disarmStall()
-    /* 揭幕即还原桌面端标题栏（root 被移除时 MutationObserver 还会再兜一次） */
+    /* Restore the desktop title bar on reveal (the MutationObserver catches it again when root is removed) */
     chromeSync.show()
     try { restoreAppBackdrop() } catch (e) { /* noop */ }
     releaseAll()
@@ -1721,9 +1721,9 @@
       if (C.mode === 'daily') {
         window.localStorage.setItem('dsh-startup-screen:day', new Date().toISOString().slice(0, 10))
       }
-    } catch (err) { /* 隐私模式下不可写，忽略 */ }
-    /* 解锁：Host 注入的关键样式用 html.dsu-lock 锁滚动，这里必须一并摘掉，
-       否则揭幕后主界面会永远滚不动。 */
+    } catch (err) { /* not writable in private mode; ignore */ }
+    /* Unlock: the host-injected critical styles lock scrolling with html.dsu-lock, which must be removed here too,
+       otherwise the main interface could never scroll after the reveal. */
     document.documentElement.classList.remove('dsu-lock')
     document.documentElement.style.overflow = ''
     if (document.body) document.body.style.overflow = ''
@@ -1752,9 +1752,9 @@
     ui.skip.hidden = true
   }
 
-  /* 对外 API：settings 面板里的"立即预览"按钮和重播都走它 */
+  /* Public API: the settings panel's "Preview now" button and replay both go through it */
   window.__DSH_STARTUP_API__ = {
-    /* 设置页试听与冒烟测试用：直接念一行 */
+    /* For settings-page voice preview and smoke tests: speak a single line */
     speak: function (en, zh) { voice.say(en, zh) },
     speakName: function (n) { return voice.speakName(n) },
     get voice() { return voice.current() },
@@ -1765,7 +1765,7 @@
     config: C
   }
 
-  /* 锁滚动，动画期间不露出下面的应用 */
+  /* Lock scrolling so the app underneath isn't exposed during the animation */
   document.documentElement.classList.add('dsu-lock')
   document.documentElement.style.overflow = 'hidden'
   if (document.body) document.body.style.overflow = 'hidden'

@@ -23,7 +23,7 @@ test('renders full history inside the themed Pi-Harness dialog', async ({
   await page.locator('a[href="#/settings"]').click()
   await page.getByTestId('settings-section-mascot').click()
   await page.getByTestId('mascot-unlock-answer').fill('1024')
-  await page.getByRole('button', { name: /解锁|Unlock/, exact: true }).click()
+  await page.getByRole('button', { name: /Unlock/, exact: true }).click()
   await page.locator('[data-mascot-option="starshipCockpit"]').click()
   await expect(page.locator('html')).toHaveAttribute('data-visual-skin', 'starship-cockpit')
 
@@ -31,7 +31,7 @@ test('renders full history inside the themed Pi-Harness dialog', async ({
   await page.getByTestId('workspace-refresh').click()
   await page
     .getByTestId(`session-row-${sessionId}`)
-    .getByRole('button', { name: '历史弹窗样式验证', exact: true })
+    .getByRole('button', { name: 'History dialog style check', exact: true })
     .click()
   await expect(page.locator('[data-message-role="assistant"]').first()).toBeVisible()
   await expect(page.locator('[data-message-role="user"] img')).toHaveAttribute(
@@ -46,14 +46,14 @@ test('renders full history inside the themed Pi-Harness dialog', async ({
   const windowCount = electronApp.windows().length
   await page
     .getByTestId('chat-status-hud')
-    .getByRole('button', { name: /完整历史|Full history/ })
+    .getByRole('button', { name: /Full history/ })
     .click()
 
-  const dialog = page.getByRole('dialog', { name: /完整历史|Full history/ })
+  const dialog = page.getByRole('dialog', { name: /Full history/ })
   const history = page.getByTestId('full-history-dialog')
   await expect(dialog).toBeVisible()
   await expect(history).toBeVisible()
-  await expect(dialog).toContainText('历史弹窗样式验证')
+  await expect(dialog).toContainText('History dialog style check')
   await expect(dialog.locator('[data-message-role="user"]')).toHaveCount(13)
   await expect(dialog.locator('[data-message-role="assistant"]')).toHaveCount(13)
   await expect(dialog.locator('[data-message-role="assistant"] img')).toHaveAttribute(
@@ -78,7 +78,7 @@ test('renders full history inside the themed Pi-Harness dialog', async ({
     .toBe(true)
 
   await page.screenshot({ path: path.join(testInfo.outputDir, 'full-history-starship.png') })
-  await dialog.getByRole('button', { name: /关闭|Close/ }).click()
+  await dialog.getByRole('button', { name: /Close/ }).click()
   await expect(dialog).toHaveCount(0)
   expect(pageErrors).toEqual([])
   expect(consoleErrors).toEqual([])
@@ -106,17 +106,17 @@ function seedHistorySession(agentDir: string, cwd: string, sessionId: string): v
         role: 'user',
         content:
           index === 0
-            ? '历史弹窗样式验证'
+            ? 'History dialog style check'
             : index === 12
               ? [
-                  { type: 'text', text: `第 ${index + 1} 条历史消息` },
+                  { type: 'text', text: `History message ${index + 1}` },
                   {
                     type: 'image',
                     data: 'R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==',
                     mimeType: 'image/gif'
                   }
                 ]
-              : `第 ${index + 1} 条历史消息`,
+              : `History message ${index + 1}`,
         timestamp: Date.parse(timestamp)
       }
     })
@@ -132,7 +132,7 @@ function seedHistorySession(agentDir: string, cwd: string, sessionId: string): v
         role: 'assistant',
         provider: 'volcengine',
         model: 'glm-5.3-flash',
-        content: [{ type: 'text', text: `已完成第 ${index + 1} 条记录。` }],
+        content: [{ type: 'text', text: `Finished record ${index + 1}.` }],
         timestamp: Date.parse(timestamp)
       }
     })

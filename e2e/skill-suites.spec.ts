@@ -8,13 +8,13 @@ test('role suites share canonical skills and preserve unrelated installations wh
   piAgentDir
 }) => {
   await openOverflowPage(page, 'skills')
-  await page.getByRole('tab', { name: /精选|Featured/, exact: true }).click()
+  await page.getByRole('tab', { name: /Featured/, exact: true }).click()
   const collection = (id: string) => page.getByTestId(`market-collection-builtin:${id}`)
   for (const [id, title] of [
-    ['ui-designer', 'UI 设计师 Skill套件'],
-    ['frontend-engineer', '前端工程师 Skill套件'],
-    ['backend-engineer', '后端工程师 Skill套件'],
-    ['product-engineer', '产品工程师 Skill套件']
+    ['ui-designer', 'UI Designer Skill Suite'],
+    ['frontend-engineer', 'Frontend Engineer Skill Suite'],
+    ['backend-engineer', 'Backend Engineer Skill Suite'],
+    ['product-engineer', 'Product Engineer Skill Suite']
   ]) {
     await expect(collection(id)).toContainText(title)
   }
@@ -25,13 +25,13 @@ test('role suites share canonical skills and preserve unrelated installations wh
 
   await collection('backend-engineer').click()
   const tdd = page.getByTestId('builtin-skill-tdd')
-  await tdd.getByRole('button', { name: /安装|Install/, exact: true }).click()
+  await tdd.getByRole('button', { name: /Install/, exact: true }).click()
   await expect(collection('backend-engineer')).toContainText('1/7')
   await expect(collection('frontend-engineer')).toContainText('1/7')
   await expect(collection('mattpocock-skills')).toContainText('1/31')
 
   await collection('ui-designer').click()
-  await page.getByRole('button', { name: /全部安装|Install all/, exact: true }).click()
+  await page.getByRole('button', { name: /Install all/, exact: true }).click()
   await expect(collection('ui-designer')).toContainText('6/6', { timeout: 45_000 })
   await expect(collection('frontend-engineer')).toContainText('3/7')
   await expect(collection('product-engineer')).toContainText('1/6')
@@ -48,10 +48,10 @@ test('role suites share canonical skills and preserve unrelated installations wh
     })
   }
 
-  await page.getByRole('button', { name: /全部卸载|Uninstall all/, exact: true }).click()
+  await page.getByRole('button', { name: /Uninstall all/, exact: true }).click()
   const confirmation = page.getByRole('dialog')
-  await expect(confirmation).toContainText(/其他套件|other suites/)
-  await confirmation.getByRole('button', { name: /全部卸载|Uninstall all/ }).click()
+  await expect(confirmation).toContainText(/other suites/)
+  await confirmation.getByRole('button', { name: /Uninstall all/ }).click()
   await expect(collection('ui-designer')).toContainText('0/6', { timeout: 45_000 })
   await expect(collection('frontend-engineer')).toContainText('1/7')
   await expect(collection('backend-engineer')).toContainText('1/7')

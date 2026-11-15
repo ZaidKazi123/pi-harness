@@ -144,12 +144,12 @@ for (const [withImage, precreated] of [
       // includes runtime integrity checks plus Pi's bounded RPC/bridge handshake;
       // the ordinary 15s UI expectation is shorter than that startup path.
       await expect(editor).toHaveAttribute('contenteditable', 'false')
-      await expect(composer.getByRole('button', { name: /发送|Send/, exact: true })).toBeDisabled()
+      await expect(composer.getByRole('button', { name: /Send/, exact: true })).toBeDisabled()
       await editor.pressSequentially('must-not-be-appended')
       await expect(editor).toHaveText('Check the first message')
       await expect.poll(() => fs.existsSync(starting), { timeout: 45_000 }).toBe(true)
       await expect(editor).toHaveAttribute('contenteditable', 'false')
-      await expect(composer.getByRole('button', { name: /发送|Send/, exact: true })).toBeDisabled()
+      await expect(composer.getByRole('button', { name: /Send/, exact: true })).toBeDisabled()
       fs.writeFileSync(release, 'continue')
       await expect(users).toHaveCount(1)
       if (withImage) await expect(users.locator('img')).toHaveCount(1)
@@ -164,7 +164,7 @@ for (const [withImage, precreated] of [
       expect(outgoingUsers).toHaveLength(1)
       if (withImage) expect(JSON.stringify(outgoingUsers)).toContain('data:image/png;base64,')
       finishResponse!()
-      await expect(composer.getByRole('button', { name: /终止|Abort/, exact: true })).toHaveCount(0)
+      await expect(composer.getByRole('button', { name: /Abort/, exact: true })).toHaveCount(0)
       await expect(page.locator('[data-testid^="session-row-"]')).toHaveCount(1)
       const session = await page.evaluate(() =>
         window.piSwitch.sessions.list(true).then(([item]) => item)
@@ -202,21 +202,21 @@ for (const [withImage, precreated] of [
       await expect.poll(() => requests.length).toBe(2)
       await expect(users).toHaveCount(2)
       finishResponse!()
-      await expect(composer.getByRole('button', { name: /终止|Abort/, exact: true })).toHaveCount(0)
+      await expect(composer.getByRole('button', { name: /Abort/, exact: true })).toHaveCount(0)
       await expect(users).toHaveCount(2)
 
       await page
         .getByTestId('chat-status-hud')
-        .getByRole('button', { name: /完整历史|Full history/ })
+        .getByRole('button', { name: /Full history/ })
         .click()
-      const dialog = page.getByRole('dialog', { name: /完整历史|Full history/ })
+      const dialog = page.getByRole('dialog', { name: /Full history/ })
       await expect(dialog.locator('[data-message-role="user"]')).toHaveCount(2)
       if (withImage)
         await expect(dialog.locator('[data-message-role="user"] img')).toHaveAttribute(
           'src',
           /^data:image\/png;base64,/
         )
-      await dialog.getByRole('button', { name: /关闭|Close/ }).click()
+      await dialog.getByRole('button', { name: /Close/ }).click()
 
       if (withImage) {
         for (const format of ['markdown', 'html'] as const) {

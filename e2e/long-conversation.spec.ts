@@ -136,7 +136,7 @@ for (const knownProfile of [false, true]) {
       const before = await page.evaluate((id) => window.piSwitch.sessions.get(id), sessionId)
       await editor.fill(`Continue the long task\n${'Recent task details. '.repeat(500)}`)
       await editor.press('Enter')
-      const warning = page.getByRole('alert').filter({ hasText: '回复因模型' })
+      const warning = page.getByRole('alert').filter({ hasText: 'The response reached the model' })
       await expect
         .poll(() =>
           page.evaluate(

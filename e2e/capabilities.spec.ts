@@ -18,10 +18,10 @@ test.describe('Capabilities', () => {
     await mockEmptyRegistry(electronApp)
     await openOverflowPage(page, 'skills')
 
-    const officialTab = page.getByRole('tab', { name: /官方市场|Official Market/, exact: true })
-    const skillsTab = page.getByRole('tab', { name: /技能|Skills/, exact: true })
-    const packagesTab = page.getByRole('tab', { name: /已安装|Installed/, exact: true })
-    const marketTab = page.getByRole('tab', { name: /精选|Featured/, exact: true })
+    const officialTab = page.getByRole('tab', { name: /Official Market/, exact: true })
+    const skillsTab = page.getByRole('tab', { name: /Skills/, exact: true })
+    const packagesTab = page.getByRole('tab', { name: /Installed/, exact: true })
+    const marketTab = page.getByRole('tab', { name: /Featured/, exact: true })
 
     await expect(officialTab).toHaveAttribute('aria-selected', 'true')
     await expect(skillsTab).toHaveAttribute('aria-selected', 'false')
@@ -66,13 +66,13 @@ test.describe('Capabilities', () => {
   }) => {
     await mockEmptyRegistry(electronApp)
     await openOverflowPage(page, 'skills')
-    await page.getByRole('tab', { name: /技能|Skills/, exact: true }).click()
+    await page.getByRole('tab', { name: /Skills/, exact: true }).click()
 
     const cards = page.locator('[data-testid^="featured-capability-"]')
     await expect(cards).toHaveCount(3)
     await expect(cards.nth(0)).toContainText('Native Pi')
     await expect(cards.nth(1)).toContainText('Superpowers')
-    await expect(cards.nth(1)).toContainText(/推荐|Recommended/)
+    await expect(cards.nth(1)).toContainText(/Recommended/)
     await expect(cards.nth(2)).toContainText('Everything Claude Code')
 
     const state = await page.evaluate(async () => {
@@ -109,9 +109,9 @@ test.describe('Capabilities', () => {
     await page.getByTestId('featured-capability-install').click()
     const confirmation = page.getByRole('dialog')
     await expect(confirmation).toContainText('pi install git:github.com/obra/superpowers')
-    await confirmation.getByRole('button', { name: /取消|Cancel/, exact: true }).click()
+    await confirmation.getByRole('button', { name: /Cancel/, exact: true }).click()
     await expect(confirmation).toHaveCount(0)
-    await expect(cards.nth(1)).toContainText(/未安装|Not installed/)
+    await expect(cards.nth(1)).toContainText(/Not installed/)
   })
 
   test('shows ECC pack details with honest module support statuses', async ({
@@ -120,23 +120,23 @@ test.describe('Capabilities', () => {
   }) => {
     await mockEmptyRegistry(electronApp)
     await openOverflowPage(page, 'skills')
-    await page.getByRole('tab', { name: /技能|Skills/, exact: true }).click()
+    await page.getByRole('tab', { name: /Skills/, exact: true }).click()
 
     await page.getByTestId('featured-capability-ecc').click()
 
     await expect(
       page.getByText('pi install git:github.com/affaan-m/ECC')
     ).toBeVisible()
-    const modules = page.getByText(/能力模块|Capability modules/)
+    const modules = page.getByText(/Capability modules/)
     await expect(modules).toBeVisible()
     for (const name of [
-      /^(技能库|Skills library)$/,
-      /^(提示命令|Prompt commands)$/,
-      /^(工程规范|Engineering rules)$/,
-      /^(生命周期钩子|Lifecycle hooks)$/,
-      /^(持续学习|Continuous learning)$/,
-      /^(统一记忆|Unified memory)$/,
-      /^(安全审计|Security audit)$/
+      /^(Skills library)$/,
+      /^(Prompt commands)$/,
+      /^(Engineering rules)$/,
+      /^(Lifecycle hooks)$/,
+      /^(Continuous learning)$/,
+      /^(Unified memory)$/,
+      /^(Security audit)$/
     ]) {
       await expect(page.getByText(name)).toBeVisible()
     }
@@ -310,11 +310,11 @@ test.describe('Capabilities', () => {
     await expect(page.getByTestId('registry-total')).toContainText('51')
 
     const toolbar = page.locator('.capabilities-toolbar')
-    await toolbar.getByRole('button', { name: /技能|Skills/, exact: true }).click()
-    await expect(page.getByText(/技能|Skill/, { exact: true }).last()).toBeVisible()
-    await toolbar.getByRole('button', { name: /全部|All/, exact: true }).click()
+    await toolbar.getByRole('button', { name: /Skills/, exact: true }).click()
+    await expect(page.getByText(/Skill/, { exact: true }).last()).toBeVisible()
+    await toolbar.getByRole('button', { name: /All/, exact: true }).click()
 
-    const search = page.getByPlaceholder(/搜索能力包|Search packages/)
+    const search = page.getByPlaceholder(/Search packages/)
     const searchChrome = await search.evaluate((input) => {
       const field = input.closest('label')
       if (!field) throw new Error('Search field shell is missing')
@@ -343,36 +343,36 @@ test.describe('Capabilities', () => {
     await search.fill('mcp')
     await expect(page.getByTestId('registry-loading-overlay')).toBeVisible()
     await expect(page.getByTestId('registry-package-pi-mcp-adapter')).toBeVisible()
-    await expect(page.getByRole('button', { name: /详情|Details/, exact: true })).toHaveCount(0)
+    await expect(page.getByRole('button', { name: /Details/, exact: true })).toHaveCount(0)
     await expect(page.getByText('Pi Manifest')).toBeVisible()
 
     await page
-      .getByRole('button', { name: /安装|Install/, exact: true })
+      .getByRole('button', { name: /Install/, exact: true })
       .last()
       .click()
     await page
-      .getByRole('button', { name: /安装|Install/, exact: true })
+      .getByRole('button', { name: /Install/, exact: true })
       .last()
       .click()
-    await expect(page.getByText(/有更新|Update available/).first()).toBeVisible()
+    await expect(page.getByText(/Update available/).first()).toBeVisible()
 
     await page
-      .getByRole('button', { name: /更新|Update/, exact: true })
+      .getByRole('button', { name: /Update/, exact: true })
       .last()
       .click()
     await page
-      .getByRole('button', { name: /更新|Update/, exact: true })
+      .getByRole('button', { name: /Update/, exact: true })
       .last()
       .click()
-    await expect(page.getByText(/已安装|Installed/).first()).toBeVisible()
+    await expect(page.getByText(/Installed/).first()).toBeVisible()
 
     await search.fill('')
     await expect(page.getByTestId('registry-package-pi-first-page')).toBeVisible()
-    await page.getByRole('button', { name: /下一页|Next page/ }).click()
+    await page.getByRole('button', { name: /Next page/ }).click()
     await expect(page.getByTestId('registry-package-pi-second-page')).toBeVisible()
-    await page.getByRole('tab', { name: /技能|Skills/, exact: true }).click()
+    await page.getByRole('tab', { name: /Skills/, exact: true }).click()
     await expect(page.getByTestId('featured-capability-superpowers')).toBeVisible()
-    await page.getByRole('tab', { name: /精选|Featured/, exact: true }).click()
+    await page.getByRole('tab', { name: /Featured/, exact: true }).click()
     await expect(page.getByTestId('market-collection-core-development')).toBeVisible()
   })
 
@@ -402,9 +402,9 @@ test.describe('Capabilities', () => {
     await page.locator('a[href="#/settings"]').click()
     await page.locator('.ui-select-trigger').first().click()
     await page.getByRole('option', { name: '简体中文' }).click()
-    await expect(page.getByText('语言', { exact: true })).toBeVisible()
+    await expect(page.getByText('Language', { exact: true })).toBeVisible()
     await openOverflowPage(page, 'skills')
-    await expect(page.getByRole('heading', { name: '能力中心' })).toBeVisible()
-    await expect(page.getByRole('tab', { name: '官方市场' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Capabilities' })).toBeVisible()
+    await expect(page.getByRole('tab', { name: 'Official Market' })).toBeVisible()
   })
 })

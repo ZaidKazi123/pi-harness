@@ -56,9 +56,9 @@ export interface TibotCue {
 
 export interface TibotSettings {
   color: string
-  /** 0–1, the HTML "活跃程度". */
+  /** 0–1, the HTML "activity level". */
   energy: number
-  /** 0–1, the HTML "立体光影". */
+  /** 0–1, the HTML "3D lighting". */
   light: number
   tracking: boolean
   auto: boolean

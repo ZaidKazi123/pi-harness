@@ -196,7 +196,7 @@ test('summarizes a conversation, refreshes navigation and preserves a manual nam
   await row.click({ button: 'right' })
   const dialog = page.getByRole('dialog')
   await dialog.getByRole('textbox').fill('我的排查记录')
-  await dialog.getByRole('button', { name: /保存|Save/ }).click()
+  await dialog.getByRole('button', { name: /Save/ }).click()
   await expect(row).toContainText('我的排查记录')
   await expect(page.getByTestId('workspace-files-session-title')).toHaveText('我的排查记录')
   await page.reload()

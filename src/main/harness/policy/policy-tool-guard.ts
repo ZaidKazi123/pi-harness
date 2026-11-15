@@ -20,7 +20,7 @@ export interface PolicyGuardContext {
   sessionId: string
   signal?: AbortSignal
   /**
-   * Session permission mode. Under `auto` (全自动) every interactive `ask`
+   * Session permission mode. Under `auto` (full access) every interactive `ask`
    * decision is auto-allowed — `deny` decisions still deny.
    */
   permissionMode?: PermissionMode
@@ -126,7 +126,7 @@ async function resolve(
     })
     return true
   }
-  // 全自动 (permission mode `auto`) means the user pre-approved execution:
+  // Full access (permission mode `auto`) means the user pre-approved execution:
   // interactive asks must not block the run. Hard `deny` rules are still
   // enforced below (resolveAsk is only reached for ask; deny falls through
   // to the caller's throw).

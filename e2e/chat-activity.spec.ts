@@ -30,11 +30,15 @@ test('shows compact activity with two independent expansion levels', async ({
   await page.locator('a[href="#/workspace"]').click()
   await page
     .getByTestId(`session-row-${sessionId}`)
-    .getByRole('button', { name: /^检查项目的类型错误/ })
+    .getByRole('button', { name: /^Check the project for type errors/ })
     .click()
   const chat = page.getByTestId('chat-scroller')
-  await expect(chat.getByText('我先读取配置文件，再检查类型。', { exact: true })).toBeVisible()
-  await expect(chat.getByText('检查完成，请修复示例中的类型错误。', { exact: true })).toBeVisible()
+  await expect(
+    chat.getByText('I will read the config file first, then check types.', { exact: true })
+  ).toBeVisible()
+  await expect(
+    chat.getByText('Check complete. Please fix the type errors in the example.', { exact: true })
+  ).toBeVisible()
   await expect(chat.getByTestId('assistant-turn')).toHaveCount(1)
   await expect(chat.locator('[data-message-role="assistant"] .message-role-badge')).toHaveCount(1)
   await expect(chat.getByTestId('copy-assistant-message')).toHaveCount(1)
@@ -48,13 +52,13 @@ test('shows compact activity with two independent expansion levels', async ({
   await group.locator('summary').first().click()
   await expect(group).toHaveCount(1)
   await expect(group).not.toHaveAttribute('open')
-  await expect(group.locator('summary').first()).toContainText('已读取文件')
-  await expect(group.locator('summary').first()).toContainText('已运行命令')
-  await expect(group.locator('summary').first()).toContainText('失败')
+  await expect(group.locator('summary').first()).toContainText('Read files')
+  await expect(group.locator('summary').first()).toContainText('Ran commands')
+  await expect(group.locator('summary').first()).toContainText(/failed/i)
   await expect(chat.locator('pre')).toHaveCount(0)
   const compaction = chat.getByTestId('compaction-details')
   await expect(compaction).not.toHaveAttribute('open')
-  await expect(compaction.locator('summary')).toHaveText(/上下文.*压缩|压缩.*完成/)
+  await expect(compaction.locator('summary')).toHaveText(/context.*compact|compact.*complete/i)
   await expect(chat).not.toContainText('Internal context summary')
   await page.screenshot({ path: testInfo.outputPath('activity-collapsed.png') })
 
@@ -64,7 +68,7 @@ test('shows compact activity with two independent expansion levels', async ({
   await expect(tools.nth(0).getByText('package.json', { exact: true })).toBeVisible()
   await expect(tools.nth(2).getByText('pnpm typecheck', { exact: true })).toBeVisible()
   await expect(tools.nth(1)).toHaveAttribute('data-outcome', 'no-match')
-  await expect(tools.nth(1).locator('summary')).toContainText('未找到结果')
+  await expect(tools.nth(1).locator('summary')).toContainText('No matches')
   await expect(group).toHaveAttribute('data-outcome', 'completed-with-errors')
   await expect(chat.locator('pre')).toHaveCount(0)
   await expect(group.getByTestId('thinking-details')).not.toHaveAttribute('open')
@@ -87,11 +91,11 @@ test('shows compact activity with two independent expansion levels', async ({
   // Native tool-result images remain available behind the same disclosure.
   await tools.nth(0).locator('summary').click()
   await expect(tools.nth(0).locator('img')).toHaveAttribute('src', /^data:image\/gif;base64,/)
-  await tools.nth(0).getByRole('button', { name: '预览图片' }).click()
-  await expect(page.getByRole('dialog', { name: '预览图片' })).toBeVisible()
+  await tools.nth(0).getByRole('button', { name: 'Preview image' }).click()
+  await expect(page.getByRole('dialog', { name: 'Preview image' })).toBeVisible()
   await page
-    .getByRole('dialog', { name: '预览图片' })
-    .getByRole('button', { name: '关闭', exact: true })
+    .getByRole('dialog', { name: 'Preview image' })
+    .getByRole('button', { name: 'Close', exact: true })
     .click()
 
   await page.reload()
@@ -138,7 +142,7 @@ test('shows compact activity with two independent expansion levels', async ({
     await emit({ type: 'message_start', message })
     await expect(chat.getByTestId('message-activity')).toHaveCount(activityCount + 1)
     const row = chat.getByTestId('message-activity').last()
-    await expect(row.locator('summary').first()).toContainText('正在运行')
+    await expect(row.locator('summary').first()).toContainText('Running')
     await expect(chat.locator('.tool-call-hud')).toHaveCount(0)
     if (!activityBox) {
       activityBox = (await row.boundingBox())!
@@ -162,7 +166,7 @@ test('shows compact activity with two independent expansion levels', async ({
       expect(Math.abs(before.height - activityBox.height)).toBeLessThanOrEqual(1)
       await emit(event)
     }
-    await expect(row.locator('summary').first()).toContainText('已运行命令')
+    await expect(row.locator('summary').first()).toContainText('Ran commands')
     await expect(row).not.toHaveAttribute('open')
     await expect(row).toHaveAttribute('data-stability-marker', 'retained')
     const after = (await row.boundingBox())!
@@ -186,7 +190,7 @@ test('shows compact activity with two independent expansion levels', async ({
     }
   })
   const live = page.getByTestId('message-activity').last()
-  await expect(live.locator('summary').first()).toContainText('正在运行')
+  await expect(live.locator('summary').first()).toContainText('Running')
   await expect(live).not.toHaveAttribute('open')
   await live.locator('summary').first().focus()
   await page.keyboard.press('Enter')
@@ -202,7 +206,7 @@ test('shows compact activity with two independent expansion levels', async ({
       content: [{ type: 'text', text: 'Live checks passed' }]
     }
   })
-  await expect(live.locator('summary').first()).toContainText('已运行命令')
+  await expect(live.locator('summary').first()).toContainText('Ran commands')
   await expect(liveTool.locator('pre').last()).toHaveText('Live checks passed')
   await expect(live).toHaveAttribute('open')
   await expect(liveTool).toHaveAttribute('open')
@@ -220,10 +224,12 @@ test('shows loading before content and follows final output unless the user scro
   await page.locator('a[href="#/workspace"]').click()
   await page
     .getByTestId(`session-row-${sessionId}`)
-    .getByRole('button', { name: /^检查项目的类型错误/ })
+    .getByRole('button', { name: /^Check the project for type errors/ })
     .click()
   const chat = page.getByTestId('chat-scroller')
-  await expect(chat.getByText('检查完成，请修复示例中的类型错误。', { exact: true })).toBeVisible()
+  await expect(
+    chat.getByText('Check complete. Please fix the type errors in the example.', { exact: true })
+  ).toBeVisible()
   const directory = path.join(
     piAgentDir,
     'sessions',
@@ -294,7 +300,7 @@ test('shows loading before content and follows final output unless the user scro
     if (readingHistory) await expect.poll(distance).toBeGreaterThan(100)
     else await expect.poll(distance).toBeLessThanOrEqual(24)
   }
-  await page.getByRole('button', { name: '滚动到底部', exact: true }).click()
+  await page.getByRole('button', { name: 'Scroll to bottom', exact: true }).click()
   await expect.poll(distance).toBeLessThanOrEqual(24)
   await expect(chat.getByTestId('assistant-turn')).toHaveCount(3)
   await page.screenshot({ path: testInfo.outputPath('reply-complete-at-bottom.png') })
@@ -303,7 +309,7 @@ test('shows loading before content and follows final output unless the user scro
 function seed(directory: string, cwd: string) {
   const timestamp = '2026-10-27T12:00:00.000Z'
   const messages: AgentMessage[] = [
-    { role: 'user', content: '检查项目的类型错误' },
+    { role: 'user', content: 'Check the project for type errors' },
     {
       role: 'custom',
       customType: 'compaction',
@@ -314,14 +320,14 @@ function seed(directory: string, cwd: string) {
       role: 'assistant',
       model: 'test',
       provider: 'test',
-      content: [{ type: 'text', text: '我先读取配置文件，再检查类型。' }]
+      content: [{ type: 'text', text: 'I will read the config file first, then check types.' }]
     },
     {
       role: 'assistant',
       model: 'test',
       provider: 'test',
       content: [
-        { type: 'thinking', thinking: '先检查配置，再运行类型检查。' },
+        { type: 'thinking', thinking: 'Check the config first, then run the type check.' },
         {
           type: 'toolCall',
           toolCallId: 'read-config',
@@ -390,7 +396,9 @@ function seed(directory: string, cwd: string) {
       model: 'test',
       provider: 'test',
       stopReason: 'stop',
-      content: [{ type: 'text', text: '检查完成，请修复示例中的类型错误。' }]
+      content: [
+        { type: 'text', text: 'Check complete. Please fix the type errors in the example.' }
+      ]
     }
   ]
   const sessionDir = path.join(

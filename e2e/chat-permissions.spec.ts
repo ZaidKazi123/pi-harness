@@ -98,10 +98,10 @@ test('permission menu controls execution and termination remains available durin
     })
     await page.locator('a[href="#/workspace"]').click()
     const composer = page.getByTestId('chat-composer')
-    const toolPreset = composer.getByRole('button', { name: '更改工具预设', exact: true })
+    const toolPreset = composer.getByRole('button', { name: 'Change tool preset', exact: true })
     await expect(toolPreset).toHaveText('full')
     await toolPreset.click()
-    const toolMenu = page.getByRole('listbox', { name: '更改工具预设', exact: true })
+    const toolMenu = page.getByRole('listbox', { name: 'Change tool preset', exact: true })
     await expect(toolMenu.getByRole('option')).toHaveCount(4)
     await expect(toolMenu.getByRole('option', { name: 'full', exact: true })).toHaveAttribute(
       'aria-selected',
@@ -109,37 +109,37 @@ test('permission menu controls execution and termination remains available durin
     )
     await toolMenu.screenshot({ path: testInfo.outputPath('tool-preset-menu.png') })
     await toolMenu.getByRole('option', { name: 'full', exact: true }).click()
-    const agentMode = composer.getByRole('button', { name: '模式', exact: true })
+    const agentMode = composer.getByRole('button', { name: 'Mode', exact: true })
     await agentMode.click()
-    const modes = page.getByRole('listbox', { name: '模式', exact: true })
-    await expect(modes).toContainText('选择 Pi 的工作方式')
+    const modes = page.getByRole('listbox', { name: 'Mode', exact: true })
+    await expect(modes).toContainText('Choose how Pi works')
     await expect(modes.getByRole('option')).toHaveCount(3)
-    await expect(modes.getByRole('option', { name: '智能体', exact: true })).toHaveAttribute(
+    await expect(modes.getByRole('option', { name: 'Agent', exact: true })).toHaveAttribute(
       'aria-selected',
       'true'
     )
     await modes.screenshot({ path: testInfo.outputPath('agent-mode-menu.png') })
-    await modes.getByRole('option', { name: '目标', exact: true }).click()
-    await expect(agentMode).toHaveText('目标')
+    await modes.getByRole('option', { name: 'Goal', exact: true }).click()
+    await expect(agentMode).toHaveText('Goal')
     await agentMode.press('ArrowDown')
-    await modes.getByRole('option', { name: '目标', exact: true }).press('Home')
-    await modes.getByRole('option', { name: '智能体', exact: true }).press('Enter')
-    await expect(agentMode).toHaveText('智能体')
-    const permission = composer.getByRole('button', { name: '权限模式', exact: true })
-    await expect(permission).toHaveText('完全访问')
+    await modes.getByRole('option', { name: 'Goal', exact: true }).press('Home')
+    await modes.getByRole('option', { name: 'Agent', exact: true }).press('Enter')
+    await expect(agentMode).toHaveText('Agent')
+    const permission = composer.getByRole('button', { name: 'Permission mode', exact: true })
+    await expect(permission).toHaveText('Full access')
     await permission.click()
-    const menu = page.getByRole('listbox', { name: '权限模式' })
-    await expect(menu).toContainText('应如何批准 Pi 操作？')
+    const menu = page.getByRole('listbox', { name: 'Permission mode' })
+    await expect(menu).toContainText('How should Pi actions be approved?')
     await expect(menu.getByRole('option')).toHaveCount(3)
-    await expect(menu.getByRole('option', { name: /完全访问权限/ })).toHaveAttribute(
+    await expect(menu.getByRole('option', { name: /Full access/ })).toHaveAttribute(
       'aria-selected',
       'true'
     )
     await menu.screenshot({ path: testInfo.outputPath('permission-menu.png') })
-    await menu.getByRole('option', { name: /帮我批准/ }).click()
-    await expect(permission).toHaveText('帮我批准')
+    await menu.getByRole('option', { name: /Approve for me/ }).click()
+    await expect(permission).toHaveText('Approve for me')
     await permission.click()
-    await menu.getByRole('option', { name: /完全访问权限/ }).click()
+    await menu.getByRole('option', { name: /Full access/ }).click()
 
     const externalFile = path.join(testUserData, 'outside-workspace.txt')
     replies.push(
@@ -163,11 +163,11 @@ test('permission menu controls execution and termination remains available durin
         () => (globalThis as unknown as { permissionDialogs: number }).permissionDialogs
       )
     ).toBe(0)
-    const terminate = composer.getByRole('button', { name: '终止', exact: true })
+    const terminate = composer.getByRole('button', { name: 'Abort', exact: true })
     await expect(terminate).toHaveCount(0)
 
     await permission.click()
-    await menu.getByRole('option', { name: /帮我批准/ }).click()
+    await menu.getByRole('option', { name: /Approve for me/ }).click()
     replies.push(
       {
         tool: 'bash',
@@ -180,7 +180,7 @@ test('permission menu controls execution and termination remains available durin
     await expect(page.locator('.chat-scroller')).toContainText('Assisted access complete')
     expect(networkCalls).toBe(2)
     await permission.click()
-    await menu.getByRole('option', { name: /完全访问权限/ }).click()
+    await menu.getByRole('option', { name: /Full access/ }).click()
     const builtins = new Set(['bash', 'powershell', 'read', 'edit', 'write', 'grep', 'find', 'ls'])
     const enabledExtensions = (requests.at(-1)?.tools ?? [])
       .map((tool) => tool.function.name)
@@ -210,7 +210,7 @@ test('permission menu controls execution and termination remains available durin
     }
 
     await agentMode.click()
-    await modes.getByRole('option', { name: '规划', exact: true }).click()
+    await modes.getByRole('option', { name: 'Plan', exact: true }).click()
     const planTarget = path.join(testUserData, 'planning-must-not-write.txt')
     replies.push(
       { tool: 'write', args: { path: planTarget, content: 'blocked' } },
@@ -232,7 +232,7 @@ test('permission menu controls execution and termination remains available durin
     expect(fs.existsSync(planTarget)).toBe(false)
 
     await agentMode.click()
-    await modes.getByRole('option', { name: '目标', exact: true }).click()
+    await modes.getByRole('option', { name: 'Goal', exact: true }).click()
     replies.push('Goal directive complete')
     const beforeGoal = requests.length
     await editor.fill('Complete the goal in this request')
@@ -245,7 +245,7 @@ test('permission menu controls execution and termination remains available durin
       )
     ).toBe(true)
     await agentMode.click()
-    await modes.getByRole('option', { name: '智能体', exact: true }).click()
+    await modes.getByRole('option', { name: 'Agent', exact: true }).click()
     await toolPreset.click()
     await toolMenu.getByRole('option', { name: 'full', exact: true }).click()
     expect(
@@ -256,7 +256,7 @@ test('permission menu controls execution and termination remains available durin
     await expect(terminate).toHaveCount(0)
 
     await permission.click()
-    await menu.getByRole('option', { name: /请求批准/ }).click()
+    await menu.getByRole('option', { name: /Request approval/ }).click()
     replies.push({
       tool: 'bash',
       args: { command: `curl -s http://127.0.0.1:${address.port}/network-fixture` }

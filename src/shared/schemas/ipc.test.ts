@@ -23,7 +23,7 @@ describe('IPC schemas', () => {
   })
 
   it('bounds clipboard text', () => {
-    expect(clipboardTextSchema.safeParse('普通文本').success).toBe(true)
+    expect(clipboardTextSchema.safeParse('Plain text').success).toBe(true)
     expect(clipboardTextSchema.safeParse('x'.repeat(5 * 1024 * 1024 + 1)).success).toBe(false)
   })
   it('rejects arbitrary URLs and options for argument-free actions', () => {
@@ -80,10 +80,10 @@ describe('IPC schemas', () => {
     expect(appSettingsPatchSchema.safeParse({ macos27Background: 'aurora' }).success).toBe(false)
     expect(appSettingsPatchSchema.safeParse({ theme: 'system' }).success).toBe(false)
     expect(appSettingsPatchSchema.safeParse({ theme: 'neon' }).success).toBe(false)
-    expect(appSettingsPatchSchema.safeParse({ userName: '我' }).success).toBe(true)
-    expect(appSettingsPatchSchema.safeParse({ userName: '阿明' }).success).toBe(true)
+    expect(appSettingsPatchSchema.safeParse({ userName: 'Me' }).success).toBe(true)
+    expect(appSettingsPatchSchema.safeParse({ userName: 'Alex' }).success).toBe(true)
     expect(appSettingsPatchSchema.safeParse({ userName: 'x'.repeat(33) }).success).toBe(false)
-    expect(appSettingsPatchSchema.safeParse({ assistantName: '小策' }).success).toBe(true)
+    expect(appSettingsPatchSchema.safeParse({ assistantName: 'Sage' }).success).toBe(true)
     expect(appSettingsPatchSchema.safeParse({ assistantName: '' }).success).toBe(true)
     expect(appSettingsPatchSchema.safeParse({ assistantName: 'x'.repeat(33) }).success).toBe(false)
     expect(appSettingsPatchSchema.safeParse({ appIcon: 'quantum' }).success).toBe(true)

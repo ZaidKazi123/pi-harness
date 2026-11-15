@@ -22,10 +22,9 @@ for (const project of projects) {
     await page.getByTestId('workspace-import-project').click()
     await page.getByTestId('workspace-architecture').click()
     await page.getByTestId('analyze-project').click()
-    await expect(page.getByTestId('architecture-status')).toContainText(
-      /Analysis complete|分析完成/,
-      { timeout: 45000 }
-    )
+    await expect(page.getByTestId('architecture-status')).toContainText(/Analysis complete/, {
+      timeout: 45000
+    })
     await expect(page.getByTestId('architecture-viewer')).toBeVisible()
     const snapshot = await page.evaluate(
       (root) => window.piSwitch!.intelligence.snapshot({ root }),
@@ -217,10 +216,7 @@ for (const project of projects) {
     await expect(page.getByTestId('architecture-source')).toBeVisible()
     await page.getByTestId('architecture-source').click()
     await expect(page.getByTestId('architecture-code')).toBeVisible()
-    await page
-      .getByRole('dialog')
-      .getByRole('button', { name: /Close|关闭/ })
-      .click()
+    await page.getByRole('dialog').getByRole('button', { name: /Close/ }).click()
     await page.getByTestId('architecture-close-details').click()
     await expect(page.getByTestId('architecture-module-details')).toHaveCount(0)
     await clickArchitectureControl(electronApp, 'next')
@@ -300,7 +296,7 @@ for (const project of projects) {
     await electronApp.evaluate(({ dialog }, filePath) => {
       dialog.showSaveDialog = async () => ({ canceled: false, filePath })
     }, pngPath)
-    await page.getByRole('button', { name: /Export view as PNG|导出当前视图 PNG/ }).click()
+    await page.getByRole('button', { name: /Export view as PNG/ }).click()
     await expect.poll(() => fs.existsSync(pngPath)).toBe(true)
     fs.copyFileSync(pngPath, testInfo.outputPath('interactive-map.png'))
 

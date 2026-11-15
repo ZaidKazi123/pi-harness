@@ -125,7 +125,7 @@ This release adds portrait themes, a DeepSeek work-mode wallpaper, themed startu
 #### Desktop pets
 
 - Added six jelly desktop pets: Circle, Ghost, Jelly, Rounded, Star, and Triangle.
-- 大肥鱼 keeps its own startup page when no theme is selected.
+- Big Fat Fish (大肥鱼) keeps its own startup page when no theme is selected.
 
 ### Fixed
 
@@ -772,7 +772,7 @@ This release makes switching pages and returning to long conversations more resp
 - Added Superpowers as a recommended opt-in methodology; Odai remains optional. Neither installs automatically.
 - Added the complete Classical Chinese theme across windows, menus, dropdowns, and Harness surfaces.
 - Completed the v1.3 interface localization in eight languages.
-- Added a quarantine-repair app (「修复」) inside the macOS DMG to clear the "app is damaged" Gatekeeper flag on unsigned installs.
+- Added a quarantine-repair app ("Repair") inside the macOS DMG to clear the "app is damaged" Gatekeeper flag on unsigned installs.
 
 ### Fixed
 

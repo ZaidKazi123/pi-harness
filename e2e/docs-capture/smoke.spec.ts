@@ -54,9 +54,9 @@ test('capture workspace and general settings', async ({ page }) => {
   const composer = page.getByTestId('chat-composer')
   await expect(composer).toBeVisible()
   await expect(page.locator('.assistant-message-body')).toBeVisible()
-  await shot(page, '功能界面/经典主题/工作区.png')
+  await shot(page, 'screenshots/classic/workspace.png')
 
   await page.locator('a[href="#/settings"]').click()
   await expect(page.getByRole('button', { name: /Theme/, exact: true })).toBeVisible()
-  await shot(page, '功能界面/经典主题/通用设置.png')
+  await shot(page, 'screenshots/classic/general-settings.png')
 })

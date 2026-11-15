@@ -141,10 +141,10 @@ async function bootstrap() {
           ? 'healthy'
           : 'warning'
       startupChecks.pi.detail = !environment
-        ? '检测失败'
+        ? 'Check failed'
         : environment.installed
-          ? '已安装'
-          : '未安装'
+          ? 'Installed'
+          : 'Not installed'
       startupChecks.config.state = !environment
         ? 'error'
         : !environment.configValid
@@ -153,12 +153,12 @@ async function bootstrap() {
             ? 'healthy'
             : 'warning'
       startupChecks.config.detail = !environment
-        ? '检测失败'
+        ? 'Check failed'
         : !environment.configValid
-          ? '配置异常'
+          ? 'Config error'
           : environment.configReadable
-            ? '可读取'
-            : '未配置'
+            ? 'Readable'
+            : 'Not configured'
     })
     await Promise.all([environmentCheck, providersStore.fetchList(), modelsStore.fetchList()])
   } finally {

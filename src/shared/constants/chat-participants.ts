@@ -1,5 +1,5 @@
-export const DEFAULT_USER_NAME = '我'
-export const DEFAULT_ASSISTANT_NAME = '助手'
+export const DEFAULT_USER_NAME = 'Me'
+export const DEFAULT_ASSISTANT_NAME = 'Assistant'
 export const CHAT_PARTICIPANT_NAME_MAX_LENGTH = 32
 
 function normalizeParticipantName(value: unknown, fallback: string): string {

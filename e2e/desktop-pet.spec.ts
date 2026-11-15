@@ -126,8 +126,8 @@ test('desktop pet menu and visible bubble follow application language changes', 
   await expect(pet.locator('#app img')).toBeVisible()
   await pet.evaluate(() => window.dispatchEvent(new MouseEvent('contextmenu', { bubbles: true })))
   const menu = pet.getByRole('menu')
-  await expect(menu.getByRole('menuitem', { name: '打开 Pi-Harness', exact: true })).toBeVisible()
-  await expect(pet.locator('#app')).toContainText('一切安静')
+  await expect(menu.getByRole('menuitem', { name: 'Open Pi-Harness', exact: true })).toBeVisible()
+  await expect(pet.locator('#app')).toContainText('All quiet')
   const localeCases = [
     ['en-US', 'Open Pi-Harness', 'All quiet'],
     ['zh-TW', '開啟 Pi-Harness', '一切安靜'],
@@ -193,7 +193,7 @@ test('every desktop pet menu action performs its advertised operation', async ({
     // Move over the empty pixels behind the menu before clicking it.
     await item.hover()
     await pet.waitForTimeout(120)
-    if (name === '隐藏宠物' || name === '退出 Pi-Harness') {
+    if (name === 'Hide pet' || name === 'Quit Pi-Harness') {
       // Destroying this renderer can win the race with the input acknowledgement.
       // The caller still verifies persisted disabled state or application exit.
       await Promise.all([
@@ -211,28 +211,27 @@ test('every desktop pet menu action performs its advertised operation', async ({
       .find((w) => w.webContents.getURL().includes('/index.html'))!
       .minimize()
   })
-  await clickMenu('打开 Pi-Harness')
+  await clickMenu('Open Pi-Harness')
   await expect.poll(nativeMainState).toEqual({ visible: true, minimized: false })
   await electronApp.evaluate(({ BrowserWindow }) => {
     BrowserWindow.getAllWindows()
       .find((w) => w.webContents.getURL().includes('/index.html'))!
       .hide()
   })
-  await clickMenu('设置…')
+  await clickMenu('Settings…')
   await expect(mainPage).toHaveURL(/#\/settings\/desktop-pet/)
-  await expect(mainPage.getByRole('switch', { name: '置顶显示', exact: true })).toHaveAttribute(
+  await expect(mainPage.getByRole('switch', { name: 'Keep on top', exact: true })).toHaveAttribute(
     'aria-checked',
     'true'
   )
   await expect.poll(nativeMainState).toEqual({ visible: true, minimized: false })
 
   for (const enabled of [false, true]) {
-    await clickMenu(enabled ? '置顶显示' : '置顶显示 ✓')
+    await clickMenu(enabled ? 'Keep on top' : 'Keep on top ✓')
     await expect.poll(() => petState().then((s) => s.alwaysOnTop)).toBe(enabled)
-    await expect(mainPage.getByRole('switch', { name: '置顶显示', exact: true })).toHaveAttribute(
-      'aria-checked',
-      String(enabled)
-    )
+    await expect(
+      mainPage.getByRole('switch', { name: 'Keep on top', exact: true })
+    ).toHaveAttribute('aria-checked', String(enabled))
     await expect
       .poll(() =>
         electronApp.evaluate(({ BrowserWindow }) =>
@@ -244,12 +243,11 @@ test('every desktop pet menu action performs its advertised operation', async ({
       .toBe(enabled)
   }
   for (const enabled of [true, false]) {
-    await clickMenu(enabled ? '减少动效' : '减少动效 ✓')
+    await clickMenu(enabled ? 'Reduced motion' : 'Reduced motion ✓')
     await expect.poll(() => petState().then((s) => s.reducedMotion)).toBe(enabled)
-    await expect(mainPage.getByRole('switch', { name: '减少动效', exact: true })).toHaveAttribute(
-      'aria-checked',
-      String(enabled)
-    )
+    await expect(
+      mainPage.getByRole('switch', { name: 'Reduced motion', exact: true })
+    ).toHaveAttribute('aria-checked', String(enabled))
     await expect
       .poll(() =>
         pet.evaluate(() => window.piSwitchPet!.getContext()).then((c) => c.settings.reducedMotion)
@@ -258,7 +256,7 @@ test('every desktop pet menu action performs its advertised operation', async ({
   }
 
   await pet.evaluate(() => window.piSwitchPet!.moveBy({ dx: -200, dy: -150 }))
-  await clickMenu('重置位置')
+  await clickMenu('Reset position')
   await expect
     .poll(() =>
       electronApp
@@ -279,15 +277,14 @@ test('every desktop pet menu action performs its advertised operation', async ({
     )
     .toBe(true)
 
-  await clickMenu('隐藏宠物')
+  await clickMenu('Hide pet')
   await expect
     .poll(() => electronApp.windows().some((win) => win.url().includes('/pet.html')))
     .toBe(false)
   await expect.poll(() => petState().then((s) => s.enabled)).toBe(false)
-  await expect(mainPage.getByRole('switch', { name: '启用桌宠', exact: true })).toHaveAttribute(
-    'aria-checked',
-    'false'
-  )
+  await expect(
+    mainPage.getByRole('switch', { name: 'Enable desktop pet', exact: true })
+  ).toHaveAttribute('aria-checked', 'false')
   expect(await nativeMainState()).toEqual({ visible: true, minimized: false })
   await expect
     .poll(
@@ -306,7 +303,7 @@ test('every desktop pet menu action performs its advertised operation', async ({
     .toBe(true)
   pet = electronApp.windows().find((win) => win.url().includes('/pet.html'))!
   // Both entries must also recreate a main window that was closed entirely.
-  for (const action of ['打开 Pi-Harness', '设置…']) {
+  for (const action of ['Open Pi-Harness', 'Settings…']) {
     await electronApp.evaluate(({ BrowserWindow }) => {
       BrowserWindow.getAllWindows()
         .find((w) => w.webContents.getURL().includes('/index.html'))!
@@ -321,16 +318,15 @@ test('every desktop pet menu action performs its advertised operation', async ({
       .toBe(true)
     mainPage = electronApp.windows().find((win) => win.url().includes('/index.html'))!
     await expect(mainPage.getByTestId('app-shell')).toBeVisible()
-    if (action === '设置…') {
+    if (action === 'Settings…') {
       await expect(mainPage).toHaveURL(/#\/settings\/desktop-pet/)
-      await expect(mainPage.getByRole('switch', { name: '启用桌宠', exact: true })).toHaveAttribute(
-        'aria-checked',
-        'true'
-      )
+      await expect(
+        mainPage.getByRole('switch', { name: 'Enable desktop pet', exact: true })
+      ).toHaveAttribute('aria-checked', 'true')
     }
   }
   const exited = electronApp.waitForEvent('close')
-  await clickMenu('退出 Pi-Harness')
+  await clickMenu('Quit Pi-Harness')
   await exited
 })
 
@@ -367,7 +363,7 @@ test('all manual actions play and tasks retain dragging and opening the console'
   }
   for (const [clip] of clips) {
     await openMenu()
-    await pet.getByRole('menuitem', { name: /播放动作/ }).click()
+    await pet.getByRole('menuitem', { name: /Play action/ }).click()
     await pet.getByRole('searchbox').fill(clip)
     await pet.locator(`[data-clip="${clip}"]`).click()
     await expect(image).toHaveAttribute('src', new RegExp(`/clips/${clip}/`))
@@ -378,8 +374,8 @@ test('all manual actions play and tasks retain dragging and opening the console'
   }
   // Exercise the imported media past its first frame and through completion.
   await openMenu()
-  await pet.getByRole('menuitem', { name: /播放动作/ }).click()
-  await pet.getByRole('searchbox').fill('舞狮头')
+  await pet.getByRole('menuitem', { name: /Play action/ }).click()
+  await pet.getByRole('searchbox').fill('Lion dance')
   await expect(pet.locator('[data-clip]')).toHaveCount(1)
   await pet.locator('[data-clip="indesktop-lion-dance"]').click()
   await expect
@@ -393,7 +389,7 @@ test('all manual actions play and tasks retain dragging and opening the console'
   await expect(image).toHaveAttribute('src', /\/clips\/idle\//)
   // Let one short action finish; it must resolve back to the current runtime state.
   await openMenu()
-  await pet.getByRole('menuitem', { name: /播放动作/ }).click()
+  await pet.getByRole('menuitem', { name: /Play action/ }).click()
   await pet.getByRole('searchbox').fill('classic-hug')
   await pet.locator('[data-clip="classic-hug"]').click()
   await expect(image).toHaveAttribute('src', /\/clips\/idle\//, { timeout: 6000 })
@@ -410,7 +406,7 @@ test('all manual actions play and tasks retain dragging and opening the console'
   }
   // Starting a task dismisses an already-open menu and cancels a manual action.
   await openMenu()
-  await pet.getByRole('menuitem', { name: /播放动作/ }).click()
+  await pet.getByRole('menuitem', { name: /Play action/ }).click()
   await pet.getByRole('searchbox').fill('playful-sign-flip')
   await pet.locator('[data-clip="playful-sign-flip"]').click()
   await expect(image).toHaveAttribute('src', /\/clips\/playful-sign-flip\//)
@@ -421,8 +417,8 @@ test('all manual actions play and tasks retain dragging and opening the console'
   const box = (await image.boundingBox())!
   await pet.mouse.click(box.x + box.width / 2, box.y + box.height / 2, { button: 'right' })
   await expect(pet.getByRole('menuitem')).toHaveCount(1)
-  await expect(pet.getByRole('menuitem', { name: '打开 Pi-Harness', exact: true })).toBeVisible()
-  await pet.getByRole('menuitem', { name: '打开 Pi-Harness', exact: true }).click()
+  await expect(pet.getByRole('menuitem', { name: 'Open Pi-Harness', exact: true })).toBeVisible()
+  await pet.getByRole('menuitem', { name: 'Open Pi-Harness', exact: true }).click()
   await expect
     .poll(() =>
       electronApp.evaluate(({ BrowserWindow }) =>
@@ -473,7 +469,7 @@ test('all manual actions play and tasks retain dragging and opening the console'
     path: testInfo.outputPath('manual-actions-menu.png'),
     omitBackground: true
   })
-  await pet.getByRole('menuitem', { name: /播放动作/ }).click()
+  await pet.getByRole('menuitem', { name: /Play action/ }).click()
   await expect(pet.locator('[data-clip]')).toHaveCount(3)
   await pet.screenshot({
     path: testInfo.outputPath('manual-actions-list.png'),
@@ -532,9 +528,9 @@ test('pet menus keep dark scrollbars and all entries reachable at every pet size
     await menu.hover()
     await pet.mouse.wheel(0, 1000)
     await expect(
-      menu.getByRole('menuitem', { name: '退出 Pi-Harness', exact: true })
+      menu.getByRole('menuitem', { name: 'Quit Pi-Harness', exact: true })
     ).toBeInViewport()
-    const play = menu.getByRole('menuitem', { name: /播放动作/ })
+    const play = menu.getByRole('menuitem', { name: /Play action/ })
     await play.click()
     await expect(pet.getByRole('searchbox')).toBeInViewport()
     const actions = menu.locator('[data-clip]')
@@ -563,7 +559,7 @@ test('pet settings use draggable sliders and omit the pack detail card', async (
   await expect(page.getByTestId('pet-import-zip')).toBeVisible()
   await expect(page.getByTestId('pet-import-folder')).toBeVisible()
 
-  const size = section.getByRole('slider', { name: /宠物大小/ })
+  const size = section.getByRole('slider', { name: /Pet size/ })
   await size.focus()
   await size.press('End')
   await expect(size).toHaveValue('150')
@@ -579,15 +575,15 @@ test('pet settings use draggable sliders and omit the pack detail card', async (
   expect(draggedSize).toBeLessThan(150)
   await expect(size).toHaveAttribute('aria-valuetext', `${draggedSize}%`)
 
-  const opacity = section.getByRole('slider', { name: '宠物不透明度（%）', exact: true })
+  const opacity = section.getByRole('slider', { name: 'Pet opacity (%)', exact: true })
   await opacity.focus()
   await opacity.press('Home')
   await expect(opacity).toHaveValue('30')
-  const timeout = section.getByRole('slider', { name: /气泡停留/ })
+  const timeout = section.getByRole('slider', { name: /Bubble timeout/ })
   await timeout.focus()
   await timeout.press('Home')
   await expect(timeout).toHaveValue('0')
-  const bubbleOpacity = section.getByRole('slider', { name: '气泡不透明度（%）', exact: true })
+  const bubbleOpacity = section.getByRole('slider', { name: 'Bubble opacity (%)', exact: true })
   await bubbleOpacity.focus()
   await bubbleOpacity.press('Home')
   await expect(bubbleOpacity).toHaveValue('30')
@@ -609,10 +605,10 @@ test('pet settings use draggable sliders and omit the pack detail card', async (
       bubbleOpacity: 0.3
     })
 
-  await section.getByRole('switch', { name: '状态气泡', exact: true }).click()
+  await section.getByRole('switch', { name: 'Status bubble', exact: true }).click()
   await expect(timeout).toBeDisabled()
   await expect(bubbleOpacity).toBeDisabled()
-  await section.getByRole('switch', { name: '状态气泡', exact: true }).click()
+  await section.getByRole('switch', { name: 'Status bubble', exact: true }).click()
   await expect(timeout).toBeEnabled()
   await expect(bubbleOpacity).toBeEnabled()
   await size.scrollIntoViewIfNeeded()

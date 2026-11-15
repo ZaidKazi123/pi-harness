@@ -150,7 +150,7 @@ for (const kind of ['folders', 'code-workspace', 'mixed'] as const) {
         }) as Electron.Menu) as typeof Menu.buildFromTemplate
     })
     await page.getByTestId('workspace-project-0').click({ button: 'right' })
-    const editor = page.getByRole('dialog', { name: /编辑项目|Edit project/ })
+    const editor = page.getByRole('dialog', { name: /Edit project/ })
     await expect(editor).toBeVisible()
     await expect(editor.getByRole('textbox')).toHaveValue(projectName)
     await expect(editor.getByTestId(/^session-workspace-folder-/)).toHaveCount(names.length)
@@ -158,7 +158,7 @@ for (const kind of ['folders', 'code-workspace', 'mixed'] as const) {
       await expect(editor.getByTestId(`session-workspace-folder-${index}`)).toContainText(name)
     }
     const primary = editor.getByTestId('session-workspace-folder-0')
-    await expect(primary).toContainText(/主目录|Primary/)
+    await expect(primary).toContainText(/Primary/)
     await expect(primary.getByRole('button')).toBeDisabled()
     if (process.env.PI_HARNESS_DESIGN_QA_DIR) {
       await page.screenshot({
@@ -166,7 +166,7 @@ for (const kind of ['folders', 'code-workspace', 'mixed'] as const) {
         path: path.join(process.env.PI_HARNESS_DESIGN_QA_DIR, `import-${kind}-sources.png`)
       })
     }
-    await editor.getByRole('button', { name: /取消|Cancel/, exact: true }).click()
+    await editor.getByRole('button', { name: /Cancel/, exact: true }).click()
 
     await page.getByTestId('workspace-new-project-session-0').click()
     await expect

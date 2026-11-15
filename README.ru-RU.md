@@ -19,22 +19,22 @@
 
 <br>
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E4%BD%9C%E5%8C%BA.png" width="900" alt="Рабочая область Pi-Harness: разговоры, файлы проекта и Git в одном окне">
+<img src="docs/screenshots/classic/workspace.png" width="900" alt="Рабочая область Pi-Harness: разговоры, файлы проекта и Git в одном окне">
 
 </div>
 
 <br>
 
-## 赞助商
+## Sponsors
 
 <table>
   <tr>
     <td width="580" align="center" valign="middle">
-        <a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link" style="color:transparent;background-color:transparent;text-decoration:none;border:none;"><img src="docs/assets/infistar-banner.png" width="560" alt="Pi-Harness × Infistar.cc 无限星河" style="color:transparent;background-color:transparent;text-decoration:none;border:none;" /></a>
+        <a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link" style="color:transparent;background-color:transparent;text-decoration:none;border:none;"><img src="docs/assets/infistar-banner.png" width="560" alt="Pi-Harness × Infistar.cc" style="color:transparent;background-color:transparent;text-decoration:none;border:none;" /></a>
     </td>
     <td valign="middle">
-      Pi-Harness × Infistar.cc 无限星河｜Claude、GPT、Gemini、Grok、DeepSeek 等，一个 Key，只花官方价的零头，省 99%；低至官方 0.1 折，100% 官方纯血，每个模型都能验真；上千线路安全冗余自动切换，200+ 模型、16 个品牌，一个 Key 搞定。<br>
-      Pi-Harness 用户通过<a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link">专属链接</a>注册直接送人民币 5 元：<a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link">https://infistar.cc/register?aff=S26RFM4B&ref_source=link</a>
+      Pi-Harness × Infistar.cc: Claude, GPT, Gemini, Grok, DeepSeek and more with one key, for a fraction of the official price (up to 99% off, as low as 1% of the official price). 100% official models, each verifiable; thousands of redundant routes with automatic failover; 200+ models from 16 brands with one key.<br>
+      Pi-Harness users who register through the <a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link">dedicated link</a> receive a CNY 5 credit: <a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link">https://infistar.cc/register?aff=S26RFM4B&ref_source=link</a>
     </td>
   </tr>
   <tr>
@@ -43,18 +43,18 @@
     </td>
     <td valign="middle">
       <strong>Pi-Harness × TokenArmy</strong><br>
-      <strong>Claude Pro 日租</strong> · 独享账号，低至 $1.34/天，不封号<br>
-      <strong>Claude API 按量计费</strong> · 低至官方价格 1.25 折，失败不扣费<br>
-      <a href="https://tokenarmy.shop/r/TA-7FBJU-NUSUC">Pi-Harness 用户专属注册链接</a><br>
-      <em>价格与服务以 TokenArmy 平台规则为准。</em>
+      <strong>Claude Pro daily rental</strong> · Dedicated account, from $1.34/day, no bans<br>
+      <strong>Claude API pay-as-you-go</strong> · From 12.5% of the official price; failed requests are not charged<br>
+      <a href="https://tokenarmy.shop/r/TA-7FBJU-NUSUC">Pi-Harness user registration link</a><br>
+      <em>Prices and services are subject to the TokenArmy platform rules.</em>
     </td>
   </tr>
   <tr>
     <td width="580" align="center" valign="middle">
-        <a href="https://cloud.tencent.com/act/cps/redirect?redirect=6871&amp;cps_key=ece2099a1da90c2f7a4a4c437ad623f8&amp;from=console" style="color:transparent;background-color:transparent;text-decoration:none;border:none;"><img src="docs/assets/workbuddy-banner.jpg" width="560" alt="腾讯云 WorkBuddy" style="color:transparent;background-color:transparent;text-decoration:none;border:none;" /></a>
+        <a href="https://cloud.tencent.com/act/cps/redirect?redirect=6871&amp;cps_key=ece2099a1da90c2f7a4a4c437ad623f8&amp;from=console" style="color:transparent;background-color:transparent;text-decoration:none;border:none;"><img src="docs/assets/workbuddy-banner.jpg" width="560" alt="Tencent Cloud WorkBuddy" style="color:transparent;background-color:transparent;text-decoration:none;border:none;" /></a>
     </td>
     <td valign="middle">
-      【腾讯云】WorkBuddy 全场景 AI 办公工作台，团队旗舰版低至198元/月<br>
+      [Tencent Cloud] WorkBuddy, an all-scenario AI office workspace. Team flagship edition from CNY 198/month.<br>
       <a href="https://cloud.tencent.com/act/cps/redirect?redirect=6871&amp;cps_key=ece2099a1da90c2f7a4a4c437ad623f8&amp;from=console">https://cloud.tencent.com/act/cps/redirect?redirect=6871&amp;cps_key=ece2099a1da90c2f7a4a4c437ad623f8&amp;from=console</a>
     </td>
   </tr>
@@ -206,8 +206,8 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91.png" alt="Лёгкое редактирование файлов"><br><sub>Лёгкое редактирование файлов</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/Git.png" alt="Различия, история и коммиты Git"><br><sub>Git</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/file-editing.png" alt="Лёгкое редактирование файлов"><br><sub>Лёгкое редактирование файлов</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/Git.png" alt="Различия, история и коммиты Git"><br><sub>Git</sub></td>
 </tr>
 </table>
 
@@ -226,8 +226,8 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E5%85%B7Harness-2.png" alt="Harness: состояние сессии и инструкции в очереди"><br><sub>Состояние сессии и инструкции в очереди</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E5%85%B7Harness-1.png" alt="Консоль Harness"><br><sub>Консоль Harness</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/harness-tools-2.png" alt="Harness: состояние сессии и инструкции в очереди"><br><sub>Состояние сессии и инструкции в очереди</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/harness-tools-1.png" alt="Консоль Harness"><br><sub>Консоль Harness</sub></td>
 </tr>
 </table>
 
@@ -239,8 +239,8 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93-%E5%9B%A2%E9%98%9F.png" alt="Настроенная команда до запуска"><br><sub>Пример команды до запуска: три агента в ожидании, все задачи ожидают выполнения</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93-%E4%BB%BB%E5%8A%A1%E4%BE%9D%E8%B5%96.png" alt="Ожидающие задачи с зависимостями и требованием проверки"><br><sub>Зависимости задач и требование проверки</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/multi-agent-team.png" alt="Настроенная команда до запуска"><br><sub>Пример команды до запуска: три агента в ожидании, все задачи ожидают выполнения</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/multi-agent-task-dependencies.png" alt="Ожидающие задачи с зависимостями и требованием проверки"><br><sub>Зависимости задач и требование проверки</sub></td>
 </tr>
 </table>
 
@@ -254,8 +254,8 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E4%BC%9A%E8%AF%9D%E5%8E%86%E5%8F%B2.png" alt="История разговоров"><br><sub>История разговоров</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E4%BC%9A%E8%AF%9D%E6%B8%85%E7%90%86.png" alt="Очистка сессий"><br><sub>Очистка сессий</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/session-history.png" alt="История разговоров"><br><sub>История разговоров</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/session-cleanup.png" alt="Очистка сессий"><br><sub>Очистка сессий</sub></td>
 </tr>
 </table>
 
@@ -271,7 +271,7 @@ flowchart TD
 | **Охват** | Импорты JavaScript, TypeScript и Vue анализируются локально; для других поддерживаемых языков строится файловый индекс. Каждый анализ показывает свой охват и ограничения |
 | **Границы** | Карты описывают поддерживаемые статические зависимости; это не полный граф вызовов функций |
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84-1.png" width="900" alt="Карта архитектуры проекта">
+<img src="docs/screenshots/classic/project-architecture-1.png" width="900" alt="Карта архитектуры проекта">
 
 <a id="providers-and-models"></a>
 <a id="skills-extensions-packages-and-mcp"></a>
@@ -289,12 +289,12 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/Provider%E4%B8%8E%E6%A8%A1%E5%9E%8B-1.png" alt="Провайдеры и модели"><br><sub>Провайдеры и модели</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E8%83%BD%E5%8A%9B%E4%B8%AD%E5%BF%83-1.png" alt="Центр возможностей"><br><sub>Центр возможностей</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/providers-and-models-1.png" alt="Провайдеры и модели"><br><sub>Провайдеры и модели</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/capabilities-1.png" alt="Центр возможностей"><br><sub>Центр возможностей</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/ChatGPT%E6%8E%88%E6%9D%83.png" alt="Вход через ChatGPT"><br><sub>Вход через ChatGPT</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%85%8D%E8%B4%B9%E6%A8%A1%E5%9E%8B.png" alt="Бесплатные модели"><br><sub>Бесплатные модели</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/chatgpt-sign-in.png" alt="Вход через ChatGPT"><br><sub>Вход через ChatGPT</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/free-models.png" alt="Бесплатные модели"><br><sub>Бесплатные модели</sub></td>
 </tr>
 </table>
 
@@ -306,7 +306,7 @@ flowchart TD
 
 В каталоге есть **15 встроенных шаблонов серверов**, включая Memory, Context7, Playwright, Filesystem и GitHub, а также поиск и постраничный просмотр официального реестра MCP. Перед сохранением просмотрите конфигурацию и место назначения. Шаблоны предназначены для установки и не все включены по умолчанию. Импортированные записи и записи реестра сохраняются выключенными, чтобы вы могли сначала их настроить.
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/MCP%E5%B8%82%E5%9C%BA.png" width="900" alt="Каталог MCP и встроенные шаблоны серверов">
+<img src="docs/screenshots/classic/mcp-market.png" width="900" alt="Каталог MCP и встроенные шаблоны серверов">
 
 <a id="agent-settings"></a>
 
@@ -316,13 +316,13 @@ flowchart TD
 
 | Страница | Что настраивается | |
 | :-- | :-- | :-- |
-| **AI** | Уровень рассуждений по умолчанию, автоматическое сжатие, повторы и параметры рабочей области | [Скриншот](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/AI.png) |
-| **Голос в реальном времени** | Голосовая служба и аккаунт для звонков в рабочей области | [Скриншот](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%AE%9E%E6%97%B6%E8%AF%AD%E9%9F%B3.png) |
-| **Сочетания клавиш** | Собственные сочетания для палитры команд, настроек, новых сессий и закрытия вкладок или значения по умолчанию | [Скриншот](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%BF%AB%E6%8D%B7%E9%94%AE.png) |
-| **Инструкции** | Глобальные или проектные инструкции | [Скриншот](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%8C%87%E4%BB%A4.png) |
-| **MCP** | Серверы MCP в каждой области | [Скриншот](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/MCP%E6%9C%8D%E5%8A%A1%E5%99%A8.png) |
-| **Субагенты** | Повторно используемые субагенты с ролью, инструкциями, моделью, уровнем рассуждений и инструментами. Выберите общую рабочую область или отдельный worktree, затем запустите задачу или используйте шаблон в команде | [Скриншот](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%AD%90%E6%99%BA%E8%83%BD%E4%BD%93.png) |
-| **Удалённые хосты** | Хосты с запущенным pi-host, сопряжённые по адресу и токену сопряжения | [Скриншот](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA.png) |
+| **AI** | Уровень рассуждений по умолчанию, автоматическое сжатие, повторы и параметры рабочей области | [Скриншот](docs/screenshots/classic/AI.png) |
+| **Голос в реальном времени** | Голосовая служба и аккаунт для звонков в рабочей области | [Скриншот](docs/screenshots/classic/realtime-voice.png) |
+| **Сочетания клавиш** | Собственные сочетания для палитры команд, настроек, новых сессий и закрытия вкладок или значения по умолчанию | [Скриншот](docs/screenshots/classic/keyboard-shortcuts.png) |
+| **Инструкции** | Глобальные или проектные инструкции | [Скриншот](docs/screenshots/classic/instructions.png) |
+| **MCP** | Серверы MCP в каждой области | [Скриншот](docs/screenshots/classic/mcp-servers.png) |
+| **Субагенты** | Повторно используемые субагенты с ролью, инструкциями, моделью, уровнем рассуждений и инструментами. Выберите общую рабочую область или отдельный worktree, затем запустите задачу или используйте шаблон в команде | [Скриншот](docs/screenshots/classic/subagents.png) |
+| **Удалённые хосты** | Хосты с запущенным pi-host, сопряжённые по адресу и токену сопряжения | [Скриншот](docs/screenshots/classic/remote-hosts.png) |
 
 <a id="realtime-voice"></a>
 
@@ -337,7 +337,7 @@ flowchart TD
 
 Передача недавнего контекста по умолчанию выключена. Если её включить, передаются только последние шесть текстовых сообщений, без вложений и результатов инструментов. Рабочие запросы из звонка отправляются в рабочий разговор только после вашей проверки.
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E4%BD%9C%E5%8C%BA%E8%AF%AD%E9%9F%B3.png" width="900" alt="Голос в рабочей области: настройка и подготовка перед звонком">
+<img src="docs/screenshots/classic/workspace-voice.png" width="900" alt="Голос в рабочей области: настройка и подготовка перед звонком">
 
 <a id="remote-hosts"></a>
 
@@ -355,9 +355,9 @@ flowchart TD
 
 <table>
 <tr>
-<td width="33%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%A1%8C%E5%AE%A0%E8%AE%BE%E7%BD%AE.png" alt="Настройки питомца и ползунки"><br><sub>Настройки и ползунки</sub></td>
-<td width="33%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%A1%8C%E5%AE%A0%E8%8F%9C%E5%8D%95.png" alt="Контекстное меню"><br><sub>Контекстное меню</sub></td>
-<td width="33%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%A1%8C%E5%AE%A0%E5%8A%A8%E4%BD%9C.png" alt="Список действий с поиском"><br><sub>Действия с поиском</sub></td>
+<td width="33%"><img src="docs/screenshots/classic/pet-settings.png" alt="Настройки питомца и ползунки"><br><sub>Настройки и ползунки</sub></td>
+<td width="33%"><img src="docs/screenshots/classic/pet-menu.png" alt="Контекстное меню"><br><sub>Контекстное меню</sub></td>
+<td width="33%"><img src="docs/screenshots/classic/pet-actions.png" alt="Список действий с поиском"><br><sub>Действия с поиском</sub></td>
 </tr>
 </table>
 
@@ -380,19 +380,19 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E5%A4%A7%E6%98%8E/%E9%9B%AA%E5%A2%83%E6%9C%9D%E8%87%A3.png" alt="Ming · Чиновник среди снегов"><br><sub>Ming · Чиновник среди снегов</sub></td>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E5%A4%A7%E6%98%8E/%E9%9B%AA%E5%A4%9C%E7%AC%9B%E5%A7%AC.png" alt="Ming · Флейтистка в снежную ночь"><br><sub>Ming · Флейтистка в снежную ночь</sub></td>
+<td width="50%"><img src="docs/themes/ming/snow-court-minister.png" alt="Ming · Чиновник среди снегов"><br><sub>Ming · Чиновник среди снегов</sub></td>
+<td width="50%"><img src="docs/themes/ming/snow-night-flutist.png" alt="Ming · Флейтистка в снежную ночь"><br><sub>Ming · Флейтистка в снежную ночь</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E5%A4%A7%E6%98%8E/%E6%9C%88%E5%9F%8E%E4%B9%A6%E5%A7%AC.png" alt="Ming · Книжница при луне"><br><sub>Ming · Книжница при луне</sub></td>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E6%98%9F%E8%88%B0/%E9%9C%9C%E6%98%9F%E9%A2%86%E8%88%AA.png" alt="Starship Cockpit"><br><sub>Starship Cockpit</sub></td>
+<td width="50%"><img src="docs/themes/ming/moon-city-scribe.png" alt="Ming · Книжница при луне"><br><sub>Ming · Книжница при луне</sub></td>
+<td width="50%"><img src="docs/themes/starship/frost-star-navigator.png" alt="Starship Cockpit"><br><sub>Starship Cockpit</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E5%A4%A7%E6%98%8E/%E9%80%9A%E7%94%A8%E8%AE%BE%E7%BD%AE.png" alt="Общие настройки Ming"><br><sub>Ming · Общие настройки</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E5%A4%A7%E6%98%8E/%E4%B8%BB%E9%A2%98%E7%9A%AE%E8%82%A4%E5%BA%93.png" alt="Галерея тем и оформления"><br><sub>Ming · Галерея тем и оформления</sub></td>
+<td width="50%"><img src="docs/screenshots/ming/general-settings.png" alt="Общие настройки Ming"><br><sub>Ming · Общие настройки</sub></td>
+<td width="50%"><img src="docs/screenshots/ming/theme-gallery.png" alt="Галерея тем и оформления"><br><sub>Ming · Галерея тем и оформления</sub></td>
 </tr>
 <tr>
-<td colspan="2"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/macos27.png" alt="macOS 27 · Liquid Ether"><br><sub>macOS 27 · Liquid Ether</sub></td>
+<td colspan="2"><img src="docs/themes/classic/macos27.png" alt="macOS 27 · Liquid Ether"><br><sub>macOS 27 · Liquid Ether</sub></td>
 </tr>
 </table>
 

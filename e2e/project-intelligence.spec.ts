@@ -39,11 +39,11 @@ test('explores all map pages, packages, localized controls and project-specific 
   await page
     .getByTestId('project-intelligence')
     .locator('details > summary')
-    .filter({ hasText: /Excluded paths|排除路径/ })
+    .filter({ hasText: /Excluded paths/ })
     .click()
   await excluded.fill('not-scanned')
   await page.getByTestId('analyze-project').click()
-  await expect(page.getByTestId('architecture-status')).toContainText(/complete|完成/, {
+  await expect(page.getByTestId('architecture-status')).toContainText(/complete/, {
     timeout: 45000
   })
   await expect(page.getByTestId('architecture-module')).toHaveCount(55)
@@ -65,14 +65,14 @@ test('explores all map pages, packages, localized controls and project-specific 
   await electronApp.evaluate(({ dialog }, filePath) => {
     dialog.showSaveDialog = async () => ({ canceled: false, filePath })
   }, htmlPath)
-  await page.getByRole('button', { name: /Export HTML|导出 HTML/ }).click()
+  await page.getByRole('button', { name: /Export HTML/ }).click()
   await expect.poll(() => fs.existsSync(htmlPath)).toBe(true)
   expect(fs.readFileSync(htmlPath, 'utf8')).toContain('module-51.ts')
   const pngPath = path.join(testUserData, 'focused.png')
   await electronApp.evaluate(({ dialog }, filePath) => {
     dialog.showSaveDialog = async () => ({ canceled: false, filePath })
   }, pngPath)
-  await page.getByRole('button', { name: /Export view as PNG|导出当前视图 PNG/ }).click()
+  await page.getByRole('button', { name: /Export view as PNG/ }).click()
   await expect.poll(() => fs.existsSync(pngPath)).toBe(true)
   fs.copyFileSync(pngPath, testInfo.outputPath('focused-map.png'))
   await page.getByTestId('architecture-packages').selectOption('packages/api/package.json')
@@ -81,7 +81,7 @@ test('explores all map pages, packages, localized controls and project-specific 
   await window.evaluate((w) => w.setSize(1000, 900))
   const copies = [
     ['en-US', 'Project Intelligence', 'Fullscreen'],
-    ['zh-CN', '项目智能理解', '全屏'],
+    ['zh-CN', 'Project Intelligence', 'Fullscreen'],
     ['zh-TW', '專案智慧理解', '全螢幕'],
     ['ja-JP', 'プロジェクト分析', '全画面'],
     ['ko-KR', '프로젝트 분석', '전체 화면'],
@@ -218,10 +218,9 @@ test('analyzes actual source with Archify, opens references, restores snapshots 
   await page.getByTestId('workspace-architecture').click()
   await expect(page.getByTestId('project-intelligence')).toContainText(path.basename(workspaceRoot))
   await page.getByTestId('analyze-project').click()
-  await expect(page.getByTestId('architecture-status')).toContainText(
-    /Analysis complete|分析完成/,
-    { timeout: 45000 }
-  )
+  await expect(page.getByTestId('architecture-status')).toContainText(/Analysis complete/, {
+    timeout: 45000
+  })
   await expect(page.getByTestId('architecture-viewer')).toBeVisible()
   await expect
     .poll(() =>
@@ -266,16 +265,13 @@ test('analyzes actual source with Archify, opens references, restores snapshots 
   await page.getByTestId('architecture-module').filter({ hasText: 'auth.ts' }).click()
   await page.getByTestId('architecture-source').click()
   await expect(page.getByTestId('architecture-code')).toContainText('verified-auth-module')
-  await page
-    .getByRole('dialog')
-    .getByRole('button', { name: /Close|关闭/ })
-    .click()
+  await page.getByRole('dialog').getByRole('button', { name: /Close/ }).click()
   await page.screenshot({ path: testInfo.outputPath('architecture.png'), fullPage: true })
   const exportPath = path.join(testUserData, 'architecture.png')
   await electronApp.evaluate(({ dialog }, filePath) => {
     dialog.showSaveDialog = async () => ({ canceled: false, filePath })
   }, exportPath)
-  await page.getByRole('button', { name: /Export view as PNG|导出当前视图 PNG/ }).click()
+  await page.getByRole('button', { name: /Export view as PNG/ }).click()
   await expect.poll(() => fs.existsSync(exportPath)).toBe(true)
   expect(fs.readFileSync(exportPath).subarray(0, 8).toString('hex')).toBe('89504e470d0a1a0a')
   fs.copyFileSync(exportPath, testInfo.outputPath('architecture-view.png'))
@@ -283,7 +279,7 @@ test('analyzes actual source with Archify, opens references, restores snapshots 
   await electronApp.evaluate(({ dialog }, filePath) => {
     dialog.showSaveDialog = async () => ({ canceled: false, filePath })
   }, htmlPath)
-  await page.getByRole('button', { name: /Export HTML|导出 HTML/ }).click()
+  await page.getByRole('button', { name: /Export HTML/ }).click()
   await expect.poll(() => fs.existsSync(htmlPath)).toBe(true)
   const offline = await electronApp.evaluate(async ({ BrowserWindow }, filePath) => {
     const window = new BrowserWindow({
@@ -405,7 +401,7 @@ test('analyzes actual source with Archify, opens references, restores snapshots 
   await projects.selectOption(fs.realpathSync(otherRoot))
   await expect(page.getByTestId('architecture-module')).toHaveCount(0)
   await page.getByTestId('analyze-project').click()
-  await expect(page.getByTestId('architecture-status')).toContainText(/complete|完成/, {
+  await expect(page.getByTestId('architecture-status')).toContainText(/complete/, {
     timeout: 45000
   })
   await expect(page.getByTestId('architecture-module')).toHaveText('other.ts')
@@ -488,7 +484,7 @@ test('cancels a configured Pi model request without replacing the successful sna
     await page.getByTestId('workspace-import-project').click()
     await page.getByTestId('workspace-architecture').click()
     await page.getByTestId('analyze-project').click()
-    await expect(page.getByTestId('architecture-status')).toContainText(/complete|完成/, {
+    await expect(page.getByTestId('architecture-status')).toContainText(/complete/, {
       timeout: 45000
     })
     const before = await page.evaluate(
@@ -519,10 +515,10 @@ test('cancels a configured Pi model request without replacing the successful sna
       )
     }, `http://127.0.0.1:${port}/v1`)
     await page.getByTestId('architecture-analysis-options-toggle').click()
-    await page.getByRole('switch', { name: /Use configured model|使用已配置模型/ }).click()
+    await page.getByRole('switch', { name: /Use configured model/ }).click()
     await page.getByTestId('analyze-project').click()
     await expect.poll(() => requests, { timeout: 20000 }).toBe(1)
-    await expect(page.getByTestId('architecture-status')).toContainText(/complete|完成/, {
+    await expect(page.getByTestId('architecture-status')).toContainText(/complete/, {
       timeout: 45000
     })
     const enriched = await page.evaluate(
@@ -537,8 +533,8 @@ test('cancels a configured Pi model request without replacing the successful sna
     respond = false
     await page.getByTestId('analyze-project').click()
     await expect.poll(() => requests, { timeout: 20000 }).toBe(2)
-    await page.getByRole('button', { name: /Cancel Analysis|取消分析/ }).click()
-    await expect(page.getByTestId('architecture-status')).toContainText(/cancelled|已取消/, {
+    await page.getByRole('button', { name: /Cancel Analysis/ }).click()
+    await expect(page.getByTestId('architecture-status')).toContainText(/cancelled/, {
       timeout: 10000
     })
     const after = await page.evaluate(
@@ -587,7 +583,7 @@ test('scan errors are retryable and an unavailable model preserves the local ind
   await page.getByTestId('workspace-architecture').click()
   await expect(page.getByTestId('project-intelligence')).toContainText(path.basename(workspaceRoot))
   await page.getByTestId('analyze-project').click()
-  await expect(page.getByTestId('architecture-status')).toContainText(/failed|失败/, {
+  await expect(page.getByTestId('architecture-status')).toContainText(/failed/, {
     timeout: 10000
   })
   fs.writeFileSync(path.join(workspaceRoot, 'main.py'), 'print("real source")')
@@ -596,10 +592,10 @@ test('scan errors are retryable and an unavailable model preserves the local ind
     await window.piSwitch!.config.writeRaw('models', '{"providers":{}}')
   })
   await page.getByTestId('architecture-analysis-options-toggle').click()
-  await page.getByRole('switch', { name: /Use configured model|使用已配置模型/ }).click()
+  await page.getByRole('switch', { name: /Use configured model/ }).click()
   await expect(page.getByTestId('project-intelligence')).toContainText(path.basename(workspaceRoot))
   await page.getByTestId('analyze-project').click()
-  await expect(page.getByTestId('architecture-status')).toContainText(/complete|完成/, {
+  await expect(page.getByTestId('architecture-status')).toContainText(/complete/, {
     timeout: 45000
   })
   const graph = await page.evaluate(

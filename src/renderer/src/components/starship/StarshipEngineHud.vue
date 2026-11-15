@@ -36,17 +36,17 @@ onBeforeUnmount(() => document.removeEventListener('visibilitychange', syncVisib
       <strong>STARSHIP STATUS</strong>
       <span>
         <i />
-        系统状态
+        System status
         <b>{{ state.toUpperCase() }}</b>
       </span>
       <span class="starship-engine-hud__power">
         <i />
-        引擎功率
+        Engine power
         <b>82%</b>
       </span>
       <span>
         <i />
-        网络连接
+        Network link
         <b>STABLE</b>
       </span>
     </div>

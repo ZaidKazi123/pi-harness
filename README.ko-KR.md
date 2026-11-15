@@ -19,22 +19,22 @@ Pi 세션, 설정, Skills, 확장 기능은 앱 안과 밖에서 그대로 동�
 
 <br>
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E4%BD%9C%E5%8C%BA.png" width="900" alt="Pi-Harness 작업 영역: 대화, 프로젝트 파일, Git을 한 창에서">
+<img src="docs/screenshots/classic/workspace.png" width="900" alt="Pi-Harness 작업 영역: 대화, 프로젝트 파일, Git을 한 창에서">
 
 </div>
 
 <br>
 
-## 赞助商
+## Sponsors
 
 <table>
   <tr>
     <td width="580" align="center" valign="middle">
-        <a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link" style="color:transparent;background-color:transparent;text-decoration:none;border:none;"><img src="docs/assets/infistar-banner.png" width="560" alt="Pi-Harness × Infistar.cc 无限星河" style="color:transparent;background-color:transparent;text-decoration:none;border:none;" /></a>
+        <a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link" style="color:transparent;background-color:transparent;text-decoration:none;border:none;"><img src="docs/assets/infistar-banner.png" width="560" alt="Pi-Harness × Infistar.cc" style="color:transparent;background-color:transparent;text-decoration:none;border:none;" /></a>
     </td>
     <td valign="middle">
-      Pi-Harness × Infistar.cc 无限星河｜Claude、GPT、Gemini、Grok、DeepSeek 等，一个 Key，只花官方价的零头，省 99%；低至官方 0.1 折，100% 官方纯血，每个模型都能验真；上千线路安全冗余自动切换，200+ 模型、16 个品牌，一个 Key 搞定。<br>
-      Pi-Harness 用户通过<a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link">专属链接</a>注册直接送人民币 5 元：<a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link">https://infistar.cc/register?aff=S26RFM4B&ref_source=link</a>
+      Pi-Harness × Infistar.cc: Claude, GPT, Gemini, Grok, DeepSeek and more with one key, for a fraction of the official price (up to 99% off, as low as 1% of the official price). 100% official models, each verifiable; thousands of redundant routes with automatic failover; 200+ models from 16 brands with one key.<br>
+      Pi-Harness users who register through the <a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link">dedicated link</a> receive a CNY 5 credit: <a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link">https://infistar.cc/register?aff=S26RFM4B&ref_source=link</a>
     </td>
   </tr>
   <tr>
@@ -43,18 +43,18 @@ Pi 세션, 설정, Skills, 확장 기능은 앱 안과 밖에서 그대로 동�
     </td>
     <td valign="middle">
       <strong>Pi-Harness × TokenArmy</strong><br>
-      <strong>Claude Pro 日租</strong> · 独享账号，低至 $1.34/天，不封号<br>
-      <strong>Claude API 按量计费</strong> · 低至官方价格 1.25 折，失败不扣费<br>
-      <a href="https://tokenarmy.shop/r/TA-7FBJU-NUSUC">Pi-Harness 用户专属注册链接</a><br>
-      <em>价格与服务以 TokenArmy 平台规则为准。</em>
+      <strong>Claude Pro daily rental</strong> · Dedicated account, from $1.34/day, no bans<br>
+      <strong>Claude API pay-as-you-go</strong> · From 12.5% of the official price; failed requests are not charged<br>
+      <a href="https://tokenarmy.shop/r/TA-7FBJU-NUSUC">Pi-Harness user registration link</a><br>
+      <em>Prices and services are subject to the TokenArmy platform rules.</em>
     </td>
   </tr>
   <tr>
     <td width="580" align="center" valign="middle">
-        <a href="https://cloud.tencent.com/act/cps/redirect?redirect=6871&amp;cps_key=ece2099a1da90c2f7a4a4c437ad623f8&amp;from=console" style="color:transparent;background-color:transparent;text-decoration:none;border:none;"><img src="docs/assets/workbuddy-banner.jpg" width="560" alt="腾讯云 WorkBuddy" style="color:transparent;background-color:transparent;text-decoration:none;border:none;" /></a>
+        <a href="https://cloud.tencent.com/act/cps/redirect?redirect=6871&amp;cps_key=ece2099a1da90c2f7a4a4c437ad623f8&amp;from=console" style="color:transparent;background-color:transparent;text-decoration:none;border:none;"><img src="docs/assets/workbuddy-banner.jpg" width="560" alt="Tencent Cloud WorkBuddy" style="color:transparent;background-color:transparent;text-decoration:none;border:none;" /></a>
     </td>
     <td valign="middle">
-      【腾讯云】WorkBuddy 全场景 AI 办公工作台，团队旗舰版低至198元/月<br>
+      [Tencent Cloud] WorkBuddy, an all-scenario AI office workspace. Team flagship edition from CNY 198/month.<br>
       <a href="https://cloud.tencent.com/act/cps/redirect?redirect=6871&amp;cps_key=ece2099a1da90c2f7a4a4c437ad623f8&amp;from=console">https://cloud.tencent.com/act/cps/redirect?redirect=6871&amp;cps_key=ece2099a1da90c2f7a4a4c437ad623f8&amp;from=console</a>
     </td>
   </tr>
@@ -206,8 +206,8 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91.png" alt="가벼운 파일 편집"><br><sub>가벼운 파일 편집</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/Git.png" alt="Git 차이, 이력, 커밋"><br><sub>Git</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/file-editing.png" alt="가벼운 파일 편집"><br><sub>가벼운 파일 편집</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/Git.png" alt="Git 차이, 이력, 커밋"><br><sub>Git</sub></td>
 </tr>
 </table>
 
@@ -226,8 +226,8 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E5%85%B7Harness-2.png" alt="Harness: 세션 상태와 대기 중인 지시"><br><sub>세션 상태와 대기 중인 지시</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E5%85%B7Harness-1.png" alt="Harness 콘솔"><br><sub>Harness 콘솔</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/harness-tools-2.png" alt="Harness: 세션 상태와 대기 중인 지시"><br><sub>세션 상태와 대기 중인 지시</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/harness-tools-1.png" alt="Harness 콘솔"><br><sub>Harness 콘솔</sub></td>
 </tr>
 </table>
 
@@ -239,8 +239,8 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93-%E5%9B%A2%E9%98%9F.png" alt="실행 전 구성된 팀"><br><sub>실행 전 예시 팀: 대기 중인 에이전트 세 명, 모든 작업 대기 중</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93-%E4%BB%BB%E5%8A%A1%E4%BE%9D%E8%B5%96.png" alt="의존성과 검토 요구 사항이 있는 대기 작업"><br><sub>작업 의존성과 검토 요구 사항</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/multi-agent-team.png" alt="실행 전 구성된 팀"><br><sub>실행 전 예시 팀: 대기 중인 에이전트 세 명, 모든 작업 대기 중</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/multi-agent-task-dependencies.png" alt="의존성과 검토 요구 사항이 있는 대기 작업"><br><sub>작업 의존성과 검토 요구 사항</sub></td>
 </tr>
 </table>
 
@@ -254,8 +254,8 @@ Claude Code, Codex(데스크톱과 보관된 대화 포함), Cursor, Cursor Agen
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E4%BC%9A%E8%AF%9D%E5%8E%86%E5%8F%B2.png" alt="대화 기록"><br><sub>대화 기록</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E4%BC%9A%E8%AF%9D%E6%B8%85%E7%90%86.png" alt="세션 정리"><br><sub>세션 정리</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/session-history.png" alt="대화 기록"><br><sub>대화 기록</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/session-cleanup.png" alt="세션 정리"><br><sub>세션 정리</sub></td>
 </tr>
 </table>
 
@@ -271,7 +271,7 @@ Claude Code, Codex(데스크톱과 보관된 대화 포함), Cursor, Cursor Agen
 | **분석 범위** | JavaScript, TypeScript, Vue의 import는 로컬에서 분석하고, 다른 지원 언어는 파일 단위 색인을 제공합니다. 분석마다 범위와 한계를 표시합니다 |
 | **적용 범위** | 맵은 지원되는 정적 의존성을 나타내며, 완전한 함수 호출 그래프는 아닙니다 |
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84-1.png" width="900" alt="프로젝트 아키텍처 맵">
+<img src="docs/screenshots/classic/project-architecture-1.png" width="900" alt="프로젝트 아키텍처 맵">
 
 <a id="providers-and-models"></a>
 <a id="skills-extensions-packages-and-mcp"></a>
@@ -289,12 +289,12 @@ Claude Code, Codex(데스크톱과 보관된 대화 포함), Cursor, Cursor Agen
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/Provider%E4%B8%8E%E6%A8%A1%E5%9E%8B-1.png" alt="제공자와 모델"><br><sub>제공자와 모델</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E8%83%BD%E5%8A%9B%E4%B8%AD%E5%BF%83-1.png" alt="기능 센터"><br><sub>기능 센터</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/providers-and-models-1.png" alt="제공자와 모델"><br><sub>제공자와 모델</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/capabilities-1.png" alt="기능 센터"><br><sub>기능 센터</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/ChatGPT%E6%8E%88%E6%9D%83.png" alt="ChatGPT로 로그인"><br><sub>ChatGPT로 로그인</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%85%8D%E8%B4%B9%E6%A8%A1%E5%9E%8B.png" alt="무료 모델"><br><sub>무료 모델</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/chatgpt-sign-in.png" alt="ChatGPT로 로그인"><br><sub>ChatGPT로 로그인</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/free-models.png" alt="무료 모델"><br><sub>무료 모델</sub></td>
 </tr>
 </table>
 
@@ -306,7 +306,7 @@ Claude Code, Codex(데스크톱과 보관된 대화 포함), Cursor, Cursor Agen
 
 마켓에는 Memory, Context7, Playwright, Filesystem, GitHub 등 **15개의 내장 서버 템플릿**이 있으며, 공식 MCP 레지스트리 검색과 페이지 이동도 지원합니다. 저장하기 전에 설정과 저장 위치를 미리 확인합니다. 템플릿은 설치용이며 모두 기본으로 활성화되지는 않습니다. 가져온 항목과 레지스트리 항목은 비활성 상태로 저장되므로 먼저 설정을 마칠 수 있습니다.
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/MCP%E5%B8%82%E5%9C%BA.png" width="900" alt="MCP 마켓과 내장 서버 템플릿">
+<img src="docs/screenshots/classic/mcp-market.png" width="900" alt="MCP 마켓과 내장 서버 템플릿">
 
 <a id="agent-settings"></a>
 
@@ -316,13 +316,13 @@ Claude Code, Codex(데스크톱과 보관된 대화 포함), Cursor, Cursor Agen
 
 | 페이지 | 설정 내용 | |
 | :-- | :-- | :-- |
-| **AI** | 기본 사고 수준, 자동 압축, 재시도 동작, 작업 영역 기본 설정 | [스크린샷](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/AI.png) |
-| **실시간 음성** | 작업 영역 통화에 사용할 음성 서비스와 계정 | [스크린샷](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%AE%9E%E6%97%B6%E8%AF%AD%E9%9F%B3.png) |
-| **단축키** | 명령 팔레트, 설정, 새 세션, 탭 닫기의 사용자 단축키 또는 기본값 | [스크린샷](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%BF%AB%E6%8D%B7%E9%94%AE.png) |
-| **지침** | 전역 또는 프로젝트 지침 | [스크린샷](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%8C%87%E4%BB%A4.png) |
-| **MCP** | 범위별 MCP 서버 | [스크린샷](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/MCP%E6%9C%8D%E5%8A%A1%E5%99%A8.png) |
-| **하위 에이전트** | 역할, 지침, 모델, 사고 수준, 도구를 지정한 재사용 하위 에이전트. 공유 작업 영역이나 격리된 worktree를 선택한 뒤 작업을 시작하거나 팀에서 템플릿을 재사용합니다 | [스크린샷](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%AD%90%E6%99%BA%E8%83%BD%E4%BD%93.png) |
-| **원격 호스트** | 주소와 페어링 토큰으로 페어링한 pi-host 실행 호스트 | [스크린샷](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA.png) |
+| **AI** | 기본 사고 수준, 자동 압축, 재시도 동작, 작업 영역 기본 설정 | [스크린샷](docs/screenshots/classic/AI.png) |
+| **실시간 음성** | 작업 영역 통화에 사용할 음성 서비스와 계정 | [스크린샷](docs/screenshots/classic/realtime-voice.png) |
+| **단축키** | 명령 팔레트, 설정, 새 세션, 탭 닫기의 사용자 단축키 또는 기본값 | [스크린샷](docs/screenshots/classic/keyboard-shortcuts.png) |
+| **지침** | 전역 또는 프로젝트 지침 | [스크린샷](docs/screenshots/classic/instructions.png) |
+| **MCP** | 범위별 MCP 서버 | [스크린샷](docs/screenshots/classic/mcp-servers.png) |
+| **하위 에이전트** | 역할, 지침, 모델, 사고 수준, 도구를 지정한 재사용 하위 에이전트. 공유 작업 영역이나 격리된 worktree를 선택한 뒤 작업을 시작하거나 팀에서 템플릿을 재사용합니다 | [스크린샷](docs/screenshots/classic/subagents.png) |
+| **원격 호스트** | 주소와 페어링 토큰으로 페어링한 pi-host 실행 호스트 | [스크린샷](docs/screenshots/classic/remote-hosts.png) |
 
 <a id="realtime-voice"></a>
 
@@ -337,7 +337,7 @@ Claude Code, Codex(데스크톱과 보관된 대화 포함), Cursor, Cursor Agen
 
 최근 컨텍스트 공유는 기본적으로 꺼져 있습니다. 켜면 첨부 파일과 도구 결과를 제외한 최근 여섯 개의 일반 텍스트 메시지만 포함합니다. 통화 중의 작업 요청은 확인한 뒤에만 작업 대화로 전송됩니다.
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E4%BD%9C%E5%8C%BA%E8%AF%AD%E9%9F%B3.png" width="900" alt="작업 영역 음성: 통화 전 설정과 준비">
+<img src="docs/screenshots/classic/workspace-voice.png" width="900" alt="작업 영역 음성: 통화 전 설정과 준비">
 
 <a id="remote-hosts"></a>
 
@@ -355,9 +355,9 @@ Claude Code, Codex(데스크톱과 보관된 대화 포함), Cursor, Cursor Agen
 
 <table>
 <tr>
-<td width="33%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%A1%8C%E5%AE%A0%E8%AE%BE%E7%BD%AE.png" alt="데스크톱 펫 설정과 슬라이더"><br><sub>설정과 슬라이더</sub></td>
-<td width="33%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%A1%8C%E5%AE%A0%E8%8F%9C%E5%8D%95.png" alt="우클릭 메뉴"><br><sub>우클릭 메뉴</sub></td>
-<td width="33%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%A1%8C%E5%AE%A0%E5%8A%A8%E4%BD%9C.png" alt="검색 가능한 동작 목록"><br><sub>동작 검색</sub></td>
+<td width="33%"><img src="docs/screenshots/classic/pet-settings.png" alt="데스크톱 펫 설정과 슬라이더"><br><sub>설정과 슬라이더</sub></td>
+<td width="33%"><img src="docs/screenshots/classic/pet-menu.png" alt="우클릭 메뉴"><br><sub>우클릭 메뉴</sub></td>
+<td width="33%"><img src="docs/screenshots/classic/pet-actions.png" alt="검색 가능한 동작 목록"><br><sub>동작 검색</sub></td>
 </tr>
 </table>
 
@@ -380,19 +380,19 @@ Claude Code, Codex(데스크톱과 보관된 대화 포함), Cursor, Cursor Agen
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E5%A4%A7%E6%98%8E/%E9%9B%AA%E5%A2%83%E6%9C%9D%E8%87%A3.png" alt="Ming · 눈 속의 관리"><br><sub>Ming · 눈 속의 관리</sub></td>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E5%A4%A7%E6%98%8E/%E9%9B%AA%E5%A4%9C%E7%AC%9B%E5%A7%AC.png" alt="Ming · 눈밤의 피리 연주자"><br><sub>Ming · 눈밤의 피리 연주자</sub></td>
+<td width="50%"><img src="docs/themes/ming/snow-court-minister.png" alt="Ming · 눈 속의 관리"><br><sub>Ming · 눈 속의 관리</sub></td>
+<td width="50%"><img src="docs/themes/ming/snow-night-flutist.png" alt="Ming · 눈밤의 피리 연주자"><br><sub>Ming · 눈밤의 피리 연주자</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E5%A4%A7%E6%98%8E/%E6%9C%88%E5%9F%8E%E4%B9%A6%E5%A7%AC.png" alt="Ming · 달빛의 서생"><br><sub>Ming · 달빛의 서생</sub></td>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E6%98%9F%E8%88%B0/%E9%9C%9C%E6%98%9F%E9%A2%86%E8%88%AA.png" alt="Starship Cockpit"><br><sub>Starship Cockpit</sub></td>
+<td width="50%"><img src="docs/themes/ming/moon-city-scribe.png" alt="Ming · 달빛의 서생"><br><sub>Ming · 달빛의 서생</sub></td>
+<td width="50%"><img src="docs/themes/starship/frost-star-navigator.png" alt="Starship Cockpit"><br><sub>Starship Cockpit</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E5%A4%A7%E6%98%8E/%E9%80%9A%E7%94%A8%E8%AE%BE%E7%BD%AE.png" alt="Ming 일반 설정"><br><sub>Ming · 일반 설정</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E5%A4%A7%E6%98%8E/%E4%B8%BB%E9%A2%98%E7%9A%AE%E8%82%A4%E5%BA%93.png" alt="테마와 스킨 갤러리"><br><sub>Ming · 테마와 스킨 갤러리</sub></td>
+<td width="50%"><img src="docs/screenshots/ming/general-settings.png" alt="Ming 일반 설정"><br><sub>Ming · 일반 설정</sub></td>
+<td width="50%"><img src="docs/screenshots/ming/theme-gallery.png" alt="테마와 스킨 갤러리"><br><sub>Ming · 테마와 스킨 갤러리</sub></td>
 </tr>
 <tr>
-<td colspan="2"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/macos27.png" alt="macOS 27 · Liquid Ether"><br><sub>macOS 27 · Liquid Ether</sub></td>
+<td colspan="2"><img src="docs/themes/classic/macos27.png" alt="macOS 27 · Liquid Ether"><br><sub>macOS 27 · Liquid Ether</sub></td>
 </tr>
 </table>
 

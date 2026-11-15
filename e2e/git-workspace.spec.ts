@@ -71,14 +71,10 @@ test('stages, commits, and renders the commit graph without horizontal overflow'
   const commitPanel = page.getByTestId('git-commit-panel')
   await expect(commitPanel).toBeVisible()
   const repositorySidebar = page.getByTestId('git-repository-sidebar')
-  await expect(repositorySidebar.getByRole('button', { name: /^(本地|Local)/ })).toBeVisible()
-  await expect(repositorySidebar.getByRole('button', { name: /^(远程|Remote)/ })).toBeVisible()
-  await expect(
-    repositorySidebar.getByRole('button', { name: /^(拉取请求|Pull requests)/ })
-  ).toBeVisible()
-  await expect(
-    repositorySidebar.getByRole('button', { name: /^(子模块|Submodules)/ })
-  ).toBeVisible()
+  await expect(repositorySidebar.getByRole('button', { name: /^(Local)/ })).toBeVisible()
+  await expect(repositorySidebar.getByRole('button', { name: /^(Remote)/ })).toBeVisible()
+  await expect(repositorySidebar.getByRole('button', { name: /^(Pull requests)/ })).toBeVisible()
+  await expect(repositorySidebar.getByRole('button', { name: /^(Submodules)/ })).toBeVisible()
   await expect(repositorySidebar.locator('[data-git-branch="main"]')).toBeVisible()
   await expect(repositorySidebar.locator('[data-git-branch="feature/graph"]')).toBeVisible()
 
@@ -90,7 +86,7 @@ test('stages, commits, and renders the commit graph without horizontal overflow'
 
   const graph = page.getByTestId('git-history-graph')
   await expect(graph.locator(':scope > div')).toHaveCount(4)
-  await expect(page.getByText(/选择一个变更|Select a change/)).toHaveCount(0)
+  await expect(page.getByText(/Select a change/)).toHaveCount(0)
   const pane = await page.getByTestId('git-workspace-view').evaluate((element) => {
     const parent = element.parentElement!
     const siblings = [...parent.children].filter((child) => child !== element)
@@ -113,7 +109,7 @@ test('stages, commits, and renders the commit graph without horizontal overflow'
   await graph.locator(':scope > div').first().click()
   const review = page.getByTestId('git-commit-review')
   await expect(review).toContainText('merge: graph feature')
-  await expect(review.getByText(/已更改文件|Changed files/)).toBeVisible()
+  await expect(review.getByText(/Changed files/)).toBeVisible()
   await review.getByText('graph.ts', { exact: true }).click()
   const historicalDiff = page.getByTestId('git-historical-diff')
   await expect(historicalDiff).toBeVisible()
@@ -121,7 +117,7 @@ test('stages, commits, and renders the commit graph without horizontal overflow'
   // Drawers overlay the graph instead of replacing it, so its state (scroll
   // position, selection) survives; the graph stays attached underneath.
   await expect(graph).toBeAttached()
-  await historicalDiff.getByRole('button', { name: /返回图谱|Back to graph/ }).click()
+  await historicalDiff.getByRole('button', { name: /Back to graph/ }).click()
   await expect(historicalDiff).toBeHidden()
   await expect(graph).toBeVisible()
 
@@ -134,7 +130,7 @@ test('stages, commits, and renders the commit graph without horizontal overflow'
 
   // Drawers overlay their pane instead of replacing it, and the review
   // overlay covers the commit panel; close both before driving the panel.
-  await historicalDiff.getByRole('button', { name: /返回图谱|Back to graph/ }).click()
+  await historicalDiff.getByRole('button', { name: /Back to graph/ }).click()
   await expect(historicalDiff).toBeHidden()
   await page.getByTestId('git-back-to-panel').click()
   await expect(review).toBeHidden()
@@ -143,7 +139,7 @@ test('stages, commits, and renders the commit graph without horizontal overflow'
   await commitPanel.getByRole('button', { name: /graph\.ts$/ }).click()
   await expect(page.getByText('export const visible = true', { exact: false })).toBeVisible()
   await expect(page.getByTestId('git-generate-message')).toBeDisabled()
-  await commitPanel.getByRole('button', { name: /全部暂存|Stage all/ }).click()
+  await commitPanel.getByRole('button', { name: /Stage all/ }).click()
   await expect(page.getByTestId('git-generate-message')).toBeEnabled()
 
   const picker = commitPanel.getByTestId('git-model-picker')
@@ -174,9 +170,13 @@ test('stages, commits, and renders the commit graph without horizontal overflow'
   expect(overflow.scrollWidth).toBeLessThanOrEqual(overflow.clientWidth)
   expect(overflow.documentScrollWidth).toBeLessThanOrEqual(overflow.documentClientWidth)
 
-  await commitPanel.getByPlaceholder(/提交信息|Commit message/).fill('feat(git): 集成提交工作流')
+  await commitPanel
+    .getByPlaceholder(/Commit message/)
+    .fill('feat(git): integrate the commit workflow')
   await page.getByTestId('git-create-commit').click()
   await page.getByTestId('git-back-to-graph').click()
   await expect(page.getByTestId('git-history-graph').locator(':scope > div')).toHaveCount(5)
-  expect(git(repository, ['log', '-1', '--format=%s']).trim()).toBe('feat(git): 集成提交工作流')
+  expect(git(repository, ['log', '-1', '--format=%s']).trim()).toBe(
+    'feat(git): integrate the commit workflow'
+  )
 })

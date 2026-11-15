@@ -1,124 +1,113 @@
-# Screenshots / 截图索引
+# Screenshots
 
 Browse the current Pi-Harness interface, desktop companion, themes, and community resources. Open any image link for the full-size screenshot.
 
-Pi-Harness 截图按功能界面、主题展示和社区资源分类，点击图片链接可查看原图。
-
 The provider, ChatGPT sign-in, and Free Models screenshots were refreshed on 2026-11-15 using Pi-Harness 2.4.8. The account and usage figures are examples.
-
-提供商、ChatGPT 授权和免费模型截图于 2026-11-15 使用 Pi-Harness 2.4.8 更新。截图中的账户和用量为示例。
 
 [English](../README.md) · [简体中文](../README.zh-CN.md) · [繁體中文](../README.zh-TW.md) · [日本語](../README.ja-JP.md) · [한국어](../README.ko-KR.md) · [Русский](../README.ru-RU.md) · [Français](../README.fr-FR.md) · [Deutsch](../README.de-DE.md)
 
-[Agent settings guide / 智能体设置使用指南](agent-settings.md) · [Changelog / 更新日志](../CHANGELOG.md)
+[Agent settings guide](agent-settings.md) · [Changelog](../CHANGELOG.md)
 
-## Recordings / 实拍
+## Recordings
 
 https://github.com/user-attachments/assets/942b73c9-ece9-485e-ad82-0e51225a73c1
 
 https://github.com/user-attachments/assets/98708766-f490-4506-a33f-f1376d41770f
 
-## Product interfaces / 功能界面
+## Product interfaces
 
-### Classic theme / 经典主题
+### Classic theme
 
-| Interface / 界面                               | Screenshots / 截图                                                                                                                 |
-| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Workspace / 工作区                             | [工作区](功能界面/经典主题/工作区.png)                                                                                             |
-| File editing / 文件编辑                        | [代码编辑](功能界面/经典主题/代码编辑.png)                                                                                         |
-| Conversation history / 会话历史                | [会话历史](功能界面/经典主题/会话历史.png)                                                                                         |
-| Session cleanup / 会话清理                     | [会话清理](功能界面/经典主题/会话清理.png)                                                                                         |
-| Desktop companion / 桌面伴侣                   | [设置](功能界面/经典主题/桌宠设置.png) · [右键菜单](功能界面/经典主题/桌宠菜单.png) · [193 个动作](功能界面/经典主题/桌宠动作.png) |
-| Git                                            | [Git](功能界面/经典主题/Git.png)                                                                                                   |
-| Providers and models / Provider 与模型         | [Providers / 提供商](功能界面/经典主题/Provider与模型-1.png) · [Models / 模型](功能界面/经典主题/Provider与模型-2.png)             |
-| ChatGPT sign-in / ChatGPT 授权                 | [Browser sign-in prompt / 浏览器授权提示](功能界面/经典主题/ChatGPT授权.png)                                                       |
-| Free Models / 免费模型                         | [Chat model picker / 聊天模型选择器](功能界面/经典主题/免费模型.png)                                                               |
-| Capabilities / 能力中心                        | [1](功能界面/经典主题/能力中心-1.png) · [2](功能界面/经典主题/能力中心-2.png) · [3](功能界面/经典主题/能力中心-3.png)              |
-| Harness tools / Harness 工具                   | [1](功能界面/经典主题/工具Harness-1.png) · [2](功能界面/经典主题/工具Harness-2.png)                                                |
-| Multi-Agent / 多智能体                         | [Team / 团队](功能界面/经典主题/多智能体-团队.png) · [Task dependencies / 任务依赖](功能界面/经典主题/多智能体-任务依赖.png)       |
-| Project architecture / 项目架构                | [1](功能界面/经典主题/项目架构-1.png) · [2](功能界面/经典主题/项目架构-2.png) · [3](功能界面/经典主题/项目架构-3.png)              |
-| General settings / 通用设置                    | [通用设置](功能界面/经典主题/通用设置.png)                                                                                         |
-| Theme and skin gallery / 主题皮肤库            | [主题皮肤库](功能界面/经典主题/主题皮肤库.png)                                                                                     |
-| AI preferences / AI 设置                       | [AI](功能界面/经典主题/AI.png)                                                                                                     |
-| Realtime voice / 实时语音                      | [设置](功能界面/经典主题/实时语音.png) · [工作区语音](功能界面/经典主题/工作区语音.png)                                            |
-| Keyboard shortcuts / 快捷键                    | [快捷键](功能界面/经典主题/快捷键.png)                                                                                             |
-| Instructions / 指令                            | [指令](功能界面/经典主题/指令.png)                                                                                                 |
-| MCP servers and marketplace / MCP 服务器与市场 | [服务器](功能界面/经典主题/MCP服务器.png) · [市场](功能界面/经典主题/MCP市场.png)                                                  |
-| Subagents / 子智能体                           | [子智能体](功能界面/经典主题/子智能体.png)                                                                                         |
-| Remote hosts / 远程主机                        | [远程主机](功能界面/经典主题/远程主机.png)                                                                                         |
+| Interface                   | Screenshots                                                                                                                                                     |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Workspace                   | [Workspace](screenshots/classic/workspace.png)                                                                                                                  |
+| File editing                | [File editing](screenshots/classic/file-editing.png)                                                                                                            |
+| Conversation history        | [Conversation history](screenshots/classic/session-history.png)                                                                                                 |
+| Session cleanup             | [Session cleanup](screenshots/classic/session-cleanup.png)                                                                                                      |
+| Desktop companion           | [Settings](screenshots/classic/pet-settings.png) · [Context menu](screenshots/classic/pet-menu.png) · [193 actions](screenshots/classic/pet-actions.png)        |
+| Git                         | [Git](screenshots/classic/Git.png)                                                                                                                              |
+| Providers and models        | [Providers](screenshots/classic/providers-and-models-1.png) · [Models](screenshots/classic/providers-and-models-2.png)                                          |
+| ChatGPT sign-in             | [Browser sign-in prompt](screenshots/classic/chatgpt-sign-in.png)                                                                                               |
+| Free Models                 | [Chat model picker](screenshots/classic/free-models.png)                                                                                                        |
+| Capabilities                | [1](screenshots/classic/capabilities-1.png) · [2](screenshots/classic/capabilities-2.png) · [3](screenshots/classic/capabilities-3.png)                         |
+| Harness tools               | [1](screenshots/classic/harness-tools-1.png) · [2](screenshots/classic/harness-tools-2.png)                                                                     |
+| Multi-Agent                 | [Team](screenshots/classic/multi-agent-team.png) · [Task dependencies](screenshots/classic/multi-agent-task-dependencies.png)                                   |
+| Project architecture        | [1](screenshots/classic/project-architecture-1.png) · [2](screenshots/classic/project-architecture-2.png) · [3](screenshots/classic/project-architecture-3.png) |
+| General settings            | [General settings](screenshots/classic/general-settings.png)                                                                                                    |
+| Theme and skin gallery      | [Theme and skin gallery](screenshots/classic/theme-gallery.png)                                                                                                 |
+| AI preferences              | [AI](screenshots/classic/AI.png)                                                                                                                                |
+| Realtime voice              | [Settings](screenshots/classic/realtime-voice.png) · [Workspace voice](screenshots/classic/workspace-voice.png)                                                 |
+| Keyboard shortcuts          | [Keyboard shortcuts](screenshots/classic/keyboard-shortcuts.png)                                                                                                |
+| Instructions                | [Instructions](screenshots/classic/instructions.png)                                                                                                            |
+| MCP servers and marketplace | [Servers](screenshots/classic/mcp-servers.png) · [Marketplace](screenshots/classic/mcp-market.png)                                                              |
+| Subagents                   | [Subagents](screenshots/classic/subagents.png)                                                                                                                  |
+| Remote hosts                | [Remote hosts](screenshots/classic/remote-hosts.png)                                                                                                            |
 
 The Multi-Agent screenshots show a configured example before execution (idle agents and pending tasks).
 
-多智能体截图展示尚未启动运行的配置示例：智能体为空闲状态，任务待处理。
-
 Desktop companion screenshots show settings, the context menu, and the searchable 193-action list. Screenshots are shared by all language editions.
-
-桌宠截图展示设置、右键菜单与支持搜索的 193 个动作列表；各语言文档共用同一份截图素材。
 
 Voice screenshots show setup and preparation before a call; MCP and remote host screenshots show their settings screens.
 
-语音截图展示通话前的设置与准备界面；MCP 与远程主机截图展示对应的设置界面。
+### Ming
 
-### Ming / 大明
+| Interface              | Screenshot                                                        |
+| ---------------------- | ----------------------------------------------------------------- |
+| Git                    | [Git](screenshots/ming/Git.png)                                   |
+| Providers and models   | [Providers and models](screenshots/ming/providers-and-models.png) |
+| Capabilities           | [Capabilities](screenshots/ming/capabilities.png)                 |
+| Project architecture   | [Project architecture](screenshots/ming/project-architecture.png) |
+| General settings       | [General settings](screenshots/ming/general-settings.png)         |
+| Theme and skin gallery | [Theme and skin gallery](screenshots/ming/theme-gallery.png)      |
 
-| Interface / 界面                       | Screenshot / 截图                                   |
-| -------------------------------------- | --------------------------------------------------- |
-| Git                                    | [Git](功能界面/大明/Git.png)                        |
-| Providers and models / Provider 与模型 | [Provider 与模型](功能界面/大明/Provider与模型.png) |
-| Capabilities / 能力中心                | [能力中心](功能界面/大明/能力中心.png)              |
-| Project architecture / 项目架构        | [项目架构](功能界面/大明/项目架构.png)              |
-| General settings / 通用设置            | [通用设置](功能界面/大明/通用设置.png)              |
-| Theme and skin gallery / 主题皮肤库    | [主题皮肤库](功能界面/大明/主题皮肤库.png)          |
+## Theme gallery
 
-## Theme gallery / 主题展示
+| Theme            | Screenshots                                                                                                                                                                  |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Ming             | [Snow Court Minister](themes/ming/snow-court-minister.png) · [Snow Night Flutist](themes/ming/snow-night-flutist.png) · [Moon City Scribe](themes/ming/moon-city-scribe.png) |
+| Starship Cockpit | [Frost Star Navigator](themes/starship/frost-star-navigator.png)                                                                                                             |
 
-| Theme / 主题                  | Screenshots / 截图                                                                                                       |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Ming / 大明                   | [雪境朝臣](主题展示/大明/雪境朝臣.png) · [雪夜笛姬](主题展示/大明/雪夜笛姬.png) · [月城书姬](主题展示/大明/月城书姬.png) |
-| Starship Cockpit / 星舰驾驶舱 | [霜星领航](主题展示/星舰/霜星领航.png)                                                                                   |
+### Standard themes
 
-### Standard themes / 标准主题
+| Theme                   | Screenshot                               |
+| ----------------------- | ---------------------------------------- |
+| Dark                    | [View](themes/classic/dark.png)          |
+| Soft Dark               | [View](themes/classic/soft-dark.png)     |
+| Light                   | [View](themes/classic/light.png)         |
+| Soft Light              | [View](themes/classic/soft-light.png)    |
+| Pink                    | [View](themes/classic/pink.png)          |
+| Purple                  | [View](themes/classic/purple.png)        |
+| Green                   | [View](themes/classic/green.png)         |
+| Blue                    | [View](themes/classic/blue.png)          |
+| Orange                  | [View](themes/classic/orange.png)        |
+| Red                     | [View](themes/classic/red.png)           |
+| Cyan                    | [View](themes/classic/cyan.png)          |
+| macOS 27 Light          | [View](themes/classic/macos27-light.png) |
+| macOS 27 · Liquid Ether | [View](themes/classic/macos27.png)       |
 
-| Theme / 主题                   | Screenshot / 截图                                  |
-| ------------------------------ | -------------------------------------------------- |
-| Dark / 深色                    | [查看 / View](主题展示/经典主题/dark.png)          |
-| Soft Dark / 柔和深色           | [查看 / View](主题展示/经典主题/soft-dark.png)     |
-| Light / 浅色                   | [查看 / View](主题展示/经典主题/light.png)         |
-| Soft Light / 柔和浅色          | [查看 / View](主题展示/经典主题/soft-light.png)    |
-| Pink / 粉色                    | [查看 / View](主题展示/经典主题/pink.png)          |
-| Purple / 紫色                  | [查看 / View](主题展示/经典主题/purple.png)        |
-| Green / 绿色                   | [查看 / View](主题展示/经典主题/green.png)         |
-| Blue / 蓝色                    | [查看 / View](主题展示/经典主题/blue.png)          |
-| Orange / 橙色                  | [查看 / View](主题展示/经典主题/orange.png)        |
-| Red / 红色                     | [查看 / View](主题展示/经典主题/red.png)           |
-| Cyan / 青色                    | [查看 / View](主题展示/经典主题/cyan.png)          |
-| macOS 27 Light / 浅色          | [查看 / View](主题展示/经典主题/macos27-light.png) |
-| macOS 27 · Liquid Ether / 深色 | [查看 / View](主题展示/经典主题/macos27.png)       |
+## Community
 
-## Community / 社区
+[Community contacts (Simplified Chinese README)](../README.zh-CN.md#%E7%A4%BE%E5%8C%BA)
 
-[Community / 社区联系方式](../README.zh-CN.md#社区)
-
-## 赞助商
+## Sponsors
 
 <table>
   <tr>
     <td width="580" align="center" valign="middle">
-        <a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link" style="color:transparent;background-color:transparent;text-decoration:none;border:none;"><img src="assets/infistar-banner.png" width="560" alt="Pi-Harness × Infistar.cc 无限星河" style="color:transparent;background-color:transparent;text-decoration:none;border:none;" /></a>
+        <a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link" style="color:transparent;background-color:transparent;text-decoration:none;border:none;"><img src="assets/infistar-banner.png" width="560" alt="Pi-Harness × Infistar.cc" style="color:transparent;background-color:transparent;text-decoration:none;border:none;" /></a>
     </td>
     <td valign="middle">
-      Pi-Harness × Infistar.cc 无限星河｜Claude、GPT、Gemini、Grok、DeepSeek 等，一个 Key，只花官方价的零头，省 99%；低至官方 0.1 折，100% 官方纯血，每个模型都能验真；上千线路安全冗余自动切换，200+ 模型、16 个品牌，一个 Key 搞定。<br>
-      Pi-Harness 用户通过<a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link">专属链接</a>注册直接送人民币 5 元：<a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link">https://infistar.cc/register?aff=S26RFM4B&ref_source=link</a>
+      Pi-Harness × Infistar.cc: Claude, GPT, Gemini, Grok, DeepSeek and more with one key, for a fraction of the official price (up to 99% off, as low as 1% of the official price). 100% official models, each verifiable; thousands of redundant routes with automatic failover; 200+ models from 16 brands with one key.<br>
+      Pi-Harness users who register through the <a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link">dedicated link</a> receive a CNY 5 credit: <a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link">https://infistar.cc/register?aff=S26RFM4B&ref_source=link</a>
     </td>
   </tr>
   <tr>
     <td width="580" align="center" valign="middle">
-        <a href="https://cloud.tencent.com/act/cps/redirect?redirect=6871&amp;cps_key=ece2099a1da90c2f7a4a4c437ad623f8&amp;from=console" style="color:transparent;background-color:transparent;text-decoration:none;border:none;"><img src="assets/workbuddy-banner.jpg" width="560" alt="腾讯云 WorkBuddy" style="color:transparent;background-color:transparent;text-decoration:none;border:none;" /></a>
+        <a href="https://cloud.tencent.com/act/cps/redirect?redirect=6871&amp;cps_key=ece2099a1da90c2f7a4a4c437ad623f8&amp;from=console" style="color:transparent;background-color:transparent;text-decoration:none;border:none;"><img src="assets/workbuddy-banner.jpg" width="560" alt="Tencent Cloud WorkBuddy" style="color:transparent;background-color:transparent;text-decoration:none;border:none;" /></a>
     </td>
     <td valign="middle">
-      【腾讯云】WorkBuddy 全场景 AI 办公工作台，团队旗舰版低至198元/月<br>
+      [Tencent Cloud] WorkBuddy, an all-scenario AI office workspace. Team flagship edition from CNY 198/month.<br>
       <a href="https://cloud.tencent.com/act/cps/redirect?redirect=6871&amp;cps_key=ece2099a1da90c2f7a4a4c437ad623f8&amp;from=console">https://cloud.tencent.com/act/cps/redirect?redirect=6871&amp;cps_key=ece2099a1da90c2f7a4a4c437ad623f8&amp;from=console</a>
     </td>
   </tr>
 </table>
-

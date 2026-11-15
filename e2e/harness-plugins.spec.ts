@@ -18,7 +18,7 @@ test('installs a local plugin through Harness, denies code trust, then enables, 
   }, directory)
   await page.locator('a[href="#/workspace"]').click()
   await page.getByTestId('workspace-section-tools').click()
-  await page.getByRole('button', { name: /Harness 插件|Harness Plugins/, exact: true }).click()
+  await page.getByRole('button', { name: /Harness Plugins/, exact: true }).click()
   const panel = page.getByTestId('harness-plugins-panel')
   await panel.getByTestId('harness-plugin-install').click()
   const card = panel.getByTestId('harness-plugin-card')
@@ -29,7 +29,7 @@ test('installs a local plugin through Harness, denies code trust, then enables, 
     await electronApp.evaluate(
       () => (globalThis as typeof globalThis & { pluginWarning?: string }).pluginWarning
     )
-  ).toMatch(/不是安全沙箱|NOT a security sandbox/)
+  ).toMatch(/NOT a security sandbox/)
   expect(
     await page.evaluate(() => window.piSwitch.harnessPlugins.list().then((list) => list[0].enabled))
   ).toBe(false)
@@ -40,10 +40,10 @@ test('installs a local plugin through Harness, denies code trust, then enables, 
   await expect(card.getByTestId('harness-plugin-status')).toHaveAttribute('data-status', 'active')
   await card.getByTestId('harness-plugin-toggle').click()
   await expect(card.getByTestId('harness-plugin-status')).toHaveAttribute('data-status', 'disabled')
-  await card.getByRole('button', { name: /卸载|Uninstall/, exact: true }).click()
+  await card.getByRole('button', { name: /Uninstall/, exact: true }).click()
   await page
     .getByRole('dialog')
-    .getByRole('button', { name: /确认|Confirm|卸载|Uninstall/, exact: true })
+    .getByRole('button', { name: /Confirm|Uninstall/, exact: true })
     .click()
   await expect(panel.getByTestId('harness-plugin-card')).toHaveCount(0)
   // Renderer-supplied paths/trust cannot replace the Main-owned picker or approval.
@@ -157,14 +157,14 @@ test('runs all SDK examples through real Electron processes and the native Pi ru
       session.id
     )
     await page.getByTestId('workspace-section-tools').click()
-    await page.getByRole('button', { name: /Harness 插件|Harness Plugins/, exact: true }).click()
+    await page.getByRole('button', { name: /Harness Plugins/, exact: true }).click()
     const panel = page.getByTestId('harness-plugins-panel')
     await panel.getByTestId('harness-plugin-run').selectOption(run.id)
     const quality = panel
       .getByTestId('harness-plugin-card')
       .filter({ hasText: 'Quality Evaluator' })
-    await quality.getByRole('button', { name: /^(评估|Evaluate).*quality$/ }).click()
-    await expect(panel.getByRole('status')).toContainText(/评估已完成|Evaluation complete/)
+    await quality.getByRole('button', { name: /^(Evaluate).*quality$/ }).click()
+    await expect(panel.getByRole('status')).toContainText(/Evaluation complete/)
     const result = await page.evaluate(() =>
       window.piSwitch.harnessPlugins
         .list()
@@ -196,7 +196,7 @@ test('runs all SDK examples through real Electron processes and the native Pi ru
       dialog.showSaveDialog = async () => ({ canceled: false, filePath: output })
     }, output)
     await quality.getByRole('button', { name: /JSON.*json-trace/ }).click()
-    await expect(panel.getByRole('status')).toContainText(/JSON.*已导出|JSON trace exported/)
+    await expect(panel.getByRole('status')).toContainText(/JSON trace exported/)
     const trace = JSON.parse(fs.readFileSync(output, 'utf8'))
     expect(trace.trace.runId).toBe(run.id)
     expect(JSON.stringify(trace)).not.toContain('Harmless local plugin test')
@@ -205,7 +205,7 @@ test('runs all SDK examples through real Electron processes and the native Pi ru
     }, workspaceRoot)
     const team = panel.getByTestId('harness-plugin-card').filter({ hasText: 'Team Template' })
     await team.getByRole('button', { name: /Development, Test and Review/ }).click()
-    await expect(panel.getByRole('status')).toContainText(/已创建团队草稿|Team draft created/)
+    await expect(panel.getByRole('status')).toContainText(/Team draft created/)
     const orchestrationId = await page.evaluate(() =>
       window.piSwitch.orchestration.list().then(([item]) => item.id)
     )

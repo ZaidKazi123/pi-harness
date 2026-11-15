@@ -62,10 +62,10 @@ const PORTRAIT_FULL_NAMES: Partial<Record<MascotStyle, string>> = {
   ropeClaude: 'Claude Code',
   ropeGemini: 'Google Gemini',
   ropeGpt: 'ChatGPT',
-  ropeGlm: '智谱 GLM',
+  ropeGlm: 'Zhipu GLM',
   ropeGrok: 'xAI Grok',
-  ropeKimi: '月之暗面 Kimi',
-  ropeQwen: '通义千问'
+  ropeKimi: 'Moonshot Kimi',
+  ropeQwen: 'Alibaba Qwen'
 }
 
 export interface StartupBrandCopy {
@@ -93,7 +93,7 @@ export function startupBrandCopy(style: MascotStyle | null | undefined): Startup
 }
 
 /**
- * The vendored boot sequence can play when the bundled 大肥鱼 pack is the
+ * The vendored boot sequence can play when the bundled Big Fat Fish pack is the
  * active desktop pet and that pet is turned on. A selected theme does not
  * use this path. Reduced motion keeps the short particle startup.
  */
@@ -173,7 +173,7 @@ export function usesPortraitWelcomeStartup(
 
 /**
  * Theme startup and the desktop pet are separate. A selected theme uses its
- * own sequence. 大肥鱼 adds the vendored boot only when no theme is selected.
+ * own sequence. Big Fat Fish adds the vendored boot only when no theme is selected.
  */
 export function usesCinematicStartup(
   settings: BigfishStartupSettings | null | undefined,

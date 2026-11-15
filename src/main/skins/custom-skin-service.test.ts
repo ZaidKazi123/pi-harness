@@ -66,7 +66,7 @@ describe('CustomSkinService', () => {
       'Codex'
     )
     await expect(fs.readFile(path.join(target, 'README.md'), 'utf8')).resolves.toContain(
-      '一键复制提示词'
+      'Copy-ready prompt'
     )
     await expect(fs.readFile(path.join(target, 'skin.schema.json'), 'utf8')).resolves.toContain(
       'Pi-Harness Declarative Skin'

@@ -428,6 +428,6 @@ test('keeps glass theme controls usable when graphics initialization is unavaila
     await background.evaluate((element) => getComputedStyle(element).backgroundImage)
   ).not.toBe('none')
   await page.locator('a[href="#/models"]').click()
-  await expect(page.getByRole('heading', { name: /模型|Models/, exact: true })).toBeVisible()
+  await expect(page.getByRole('heading', { name: /Models/, exact: true })).toBeVisible()
   await page.screenshot({ path: testInfo.outputPath('static-background.png') })
 })

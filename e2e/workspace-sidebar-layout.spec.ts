@@ -223,7 +223,7 @@ test('workspace project sidebar collapses and resizes within shared limits for e
 
   await openMascotSettings(page)
   await page.getByTestId('mascot-unlock-answer').fill('1024')
-  await page.getByRole('button', { name: /解锁|Unlock/, exact: true }).click()
+  await page.getByRole('button', { name: /Unlock/, exact: true }).click()
 
   const sidebarMinimums = {
     none: 220,

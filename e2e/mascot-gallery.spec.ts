@@ -20,7 +20,7 @@ test('mascot gallery fills the page with equal-height previews across skins and 
   await page.locator('a[href="#/settings"]').click()
   await page.getByTestId('settings-section-mascot').click()
   await page.getByTestId('mascot-unlock-answer').fill('1024')
-  await page.getByRole('button', { name: /解锁|Unlock/, exact: true }).click()
+  await page.getByRole('button', { name: /Unlock/, exact: true }).click()
 
   const gallery = page.getByTestId('mascot-settings-section')
   const grid = page.getByTestId('mascot-options-grid')

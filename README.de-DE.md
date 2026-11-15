@@ -19,22 +19,22 @@ und deine Pi-Sitzungen, Konfiguration, Skills und Erweiterungen funktionieren in
 
 <br>
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E4%BD%9C%E5%8C%BA.png" width="900" alt="Der Pi-Harness-Workspace: Chats, Projektdateien und Git in einem Fenster">
+<img src="docs/screenshots/classic/workspace.png" width="900" alt="Der Pi-Harness-Workspace: Chats, Projektdateien und Git in einem Fenster">
 
 </div>
 
 <br>
 
-## 赞助商
+## Sponsors
 
 <table>
   <tr>
     <td width="580" align="center" valign="middle">
-        <a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link" style="color:transparent;background-color:transparent;text-decoration:none;border:none;"><img src="docs/assets/infistar-banner.png" width="560" alt="Pi-Harness × Infistar.cc 无限星河" style="color:transparent;background-color:transparent;text-decoration:none;border:none;" /></a>
+        <a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link" style="color:transparent;background-color:transparent;text-decoration:none;border:none;"><img src="docs/assets/infistar-banner.png" width="560" alt="Pi-Harness × Infistar.cc" style="color:transparent;background-color:transparent;text-decoration:none;border:none;" /></a>
     </td>
     <td valign="middle">
-      Pi-Harness × Infistar.cc 无限星河｜Claude、GPT、Gemini、Grok、DeepSeek 等，一个 Key，只花官方价的零头，省 99%；低至官方 0.1 折，100% 官方纯血，每个模型都能验真；上千线路安全冗余自动切换，200+ 模型、16 个品牌，一个 Key 搞定。<br>
-      Pi-Harness 用户通过<a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link">专属链接</a>注册直接送人民币 5 元：<a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link">https://infistar.cc/register?aff=S26RFM4B&ref_source=link</a>
+      Pi-Harness × Infistar.cc: Claude, GPT, Gemini, Grok, DeepSeek and more with one key, for a fraction of the official price (up to 99% off, as low as 1% of the official price). 100% official models, each verifiable; thousands of redundant routes with automatic failover; 200+ models from 16 brands with one key.<br>
+      Pi-Harness users who register through the <a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link">dedicated link</a> receive a CNY 5 credit: <a href="https://infistar.cc/register?aff=S26RFM4B&ref_source=link">https://infistar.cc/register?aff=S26RFM4B&ref_source=link</a>
     </td>
   </tr>
   <tr>
@@ -43,18 +43,18 @@ und deine Pi-Sitzungen, Konfiguration, Skills und Erweiterungen funktionieren in
     </td>
     <td valign="middle">
       <strong>Pi-Harness × TokenArmy</strong><br>
-      <strong>Claude Pro 日租</strong> · 独享账号，低至 $1.34/天，不封号<br>
-      <strong>Claude API 按量计费</strong> · 低至官方价格 1.25 折，失败不扣费<br>
-      <a href="https://tokenarmy.shop/r/TA-7FBJU-NUSUC">Pi-Harness 用户专属注册链接</a><br>
-      <em>价格与服务以 TokenArmy 平台规则为准。</em>
+      <strong>Claude Pro daily rental</strong> · Dedicated account, from $1.34/day, no bans<br>
+      <strong>Claude API pay-as-you-go</strong> · From 12.5% of the official price; failed requests are not charged<br>
+      <a href="https://tokenarmy.shop/r/TA-7FBJU-NUSUC">Pi-Harness user registration link</a><br>
+      <em>Prices and services are subject to the TokenArmy platform rules.</em>
     </td>
   </tr>
   <tr>
     <td width="580" align="center" valign="middle">
-        <a href="https://cloud.tencent.com/act/cps/redirect?redirect=6871&amp;cps_key=ece2099a1da90c2f7a4a4c437ad623f8&amp;from=console" style="color:transparent;background-color:transparent;text-decoration:none;border:none;"><img src="docs/assets/workbuddy-banner.jpg" width="560" alt="腾讯云 WorkBuddy" style="color:transparent;background-color:transparent;text-decoration:none;border:none;" /></a>
+        <a href="https://cloud.tencent.com/act/cps/redirect?redirect=6871&amp;cps_key=ece2099a1da90c2f7a4a4c437ad623f8&amp;from=console" style="color:transparent;background-color:transparent;text-decoration:none;border:none;"><img src="docs/assets/workbuddy-banner.jpg" width="560" alt="Tencent Cloud WorkBuddy" style="color:transparent;background-color:transparent;text-decoration:none;border:none;" /></a>
     </td>
     <td valign="middle">
-      【腾讯云】WorkBuddy 全场景 AI 办公工作台，团队旗舰版低至198元/月<br>
+      [Tencent Cloud] WorkBuddy, an all-scenario AI office workspace. Team flagship edition from CNY 198/month.<br>
       <a href="https://cloud.tencent.com/act/cps/redirect?redirect=6871&amp;cps_key=ece2099a1da90c2f7a4a4c437ad623f8&amp;from=console">https://cloud.tencent.com/act/cps/redirect?redirect=6871&amp;cps_key=ece2099a1da90c2f7a4a4c437ad623f8&amp;from=console</a>
     </td>
   </tr>
@@ -206,8 +206,8 @@ Durchsuche Dateien, zeige Medien und Dokumente in der Vorschau an und bearbeite 
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91.png" alt="Einfache Dateibearbeitung"><br><sub>Einfache Dateibearbeitung</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/Git.png" alt="Git-Diffs, Verlauf und Commits"><br><sub>Git</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/file-editing.png" alt="Einfache Dateibearbeitung"><br><sub>Einfache Dateibearbeitung</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/Git.png" alt="Git-Diffs, Verlauf und Commits"><br><sub>Git</sub></td>
 </tr>
 </table>
 
@@ -226,8 +226,8 @@ Jede Pi-Ausführung hinterlässt einen Datensatz, den du prüfen, vergleichen un
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E5%85%B7Harness-2.png" alt="Harness: Sitzungsstatus und eingereihte Anweisungen"><br><sub>Sitzungsstatus und eingereihte Anweisungen</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E5%85%B7Harness-1.png" alt="Harness-Konsole"><br><sub>Harness-Konsole</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/harness-tools-2.png" alt="Harness: Sitzungsstatus und eingereihte Anweisungen"><br><sub>Sitzungsstatus und eingereihte Anweisungen</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/harness-tools-1.png" alt="Harness-Konsole"><br><sub>Harness-Konsole</sub></td>
 </tr>
 </table>
 
@@ -239,8 +239,8 @@ Jede Pi-Ausführung hinterlässt einen Datensatz, den du prüfen, vergleichen un
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93-%E5%9B%A2%E9%98%9F.png" alt="Ein konfiguriertes Team vor dem Start"><br><sub>Beispielteam vor dem Start: drei inaktive Agenten, alle Aufgaben ausstehend</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93-%E4%BB%BB%E5%8A%A1%E4%BE%9D%E8%B5%96.png" alt="Ausstehende Aufgaben mit Abhängigkeiten und Prüfpflicht"><br><sub>Aufgabenabhängigkeiten und Prüfpflicht</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/multi-agent-team.png" alt="Ein konfiguriertes Team vor dem Start"><br><sub>Beispielteam vor dem Start: drei inaktive Agenten, alle Aufgaben ausstehend</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/multi-agent-task-dependencies.png" alt="Ausstehende Aufgaben mit Abhängigkeiten und Prüfpflicht"><br><sub>Aufgabenabhängigkeiten und Prüfpflicht</sub></td>
 </tr>
 </table>
 
@@ -254,8 +254,8 @@ Durchsuche gemeinsam die Verläufe von Claude Code, Codex (einschließlich Deskt
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E4%BC%9A%E8%AF%9D%E5%8E%86%E5%8F%B2.png" alt="Gesprächsverlauf"><br><sub>Gesprächsverlauf</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E4%BC%9A%E8%AF%9D%E6%B8%85%E7%90%86.png" alt="Sitzungsbereinigung"><br><sub>Sitzungsbereinigung</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/session-history.png" alt="Gesprächsverlauf"><br><sub>Gesprächsverlauf</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/session-cleanup.png" alt="Sitzungsbereinigung"><br><sub>Sitzungsbereinigung</sub></td>
 </tr>
 </table>
 
@@ -271,7 +271,7 @@ Durchsuche gemeinsam die Verläufe von Claude Code, Codex (einschließlich Deskt
 | **Abdeckung** | Importbeziehungen von JavaScript, TypeScript und Vue werden lokal analysiert; andere unterstützte Sprachen erhalten einen Dateiindex. Jede Analyse zeigt ihre Abdeckung und Grenzen |
 | **Umfang** | Die Karten beschreiben unterstützte statische Abhängigkeiten; sie sind kein vollständiger Funktionsaufrufgraph |
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84-1.png" width="900" alt="Projektarchitektur-Karte">
+<img src="docs/screenshots/classic/project-architecture-1.png" width="900" alt="Projektarchitektur-Karte">
 
 <a id="providers-and-models"></a>
 <a id="skills-extensions-packages-and-mcp"></a>
@@ -289,12 +289,12 @@ Durchsuche gemeinsam die Verläufe von Claude Code, Codex (einschließlich Deskt
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/Provider%E4%B8%8E%E6%A8%A1%E5%9E%8B-1.png" alt="Anbieter und Modelle"><br><sub>Anbieter und Modelle</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E8%83%BD%E5%8A%9B%E4%B8%AD%E5%BF%83-1.png" alt="Fähigkeiten"><br><sub>Fähigkeiten</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/providers-and-models-1.png" alt="Anbieter und Modelle"><br><sub>Anbieter und Modelle</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/capabilities-1.png" alt="Fähigkeiten"><br><sub>Fähigkeiten</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/ChatGPT%E6%8E%88%E6%9D%83.png" alt="Mit ChatGPT anmelden"><br><sub>Mit ChatGPT anmelden</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%85%8D%E8%B4%B9%E6%A8%A1%E5%9E%8B.png" alt="Kostenlose Modelle"><br><sub>Kostenlose Modelle</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/chatgpt-sign-in.png" alt="Mit ChatGPT anmelden"><br><sub>Mit ChatGPT anmelden</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/free-models.png" alt="Kostenlose Modelle"><br><sub>Kostenlose Modelle</sub></td>
 </tr>
 </table>
 
@@ -306,7 +306,7 @@ Durchsuche gemeinsam die Verläufe von Claude Code, Codex (einschließlich Deskt
 
 Der Marktplatz enthält **15 integrierte Servervorlagen**, darunter Memory, Context7, Playwright, Filesystem und GitHub, sowie Suche und Seitennavigation für die offizielle MCP-Registry. Prüfe Konfiguration und Zielbereich vor dem Speichern. Die Vorlagen stehen zur Installation bereit und sind nicht alle standardmäßig aktiviert. Importierte Einträge und Registry-Einträge werden deaktiviert gespeichert, damit du sie zuerst fertig einrichten kannst.
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/MCP%E5%B8%82%E5%9C%BA.png" width="900" alt="MCP-Marktplatz und integrierte Servervorlagen">
+<img src="docs/screenshots/classic/mcp-market.png" width="900" alt="MCP-Marktplatz und integrierte Servervorlagen">
 
 <a id="agent-settings"></a>
 
@@ -316,13 +316,13 @@ Der Marktplatz enthält **15 integrierte Servervorlagen**, darunter Memory, Cont
 
 | Seite | Was du einstellst | |
 | :-- | :-- | :-- |
-| **AI** | Standard-Denkstufe, automatische Kontextkomprimierung, Wiederholungsverhalten und Workspace-Vorgaben | [Screenshot](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/AI.png) |
-| **Echtzeit-Sprache** | Sprachdienst und Konto für Anrufe im Workspace | [Screenshot](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%AE%9E%E6%97%B6%E8%AF%AD%E9%9F%B3.png) |
-| **Tastenkürzel** | Eigene Tastenkürzel für Befehlspalette, Einstellungen, neue Sitzungen und das Schließen von Tabs, oder die Standardwerte | [Screenshot](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%BF%AB%E6%8D%B7%E9%94%AE.png) |
-| **Anweisungen** | Globale oder projektbezogene Anweisungen | [Screenshot](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%8C%87%E4%BB%A4.png) |
-| **MCP** | MCP-Server in jedem Bereich | [Screenshot](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/MCP%E6%9C%8D%E5%8A%A1%E5%99%A8.png) |
-| **Unteragenten** | Wiederverwendbare Unteragenten mit Rolle, Anweisungen, Modell, Denkstufe und Werkzeugen. Wähle einen gemeinsamen Workspace oder einen isolierten Worktree und starte eine Aufgabe oder nutze die Vorlage in einem Team | [Screenshot](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%AD%90%E6%99%BA%E8%83%BD%E4%BD%93.png) |
-| **Remote-Hosts** | Hosts mit laufendem pi-host, gekoppelt über Adresse und Kopplungstoken | [Screenshot](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA.png) |
+| **AI** | Standard-Denkstufe, automatische Kontextkomprimierung, Wiederholungsverhalten und Workspace-Vorgaben | [Screenshot](docs/screenshots/classic/AI.png) |
+| **Echtzeit-Sprache** | Sprachdienst und Konto für Anrufe im Workspace | [Screenshot](docs/screenshots/classic/realtime-voice.png) |
+| **Tastenkürzel** | Eigene Tastenkürzel für Befehlspalette, Einstellungen, neue Sitzungen und das Schließen von Tabs, oder die Standardwerte | [Screenshot](docs/screenshots/classic/keyboard-shortcuts.png) |
+| **Anweisungen** | Globale oder projektbezogene Anweisungen | [Screenshot](docs/screenshots/classic/instructions.png) |
+| **MCP** | MCP-Server in jedem Bereich | [Screenshot](docs/screenshots/classic/mcp-servers.png) |
+| **Unteragenten** | Wiederverwendbare Unteragenten mit Rolle, Anweisungen, Modell, Denkstufe und Werkzeugen. Wähle einen gemeinsamen Workspace oder einen isolierten Worktree und starte eine Aufgabe oder nutze die Vorlage in einem Team | [Screenshot](docs/screenshots/classic/subagents.png) |
+| **Remote-Hosts** | Hosts mit laufendem pi-host, gekoppelt über Adresse und Kopplungstoken | [Screenshot](docs/screenshots/classic/remote-hosts.png) |
 
 <a id="realtime-voice"></a>
 
@@ -337,7 +337,7 @@ Sprich mit deinem Workspace über **OpenAI Realtime, Gemini Live oder Codex Live
 
 Das Teilen des letzten Gesprächskontexts ist standardmäßig aus. Wenn du es aktivierst, werden nur die letzten sechs reinen Textnachrichten ohne Anhänge und Werkzeugergebnisse geteilt. Arbeitsaufträge aus einem Anruf werden erst nach deiner Prüfung an die Arbeitsunterhaltung gesendet.
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E4%BD%9C%E5%8C%BA%E8%AF%AD%E9%9F%B3.png" width="900" alt="Sprache im Workspace: Einrichtung und Vorbereitung vor einem Anruf">
+<img src="docs/screenshots/classic/workspace-voice.png" width="900" alt="Sprache im Workspace: Einrichtung und Vorbereitung vor einem Anruf">
 
 <a id="remote-hosts"></a>
 
@@ -355,9 +355,9 @@ Im Leerlauf stehen 193 Aktionen in einem durchsuchbaren Kontextmenü bereit. Wä
 
 <table>
 <tr>
-<td width="33%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%A1%8C%E5%AE%A0%E8%AE%BE%E7%BD%AE.png" alt="Haustiereinstellungen und Schieberegler"><br><sub>Einstellungen und Schieberegler</sub></td>
-<td width="33%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%A1%8C%E5%AE%A0%E8%8F%9C%E5%8D%95.png" alt="Kontextmenü"><br><sub>Kontextmenü</sub></td>
-<td width="33%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%A1%8C%E5%AE%A0%E5%8A%A8%E4%BD%9C.png" alt="Durchsuchbare Aktionsliste"><br><sub>Durchsuchbare Aktionen</sub></td>
+<td width="33%"><img src="docs/screenshots/classic/pet-settings.png" alt="Haustiereinstellungen und Schieberegler"><br><sub>Einstellungen und Schieberegler</sub></td>
+<td width="33%"><img src="docs/screenshots/classic/pet-menu.png" alt="Kontextmenü"><br><sub>Kontextmenü</sub></td>
+<td width="33%"><img src="docs/screenshots/classic/pet-actions.png" alt="Durchsuchbare Aktionsliste"><br><sub>Durchsuchbare Aktionen</sub></td>
 </tr>
 </table>
 
@@ -380,19 +380,19 @@ Der mehrsprachige Starter enthält Hinweise zu Farben, Vorschauen, Hintergründe
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E5%A4%A7%E6%98%8E/%E9%9B%AA%E5%A2%83%E6%9C%9D%E8%87%A3.png" alt="Ming · Beamter im Schnee"><br><sub>Ming · Beamter im Schnee</sub></td>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E5%A4%A7%E6%98%8E/%E9%9B%AA%E5%A4%9C%E7%AC%9B%E5%A7%AC.png" alt="Ming · Flötenspielerin im Schnee"><br><sub>Ming · Flötenspielerin im Schnee</sub></td>
+<td width="50%"><img src="docs/themes/ming/snow-court-minister.png" alt="Ming · Beamter im Schnee"><br><sub>Ming · Beamter im Schnee</sub></td>
+<td width="50%"><img src="docs/themes/ming/snow-night-flutist.png" alt="Ming · Flötenspielerin im Schnee"><br><sub>Ming · Flötenspielerin im Schnee</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E5%A4%A7%E6%98%8E/%E6%9C%88%E5%9F%8E%E4%B9%A6%E5%A7%AC.png" alt="Ming · Gelehrte im Mondlicht"><br><sub>Ming · Gelehrte im Mondlicht</sub></td>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E6%98%9F%E8%88%B0/%E9%9C%9C%E6%98%9F%E9%A2%86%E8%88%AA.png" alt="Starship Cockpit"><br><sub>Starship Cockpit</sub></td>
+<td width="50%"><img src="docs/themes/ming/moon-city-scribe.png" alt="Ming · Gelehrte im Mondlicht"><br><sub>Ming · Gelehrte im Mondlicht</sub></td>
+<td width="50%"><img src="docs/themes/starship/frost-star-navigator.png" alt="Starship Cockpit"><br><sub>Starship Cockpit</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E5%A4%A7%E6%98%8E/%E9%80%9A%E7%94%A8%E8%AE%BE%E7%BD%AE.png" alt="Allgemeine Einstellungen im Ming-Theme"><br><sub>Ming · Allgemeine Einstellungen</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E5%A4%A7%E6%98%8E/%E4%B8%BB%E9%A2%98%E7%9A%AE%E8%82%A4%E5%BA%93.png" alt="Theme- und Skin-Galerie"><br><sub>Ming · Theme- und Skin-Galerie</sub></td>
+<td width="50%"><img src="docs/screenshots/ming/general-settings.png" alt="Allgemeine Einstellungen im Ming-Theme"><br><sub>Ming · Allgemeine Einstellungen</sub></td>
+<td width="50%"><img src="docs/screenshots/ming/theme-gallery.png" alt="Theme- und Skin-Galerie"><br><sub>Ming · Theme- und Skin-Galerie</sub></td>
 </tr>
 <tr>
-<td colspan="2"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/macos27.png" alt="macOS 27 · Liquid Ether"><br><sub>macOS 27 · Liquid Ether</sub></td>
+<td colspan="2"><img src="docs/themes/classic/macos27.png" alt="macOS 27 · Liquid Ether"><br><sub>macOS 27 · Liquid Ether</sub></td>
 </tr>
 </table>
 

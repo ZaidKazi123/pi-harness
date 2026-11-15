@@ -67,7 +67,12 @@ function frame(delta: Record<string, unknown>, finish_reason: string | null = nu
 }
 
 function textReply() {
-  return sse(frame({ reasoning: '推理' }), frame({ content: '你好' }), frame({}, 'stop'), '[DONE]')
+  return sse(
+    frame({ reasoning: 'reasoning' }),
+    frame({ content: 'Hello' }),
+    frame({}, 'stop'),
+    '[DONE]'
+  )
 }
 
 async function start(options?: Parameters<typeof installFetch>[0], directory?: string) {
@@ -145,7 +150,7 @@ it('requires consent, lists only free rows, and never registers models without t
   expect((await chat({ model: 'kilo/example/text:free' })).status).toBe(404)
   expect((await chat({ messages: null })).status).toBe(400)
   const response = await chat({ reasoning_effort: 'disabled' })
-  expect(await response.text()).toContain('你好')
+  expect(await response.text()).toContain('Hello')
   expect(upstream.mock.calls[0][0]).toMatchObject({
     model: 'example/coder:free',
     reasoning: { enabled: false }
@@ -191,9 +196,9 @@ it('caps Dots3 output even when a session still sends the old catalog limit', as
     expect.objectContaining({ id: `kilo/${id}`, contextWindow: 512_000, maxTokens: 262_144 })
   ])
   const response = await chat({ model: `kilo/${id}`, max_tokens: 460_800 })
-  expect(await response.text()).toContain('你好')
+  expect(await response.text()).toContain('Hello')
   const smaller = await chat({ model: `kilo/${id}`, max_tokens: 512 })
-  expect(await smaller.text()).toContain('你好')
+  expect(await smaller.text()).toContain('Hello')
   expect(upstream.mock.calls.map(([body]) => body)).toEqual([
     expect.objectContaining({ model: id, max_tokens: 262_144 }),
     expect.objectContaining({ model: id, max_tokens: 512 })
@@ -225,7 +230,7 @@ it('uses the native Pi parser for thinking, tools and history across two turns',
   const runtime = await ModelRuntime.create({ modelsPath: null, refreshOnCreate: false })
   runtime.registerProvider(FREE_PROVIDER_KEY, registration)
   const model = runtime.getModel(FREE_PROVIDER_KEY, ID)!
-  const user = { role: 'user', content: '请读取 demo.txt', timestamp: Date.now() } as const
+  const user = { role: 'user', content: 'Please read demo.txt', timestamp: Date.now() } as const
   const context = {
     messages: [user],
     tools: [{ name: 'read', description: 'Read a file', parameters: { type: 'object' } }]
@@ -250,7 +255,7 @@ it('uses the native Pi parser for thinking, tools and history across two turns',
           role: 'toolResult',
           toolCallId: 'call_read',
           toolName: 'read',
-          content: [{ type: 'text', text: '文件内容' }],
+          content: [{ type: 'text', text: 'File contents' }],
           isError: false,
           timestamp: Date.now()
         }
@@ -263,15 +268,15 @@ it('uses the native Pi parser for thinking, tools and history across two turns',
   expect(await stream.result()).toMatchObject({
     stopReason: 'stop',
     content: [
-      { type: 'thinking', thinking: '推理' },
-      { type: 'text', text: '你好' }
+      { type: 'thinking', thinking: 'reasoning' },
+      { type: 'text', text: 'Hello' }
     ]
   })
   expect(upstream.mock.calls[0][0].reasoning).toEqual({ effort: 'low' })
   expect(upstream.mock.calls[1][0].messages).toEqual(
     expect.arrayContaining([
-      expect.objectContaining({ role: 'user', content: '请读取 demo.txt' }),
-      expect.objectContaining({ role: 'tool', content: '文件内容', tool_call_id: 'call_read' })
+      expect.objectContaining({ role: 'user', content: 'Please read demo.txt' }),
+      expect.objectContaining({ role: 'tool', content: 'File contents', tool_call_id: 'call_read' })
     ])
   )
 })

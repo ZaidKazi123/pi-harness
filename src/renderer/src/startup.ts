@@ -19,10 +19,10 @@ export const startupAnimationVisible = ref(
 export type StartupCheckState = 'checking' | 'healthy' | 'warning' | 'error'
 
 export const startupChecks = reactive({
-  node: { state: 'checking' as StartupCheckState, detail: '检测中…' },
-  npm: { state: 'checking' as StartupCheckState, detail: '检测中…' },
-  pi: { state: 'checking' as StartupCheckState, detail: '检测中…' },
-  config: { state: 'checking' as StartupCheckState, detail: '检测中…' }
+  node: { state: 'checking' as StartupCheckState, detail: 'Checking…' },
+  npm: { state: 'checking' as StartupCheckState, detail: 'Checking…' },
+  pi: { state: 'checking' as StartupCheckState, detail: 'Checking…' },
+  config: { state: 'checking' as StartupCheckState, detail: 'Checking…' }
 })
 
 export function runtimeStartupChecks(runtime: NodeRuntimeInfo | null): {
@@ -31,18 +31,18 @@ export function runtimeStartupChecks(runtime: NodeRuntimeInfo | null): {
 } {
   if (!runtime) {
     return {
-      node: { state: 'error', detail: '检测失败' },
-      npm: { state: 'error', detail: '检测失败' }
+      node: { state: 'error', detail: 'Check failed' },
+      npm: { state: 'error', detail: 'Check failed' }
     }
   }
   return {
     node: runtime.nodeSupported
-      ? { state: 'healthy', detail: `已就绪 · ${runtime.nodeVersion}` }
+      ? { state: 'healthy', detail: `Ready · ${runtime.nodeVersion}` }
       : runtime.nodeInstalled
-        ? { state: 'warning', detail: `版本过低 · ${runtime.nodeVersion ?? '未知'}` }
-        : { state: 'warning', detail: '未检测到' },
+        ? { state: 'warning', detail: `Version too old · ${runtime.nodeVersion ?? 'unknown'}` }
+        : { state: 'warning', detail: 'Not found' },
     npm: runtime.npmInstalled
-      ? { state: 'healthy', detail: `已就绪 · ${runtime.npmVersion}` }
-      : { state: 'warning', detail: '未检测到' }
+      ? { state: 'healthy', detail: `Ready · ${runtime.npmVersion}` }
+      : { state: 'warning', detail: 'Not found' }
   }
 }

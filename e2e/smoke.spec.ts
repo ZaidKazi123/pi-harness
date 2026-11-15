@@ -18,7 +18,7 @@ test.describe('Pi-Harness smoke', () => {
     // Overview now lives inside Settings; the icon rail must not offer it.
     await expect(page.locator('a[href="#/"]')).toHaveCount(0)
     await expect(
-      page.getByTestId('app-navigation-rail').getByRole('link', { name: /首页|Home/ })
+      page.getByTestId('app-navigation-rail').getByRole('link', { name: /Home/ })
     ).toBeVisible()
     await expect(page.getByTestId('navigation-settings')).toBeVisible()
     await expect(page.getByTestId('page-mascot-background')).toHaveCount(0)
@@ -83,7 +83,7 @@ test.describe('Pi-Harness smoke', () => {
       'aria-pressed',
       'true'
     )
-    await expect(page.getByTestId('workspace-section-workspace')).toHaveText(/工作区|Workspace/)
+    await expect(page.getByTestId('workspace-section-workspace')).toHaveText(/Workspace/)
     await expect(page.getByTestId('workspace-section-projects')).toHaveCount(0)
     await expect(page.getByTestId('workspace-section-sessions')).toHaveCount(0)
     await expect(page.getByTestId('workspace-draft-session')).toBeVisible()
@@ -120,7 +120,7 @@ test.describe('Pi-Harness smoke', () => {
     await page.getByTestId('workspace-section-tools').click()
     const harnessConsole = page.getByTestId('harness-console')
     await expect(harnessConsole).toBeVisible()
-    await expect(page.getByText(/尚未选择会话|No session selected/)).toBeVisible()
+    await expect(page.getByText(/No session selected/)).toBeVisible()
     await expect(page.getByTestId('workspace-tabs')).toBeHidden()
     await expect(
       page.locator('#titlebar-workspace-actions').getByTestId('workspace-toggle-files')
@@ -163,7 +163,7 @@ test.describe('Pi-Harness smoke', () => {
     }
 
     await page.getByTestId('provider-tab-models').click()
-    await expect(page.locator('h1').filter({ hasText: /模型|Models/ })).toBeVisible()
+    await expect(page.locator('h1').filter({ hasText: /Models/ })).toBeVisible()
     await expect(page.getByTestId('page-mascot-background')).toHaveCount(0)
     if (process.env.PI_HARNESS_DESIGN_QA_DIR) {
       await page.screenshot({
@@ -172,7 +172,7 @@ test.describe('Pi-Harness smoke', () => {
     }
 
     await page.locator('a[href="#/settings"]').click()
-    await expect(page.locator('h1').filter({ hasText: /通用|General/ })).toBeVisible()
+    await expect(page.locator('h1').filter({ hasText: /General/ })).toBeVisible()
     await expect(page.getByTestId('settings-layout')).toBeVisible()
     await expect(page.getByTestId('settings-version')).toContainText('Pi-Harness')
     await expect(page.getByTestId('settings-version')).toContainText(APP_VERSION)
@@ -230,7 +230,7 @@ test.describe('Pi-Harness smoke', () => {
               {
                 id: 'harness',
                 kind: 'harness',
-                title: 'Harness 控制台',
+                title: 'Harness Console',
                 closable: true
               }
             ],
@@ -246,13 +246,13 @@ test.describe('Pi-Harness smoke', () => {
     await expect(page.getByTestId('workspace-tabs')).toHaveCount(0)
     await page.getByTestId('workspace-section-tools').click()
     await expect(page.getByTestId('harness-console')).toBeVisible()
-    await expect(page.getByText(/尚未选择会话|No session selected/)).toBeVisible()
+    await expect(page.getByText(/No session selected/)).toBeVisible()
     await page.getByTestId('workspace-section-workspace').click()
     await expect(page.getByTestId('harness-console')).toHaveCount(0)
     const sessionTree = page.getByTestId('workspace-session-tree')
     await expect(sessionTree.getByText('fixtures', { exact: true })).toHaveCount(0)
     await expect(page.getByTestId('workspace-project-0')).toHaveCount(0)
-    await expect(page.getByTestId('workspace-section-workspace')).toHaveText(/工作区|Workspace/)
+    await expect(page.getByTestId('workspace-section-workspace')).toHaveText(/Workspace/)
 
     // Git is a standalone route that reads every workspace project.
     await openOverflowPage(page, 'git')
@@ -266,7 +266,7 @@ test.describe('Pi-Harness smoke', () => {
     }, importedProject)
     await page.getByTestId('workspace-import-project').click()
     await expect(page.getByTestId('workspace-project-0')).toContainText('explicit-project')
-    await expect(sessionTree.getByText(/待创建会话|Pending session/)).toHaveCount(0)
+    await expect(sessionTree.getByText(/Pending session/)).toHaveCount(0)
     await expect(sessionTree.locator('[data-testid^="session-row-"]')).toHaveCount(0)
 
     if (process.env.PI_HARNESS_DESIGN_QA_DIR) {
@@ -300,8 +300,8 @@ test.describe('Pi-Harness smoke', () => {
     })
     await page.getByTestId('workspace-project-0').click({ button: 'right' })
     await page
-      .getByRole('dialog', { name: /删除项目|Delete project/ })
-      .getByRole('button', { name: /删除|Delete/, exact: true })
+      .getByRole('dialog', { name: /Delete project/ })
+      .getByRole('button', { name: /Delete/, exact: true })
       .click()
     await expect(page.getByTestId('workspace-project-0')).toHaveCount(0)
     // Removing the workspace project removes it from the Git view as well.
@@ -399,7 +399,7 @@ test.describe('Pi-Harness smoke', () => {
     await page.getByTestId('workspace-import-project').click()
     await expect(page.getByTestId('workspace-project-3')).toContainText('import-d')
     await expect(page.getByTestId('workspace-project-4')).toContainText('import-e')
-    await expect(tree.getByText(/待创建会话|Pending session/)).toHaveCount(0)
+    await expect(tree.getByText(/Pending session/)).toHaveCount(0)
 
     const workspaceFile = path.join(workspaceRoot, 'combined.code-workspace')
     fs.writeFileSync(
@@ -506,7 +506,7 @@ test.describe('Pi-Harness smoke', () => {
         ({
           popup: (options: { callback?: () => void }) => {
             const item = template.find((candidate) =>
-              ['编辑', 'Edit'].includes(String(candidate.label))
+              ['Edit', 'Edit'].includes(String(candidate.label))
             )
             item?.click?.({} as Electron.MenuItem, undefined, {} as Electron.KeyboardEvent)
             options.callback?.()
@@ -515,7 +515,7 @@ test.describe('Pi-Harness smoke', () => {
     })
     await page.getByTestId('workspace-project-0').click({ button: 'right' })
 
-    const editor = page.getByRole('dialog', { name: /编辑项目|Edit project/ })
+    const editor = page.getByRole('dialog', { name: /Edit project/ })
     await expect(editor).toBeVisible()
     await expect(editor.getByTestId(/^session-workspace-folder-/)).toHaveCount(2)
     await electronApp.evaluate(({ dialog }, selected) => {
@@ -523,9 +523,7 @@ test.describe('Pi-Harness smoke', () => {
     }, added)
     await editor.getByTestId('session-workspace-add-folder').click()
     await expect(editor.getByText('session-added', { exact: true })).toBeVisible()
-    await editor
-      .getByRole('button', { name: /移除: session-secondary|Remove: session-secondary/ })
-      .click()
+    await editor.getByRole('button', { name: /Remove: session-secondary/ }).click()
     await expect(editor.getByText('session-secondary', { exact: true })).toHaveCount(0)
     if (process.env.PI_HARNESS_DESIGN_QA_DIR) {
       await page.screenshot({
@@ -559,7 +557,7 @@ test.describe('Pi-Harness smoke', () => {
         ({
           popup: (options: { callback?: () => void }) => {
             const item = template.find((candidate) =>
-              ['移除', 'Remove'].includes(String(candidate.label))
+              ['Remove', 'Remove'].includes(String(candidate.label))
             )
             item?.click?.({} as Electron.MenuItem, undefined, {} as Electron.KeyboardEvent)
             options.callback?.()
@@ -567,8 +565,8 @@ test.describe('Pi-Harness smoke', () => {
         }) as Electron.Menu) as typeof Menu.buildFromTemplate
     })
     await page.getByTestId(`session-project-${sessionId}-1`).click({ button: 'right' })
-    const confirm = page.getByRole('dialog', { name: /移除|Remove/ })
-    await confirm.getByRole('button', { name: /移除|Remove/, exact: true }).click()
+    const confirm = page.getByRole('dialog', { name: /Remove/ })
+    await confirm.getByRole('button', { name: /Remove/, exact: true }).click()
     await expect(page.locator(`[data-testid^="session-project-${sessionId}-"]`)).toHaveCount(0)
     await expect(sessionRow).toBeVisible()
   })
@@ -640,7 +638,7 @@ test.describe('Pi-Harness smoke', () => {
     const pickerPanel = page.getByTestId('composer-model-panel')
     await expect(pickerPanel).toHaveAttribute('data-recommended', 'true')
     await expect(pickerPanel.getByRole('listbox')).toBeVisible()
-    await pickerPanel.getByRole('button', { name: '全部提供商' }).click()
+    await pickerPanel.getByRole('button', { name: 'All providers' }).click()
     const vendorMenu = page.locator('[data-select-cascade-group]').first()
     const modelPanel = page.getByRole('listbox')
     await expect(vendorMenu).toBeVisible()
@@ -726,7 +724,7 @@ test.describe('Pi-Harness smoke', () => {
     await expect(code).toBeVisible()
     await expect(code.locator('.cm-content')).toContainText('const answer = 42')
     await expect(code.locator('.cm-gutterElement')).not.toHaveCount(0)
-    await expect(page.getByText(/15 行|15 lines/)).toBeVisible()
+    await expect(page.getByText(/15 lines/)).toBeVisible()
 
     await page.getByTestId('workspace-files-mode-tree').click()
     await page
@@ -740,13 +738,17 @@ test.describe('Pi-Harness smoke', () => {
 
     const menu = page.getByTestId('tab-context-menu')
     await expect(menu).toBeVisible()
-    await expect(menu.getByRole('menuitem', { name: '关闭', exact: true })).toBeVisible()
-    await expect(menu.getByRole('menuitem', { name: '关闭其他', exact: true })).toBeVisible()
-    await expect(menu.getByRole('menuitem', { name: '关闭右侧标签页', exact: true })).toBeVisible()
-    await expect(menu.getByRole('menuitem', { name: '关闭左侧标签页', exact: true })).toBeVisible()
-    await expect(menu.getByRole('menuitem', { name: '全部关闭', exact: true })).toBeVisible()
+    await expect(menu.getByRole('menuitem', { name: 'Close', exact: true })).toBeVisible()
+    await expect(menu.getByRole('menuitem', { name: 'Close Others', exact: true })).toBeVisible()
+    await expect(
+      menu.getByRole('menuitem', { name: 'Close Tabs to the Right', exact: true })
+    ).toBeVisible()
+    await expect(
+      menu.getByRole('menuitem', { name: 'Close Tabs to the Left', exact: true })
+    ).toBeVisible()
+    await expect(menu.getByRole('menuitem', { name: 'Close All', exact: true })).toBeVisible()
 
-    await menu.getByRole('menuitem', { name: '关闭其他', exact: true }).click()
+    await menu.getByRole('menuitem', { name: 'Close Others', exact: true }).click()
     await expect(tabs.getByRole('button')).toHaveCount(1)
     await expect(tabs.getByRole('button', { name: 'code-preview.html', exact: true })).toBeVisible()
     await expect(code.locator('.cm-content')).toContainText('const answer = 42')
@@ -793,38 +795,34 @@ test.describe('Pi-Harness smoke', () => {
       mascotStyle: 'none'
     })
     const themeSection = page.getByTestId('settings-section-mascot')
-    await expect(themeSection.getByText(/主题|Theme/, { exact: true })).toBeVisible()
+    await expect(themeSection.getByText(/Theme/, { exact: true })).toBeVisible()
     await themeSection.click()
     const answer = page.getByTestId('mascot-unlock-answer')
     await expect(answer).toBeVisible()
     await answer.fill('1000')
-    await page.getByRole('button', { name: /解锁|Unlock/, exact: true }).click()
-    await expect(page.getByRole('alert')).toContainText(/答案不正确|Incorrect answer/)
-    await expect(page.getByRole('button', { name: /无主题|No Theme/ })).toHaveCount(0)
+    await page.getByRole('button', { name: /Unlock/, exact: true }).click()
+    await expect(page.getByRole('alert')).toContainText(/Incorrect answer/)
+    await expect(page.getByRole('button', { name: /No Theme/ })).toHaveCount(0)
     await answer.fill('1024')
-    await page.getByRole('button', { name: /解锁|Unlock/, exact: true }).click()
-    await expect(page.getByText(/主题设置已解锁|Theme settings unlocked/)).toBeVisible()
-    await expect(page.getByRole('button', { name: /无主题|No Theme/ })).toHaveAttribute(
+    await page.getByRole('button', { name: /Unlock/, exact: true }).click()
+    await expect(page.getByText(/Theme settings unlocked/)).toBeVisible()
+    await expect(page.getByRole('button', { name: /No Theme/ })).toHaveAttribute(
       'aria-pressed',
       'true'
     )
-    await expect(page.getByRole('button', { name: /长发御姐|Long-haired Executive/ })).toHaveCount(
-      0
+    await expect(page.getByRole('button', { name: /Long-haired Executive/ })).toHaveCount(0)
+    await expect(page.getByRole('button', { name: /Maid Style \(White Stockings\)/ })).toHaveCount(
+      1
     )
-    await expect(
-      page.getByRole('button', { name: /女仆风格（白丝）|Maid Style \(White Stockings\)/ })
-    ).toHaveCount(1)
-    await expect(page.getByText(/优先推荐|Priority/, { exact: true })).toHaveCount(0)
+    await expect(page.getByText(/Priority/, { exact: true })).toHaveCount(0)
     const maidWhite = page.getByRole('button', {
-      name: /女仆风格（白丝）|Maid Style \(White Stockings\)/
+      name: /Maid Style \(White Stockings\)/
     })
     await maidWhite.click()
     await expect(maidWhite).toHaveAttribute('aria-pressed', 'true')
-    await page
-      .getByRole('button', { name: /职场风格（黑丝）|Office Style \(Black Tights\)/ })
-      .click()
-    await expect(page.getByRole('switch', { name: /显示宠物|Show pet/ })).toHaveCount(0)
-    await page.getByRole('switch', { name: /启用动画|Animations/ }).click()
+    await page.getByRole('button', { name: /Office Style \(Black Tights\)/ }).click()
+    await expect(page.getByRole('switch', { name: /Show pet/ })).toHaveCount(0)
+    await page.getByRole('switch', { name: /Animations/ }).click()
     await expect
       .poll(() => page.evaluate(async () => (await window.piSwitch.settings.get()).mascotStyle))
       .toBe('office')
@@ -839,7 +837,7 @@ test.describe('Pi-Harness smoke', () => {
     const portraitPanel = page.getByTestId('portrait-skin-panel')
     await expect(portraitPanel).toBeVisible()
     await expect(portraitPanel).toHaveAttribute('data-style', 'office')
-    await expect(portraitPanel.getByTestId('pet-status-bubble')).toContainText(/待机|Idle/)
+    await expect(portraitPanel.getByTestId('pet-status-bubble')).toContainText(/Idle/)
     await expect(page.getByTestId('workspace-mascot')).toHaveCount(0)
 
     // The office sprite is a standing character: it must anchor to the workspace
@@ -852,9 +850,7 @@ test.describe('Pi-Harness smoke', () => {
 
     await page.locator('a[href="#/settings"]').click()
     await page.getByTestId('settings-section-mascot').click()
-    await page
-      .getByRole('button', { name: /星际驾驶舱 · 霜蓝导航员|Starship Cockpit · Frost Navigator/ })
-      .click()
+    await page.getByRole('button', { name: /Starship Cockpit · Frost Navigator/ }).click()
     await expect
       .poll(() => page.evaluate(async () => (await window.piSwitch.settings.get()).mascotStyle))
       .toBe('starshipCockpit')
@@ -963,10 +959,10 @@ test.describe('Pi-Harness smoke', () => {
       await page.getByTestId('workspace-toggle-files').click()
       await expect(page.getByRole('button', { name: 'existing.txt', exact: true })).toBeVisible()
       const chooser = page.waitForEvent('filechooser')
-      await page.getByRole('button', { name: /上传文件|Upload files/ }).click()
+      await page.getByRole('button', { name: /Upload files/ }).click()
       await (await chooser).setFiles(uploadSource)
 
-      await expect(page.getByText(/已上传 1 个文件|1 file uploaded/)).toBeVisible({
+      await expect(page.getByText(/1 file uploaded/)).toBeVisible({
         timeout: 5_000
       })
       await expect(page.getByRole('button', { name: 'uploaded.txt', exact: true })).toBeVisible()
@@ -990,31 +986,31 @@ test.describe('Pi-Harness smoke', () => {
     await expect(page.getByText('Pi-Harness').first()).toBeVisible({ timeout: 30_000 })
 
     await openOverflowPage(page, 'skills')
-    await expect(page.locator('h1').filter({ hasText: /能力中心|Capabilities/ })).toBeVisible()
-    await page.getByRole('tab', { name: /技能|Skills/, exact: true }).click()
+    await expect(page.locator('h1').filter({ hasText: /Capabilities/ })).toBeVisible()
+    await page.getByRole('tab', { name: /Skills/, exact: true }).click()
     await expect(page.locator('ul').getByText('demo-skill', { exact: true })).toBeVisible()
 
-    await page.getByRole('tab', { name: /精选|Featured/, exact: true }).click()
-    await expect(page.getByText(/日常开发套件|Core Development/).first()).toBeVisible()
-    await expect(page.getByText(/Agent 架构套件|Agent Architecture/).first()).toBeVisible()
-    const curatedCollection = page
-      .getByRole('listitem')
-      .filter({ hasText: /精选扩展|Curated Extensions/ })
+    await page.getByRole('tab', { name: /Featured/, exact: true }).click()
+    await expect(page.getByText(/Core Development/).first()).toBeVisible()
+    await expect(page.getByText(/Agent Architecture/).first()).toBeVisible()
+    const curatedCollection = page.getByRole('listitem').filter({ hasText: /Curated Extensions/ })
     await expect(curatedCollection).toBeVisible()
     await curatedCollection.click()
     await expect(page.getByText('pi-agent-mode', { exact: true })).toBeVisible()
     await expect(
-      page.getByText('在同一进程内切换由 Markdown 定义的 Agent 模式。', { exact: true })
+      page.getByText('Switches between Markdown-defined agent modes with inline execution.', {
+        exact: true
+      })
     ).toBeVisible()
     await expect(page.getByText('pi-lmstudio', { exact: true })).toBeVisible()
     await expect(page.getByText('@langchain/langsmith-pi-extension', { exact: true })).toBeVisible()
-    await expect(page.getByText(/Pi Coding Agent.*一键安装/)).toHaveCount(0)
-    await expect(page.getByText(/方案内容|Recipe content/)).toHaveCount(0)
+    await expect(page.getByText(/Pi Coding Agent.*One-click install/)).toHaveCount(0)
+    await expect(page.getByText(/Recipe content/)).toHaveCount(0)
   })
 
   test('installs, uninstalls, and reinstalls a bundled Matt Pocock Skill', async ({ page }) => {
     await openOverflowPage(page, 'skills')
-    await page.getByRole('tab', { name: /精选|Featured/, exact: true }).click()
+    await page.getByRole('tab', { name: /Featured/, exact: true }).click()
 
     const collection = page.getByTestId('market-collection-builtin:mattpocock-skills')
     await expect(collection).toContainText('Skills For Real Engineers')
@@ -1022,18 +1018,18 @@ test.describe('Pi-Harness smoke', () => {
 
     const skill = page.getByTestId('builtin-skill-tdd')
     await expect(skill).toContainText('tdd')
-    await skill.getByRole('button', { name: /安装|Install/, exact: true }).click()
-    await expect(skill).toContainText(/已安装|Installed/)
+    await skill.getByRole('button', { name: /Install/, exact: true }).click()
+    await expect(skill).toContainText(/Installed/)
 
-    await skill.getByRole('button', { name: /卸载技能|Uninstall skill/ }).click()
+    await skill.getByRole('button', { name: /Uninstall skill/ }).click()
     const uninstall = page.getByRole('dialog', {
-      name: /卸载 1 个内置技能|Uninstall 1 built-in Skills/
+      name: /Uninstall 1 built-in Skills/
     })
-    await uninstall.getByRole('button', { name: /卸载技能|Uninstall skill/ }).click()
-    await expect(skill).toContainText(/未安装|Not installed/)
+    await uninstall.getByRole('button', { name: /Uninstall skill/ }).click()
+    await expect(skill).toContainText(/Not installed/)
 
-    await skill.getByRole('button', { name: /安装|Install/, exact: true }).click()
-    await expect(skill).toContainText(/已安装|Installed/)
+    await skill.getByRole('button', { name: /Install/, exact: true }).click()
+    await expect(skill).toContainText(/Installed/)
 
     const state = await page.evaluate(async () => {
       const market = await window.piSwitch.skills.market()
@@ -1055,13 +1051,13 @@ test.describe('Pi-Harness smoke', () => {
 
   test('uninstalls a user-authored standalone skill with a backup-first flow', async ({ page }) => {
     await openOverflowPage(page, 'skills')
-    await page.getByRole('tab', { name: /技能|Skills/, exact: true }).click()
+    await page.getByRole('tab', { name: /Skills/, exact: true }).click()
     await page.locator('ul').getByText('demo-skill', { exact: true }).click()
-    await page.getByLabel(/卸载技能|Uninstall skill/).click()
+    await page.getByLabel(/Uninstall skill/).click()
 
-    const dialog = page.getByRole('dialog', { name: /卸载技能|Uninstall skill/ })
+    const dialog = page.getByRole('dialog', { name: /Uninstall skill/ })
     await expect(dialog).toBeVisible()
-    await dialog.getByRole('button', { name: /卸载技能|Uninstall skill/ }).click()
+    await dialog.getByRole('button', { name: /Uninstall skill/ }).click()
 
     await expect(page.locator('ul').getByText('demo-skill', { exact: true })).toHaveCount(0)
   })
@@ -1079,15 +1075,15 @@ test.describe('Pi-Harness smoke', () => {
     })
 
     await openOverflowPage(page, 'skills')
-    await page.getByRole('tab', { name: /已安装|Installed/, exact: true }).click()
+    await page.getByRole('tab', { name: /Installed/, exact: true }).click()
     const packageRow = page.getByRole('listitem').filter({ hasText: 'pi-e2e-missing' })
     await expect(packageRow).toBeVisible()
     await packageRow.click()
-    await expect(page.getByText(/已注册但文件缺失|Missing/, { exact: true }).first()).toBeVisible()
-    await page.getByRole('button', { name: /卸载|Uninstall/, exact: true }).click()
+    await expect(page.getByText(/Missing/, { exact: true }).first()).toBeVisible()
+    await page.getByRole('button', { name: /Uninstall/, exact: true }).click()
 
-    const dialog = page.getByRole('dialog', { name: /卸载扩展包|Uninstall package/ })
-    await dialog.getByRole('button', { name: /卸载|Uninstall/, exact: true }).click()
+    const dialog = page.getByRole('dialog', { name: /Uninstall package/ })
+    await dialog.getByRole('button', { name: /Uninstall/, exact: true }).click()
     await expect(packageRow).toHaveCount(0)
   })
 
@@ -1095,12 +1091,12 @@ test.describe('Pi-Harness smoke', () => {
     await expect(page.getByText('Pi-Harness').first()).toBeVisible({ timeout: 30_000 })
 
     await page.locator('a[href="#/settings"]').click()
-    await expect(page.locator('h1').filter({ hasText: /通用|General/ })).toBeVisible()
+    await expect(page.locator('h1').filter({ hasText: /General/ })).toBeVisible()
     await expect(page.getByTestId('window-motion-toggle')).toHaveAttribute('aria-checked', 'false')
     await expect(page.getByTestId('screen-motion-toggle')).toHaveAttribute('aria-checked', 'false')
-    await page.getByRole('button', { name: /主题|Theme/, exact: true }).click()
-    await expect(page.getByRole('option', { name: /跟随系统|System/, exact: true })).toHaveCount(0)
-    await page.getByRole('option', { name: /粉色|Pink/, exact: true }).click()
+    await page.getByRole('button', { name: /Theme/, exact: true }).click()
+    await expect(page.getByRole('option', { name: /System/, exact: true })).toHaveCount(0)
+    await page.getByRole('option', { name: /Pink/, exact: true }).click()
     // Settings autosave: the theme applies without any explicit save action.
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'pink')
     await expect(page.locator('html')).toHaveAttribute('data-appearance', 'light')
@@ -1109,7 +1105,7 @@ test.describe('Pi-Harness smoke', () => {
       .toBe('light')
     // Primary buttons must still render white text on the new palette.
     await page.getByTestId('settings-section-mascot').click()
-    const primaryButton = page.getByRole('button', { name: /解锁|Unlock/, exact: true })
+    const primaryButton = page.getByRole('button', { name: /Unlock/, exact: true })
     await expect(primaryButton).toBeVisible()
     await expect
       .poll(() => primaryButton.evaluate((element) => getComputedStyle(element).color))
@@ -1125,7 +1121,7 @@ test.describe('Pi-Harness smoke', () => {
   test('reorders the more menu from settings', async ({ page }) => {
     await expect(page.getByText('Pi-Harness').first()).toBeVisible({ timeout: 30_000 })
     await page.locator('a[href="#/settings"]').click()
-    await expect(page.locator('h1').filter({ hasText: /通用|General/ })).toBeVisible()
+    await expect(page.locator('h1').filter({ hasText: /General/ })).toBeVisible()
     await page.getByTestId('settings-section-nav').click()
 
     const items = page.getByTestId('nav-order-item')
@@ -1147,25 +1143,23 @@ test.describe('Pi-Harness smoke', () => {
   test('cleans backups according to the retention count after confirmation', async ({ page }) => {
     await expect(page.getByText('Pi-Harness').first()).toBeVisible({ timeout: 30_000 })
     await page.locator('a[href="#/settings"]').click()
-    await expect(page.locator('h1').filter({ hasText: /通用|General/ })).toBeVisible()
+    await expect(page.locator('h1').filter({ hasText: /General/ })).toBeVisible()
     await page.getByTestId('settings-section-backup').click()
 
-    const createBackup = page.getByRole('button', { name: /创建备份|Create backup/ })
+    const createBackup = page.getByRole('button', { name: /Create backup/ })
     const backupRows = page.locator('main ul > li')
     await createBackup.click()
     await expect(backupRows).toHaveCount(1)
     await createBackup.click()
     await expect(backupRows).toHaveCount(2)
 
-    await page.getByRole('spinbutton', { name: /保留数量|Retention count/ }).fill('1')
-    await page.getByRole('button', { name: /清理|Clean up/, exact: true }).click()
+    await page.getByRole('spinbutton', { name: /Retention count/ }).fill('1')
+    await page.getByRole('button', { name: /Clean up/, exact: true }).click()
 
     const dialog = page.getByRole('dialog')
     await expect(dialog).toBeVisible()
-    await expect(dialog).toContainText(
-      /保留最新 1 个备份，并永久删除其余 1 个|Keep newest: 1.*delete older backups: 1/i
-    )
-    await dialog.getByRole('button', { name: /清理|Clean up/, exact: true }).click()
+    await expect(dialog).toContainText(/Keep newest: 1.*delete older backups: 1/i)
+    await dialog.getByRole('button', { name: /Clean up/, exact: true }).click()
     await expect(backupRows).toHaveCount(1)
   })
 })

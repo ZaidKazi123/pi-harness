@@ -19,7 +19,7 @@
 
 <br>
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E4%BD%9C%E5%8C%BA.png" width="900" alt="Pi-Harness 工作區：對話、專案檔案與 Git 集中在同一個視窗">
+<img src="docs/screenshots/classic/workspace.png" width="900" alt="Pi-Harness 工作區：對話、專案檔案與 Git 集中在同一個視窗">
 
 </div>
 
@@ -206,8 +206,8 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91.png" alt="輕量檔案編輯"><br><sub>輕量檔案編輯</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/Git.png" alt="Git 差異、提交歷史與提交"><br><sub>Git</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/file-editing.png" alt="輕量檔案編輯"><br><sub>輕量檔案編輯</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/Git.png" alt="Git 差異、提交歷史與提交"><br><sub>Git</sub></td>
 </tr>
 </table>
 
@@ -226,8 +226,8 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E5%85%B7Harness-2.png" alt="Harness：工作階段狀態與排隊中的指令"><br><sub>工作階段狀態與排隊中的指令</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E5%85%B7Harness-1.png" alt="Harness 控制台"><br><sub>Harness 控制台</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/harness-tools-2.png" alt="Harness：工作階段狀態與排隊中的指令"><br><sub>工作階段狀態與排隊中的指令</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/harness-tools-1.png" alt="Harness 控制台"><br><sub>Harness 控制台</sub></td>
 </tr>
 </table>
 
@@ -239,8 +239,8 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93-%E5%9B%A2%E9%98%9F.png" alt="執行前已設定好的團隊"><br><sub>執行前的示範團隊：三個智慧體處於閒置狀態，所有任務待處理</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93-%E4%BB%BB%E5%8A%A1%E4%BE%9D%E8%B5%96.png" alt="具有相依關係與審核要求的待處理任務"><br><sub>任務相依關係與審核要求</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/multi-agent-team.png" alt="執行前已設定好的團隊"><br><sub>執行前的示範團隊：三個智慧體處於閒置狀態，所有任務待處理</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/multi-agent-task-dependencies.png" alt="具有相依關係與審核要求的待處理任務"><br><sub>任務相依關係與審核要求</sub></td>
 </tr>
 </table>
 
@@ -254,8 +254,8 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E4%BC%9A%E8%AF%9D%E5%8E%86%E5%8F%B2.png" alt="對話歷史"><br><sub>對話歷史</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E4%BC%9A%E8%AF%9D%E6%B8%85%E7%90%86.png" alt="對話清理"><br><sub>對話清理</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/session-history.png" alt="對話歷史"><br><sub>對話歷史</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/session-cleanup.png" alt="對話清理"><br><sub>對話清理</sub></td>
 </tr>
 </table>
 
@@ -271,7 +271,7 @@ flowchart TD
 | **涵蓋範圍** | 在本機分析 JavaScript、TypeScript 和 Vue 的匯入關係；其他支援語言提供檔案層級索引。每次分析都會標示涵蓋範圍與限制 |
 | **適用範圍** | 架構圖描述支援的靜態相依關係，並非完整的函式呼叫圖 |
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84-1.png" width="900" alt="專案架構圖">
+<img src="docs/screenshots/classic/project-architecture-1.png" width="900" alt="專案架構圖">
 
 <a id="providers-and-models"></a>
 <a id="skills-extensions-packages-and-mcp"></a>
@@ -289,12 +289,12 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/Provider%E4%B8%8E%E6%A8%A1%E5%9E%8B-1.png" alt="Provider 與模型"><br><sub>Provider 與模型</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E8%83%BD%E5%8A%9B%E4%B8%AD%E5%BF%83-1.png" alt="能力中心"><br><sub>能力中心</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/providers-and-models-1.png" alt="Provider 與模型"><br><sub>Provider 與模型</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/capabilities-1.png" alt="能力中心"><br><sub>能力中心</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/ChatGPT%E6%8E%88%E6%9D%83.png" alt="ChatGPT 授權"><br><sub>ChatGPT 授權</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%85%8D%E8%B4%B9%E6%A8%A1%E5%9E%8B.png" alt="免費模型"><br><sub>免費模型</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/chatgpt-sign-in.png" alt="ChatGPT 授權"><br><sub>ChatGPT 授權</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/free-models.png" alt="免費模型"><br><sub>免費模型</sub></td>
 </tr>
 </table>
 
@@ -306,7 +306,7 @@ flowchart TD
 
 市場提供 **15 個內建伺服器範本**，包括 Memory、Context7、Playwright、Filesystem 與 GitHub，並支援官方 MCP 註冊表的搜尋與分頁。儲存前可預覽設定與目標位置。範本供你安裝使用，並非全部預設啟用。匯入的項目與註冊表項目儲存後為停用狀態，方便你先完成設定。
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/MCP%E5%B8%82%E5%9C%BA.png" width="900" alt="MCP 市場與內建伺服器範本">
+<img src="docs/screenshots/classic/mcp-market.png" width="900" alt="MCP 市場與內建伺服器範本">
 
 <a id="agent-settings"></a>
 
@@ -316,13 +316,13 @@ flowchart TD
 
 | 頁面 | 可設定的內容 | |
 | :-- | :-- | :-- |
-| **AI** | 預設思考層級、自動壓縮、重試行為與工作區偏好 | [截圖](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/AI.png) |
-| **即時語音** | 工作區通話使用的語音服務與帳號 | [截圖](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%AE%9E%E6%97%B6%E8%AF%AD%E9%9F%B3.png) |
-| **快捷鍵** | 命令面板、設定、新工作階段與關閉分頁的自訂快捷鍵，或預設值 | [截圖](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%BF%AB%E6%8D%B7%E9%94%AE.png) |
-| **指令** | 全域或專案指令 | [截圖](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%8C%87%E4%BB%A4.png) |
-| **MCP** | 各範圍的 MCP 伺服器 | [截圖](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/MCP%E6%9C%8D%E5%8A%A1%E5%99%A8.png) |
-| **子智慧體** | 可重複使用的子智慧體，包含角色、指令、模型、思考層級與工具。選擇共用工作區或獨立 worktree，再啟動任務或在團隊中重複使用範本 | [截圖](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%AD%90%E6%99%BA%E8%83%BD%E4%BD%93.png) |
-| **遠端主機** | 執行 pi-host 的主機，以位址與配對權杖配對 | [截圖](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA.png) |
+| **AI** | 預設思考層級、自動壓縮、重試行為與工作區偏好 | [截圖](docs/screenshots/classic/AI.png) |
+| **即時語音** | 工作區通話使用的語音服務與帳號 | [截圖](docs/screenshots/classic/realtime-voice.png) |
+| **快捷鍵** | 命令面板、設定、新工作階段與關閉分頁的自訂快捷鍵，或預設值 | [截圖](docs/screenshots/classic/keyboard-shortcuts.png) |
+| **指令** | 全域或專案指令 | [截圖](docs/screenshots/classic/instructions.png) |
+| **MCP** | 各範圍的 MCP 伺服器 | [截圖](docs/screenshots/classic/mcp-servers.png) |
+| **子智慧體** | 可重複使用的子智慧體，包含角色、指令、模型、思考層級與工具。選擇共用工作區或獨立 worktree，再啟動任務或在團隊中重複使用範本 | [截圖](docs/screenshots/classic/subagents.png) |
+| **遠端主機** | 執行 pi-host 的主機，以位址與配對權杖配對 | [截圖](docs/screenshots/classic/remote-hosts.png) |
 
 <a id="realtime-voice"></a>
 
@@ -337,7 +337,7 @@ flowchart TD
 
 近期內容分享預設關閉。啟用後只包含最近六則純文字訊息，不含附件與工具結果。通話中提出的工作請求須經你確認後才會傳送到工作對話。
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E4%BD%9C%E5%8C%BA%E8%AF%AD%E9%9F%B3.png" width="900" alt="工作區語音：通話前的設定與準備">
+<img src="docs/screenshots/classic/workspace-voice.png" width="900" alt="工作區語音：通話前的設定與準備">
 
 <a id="remote-hosts"></a>
 
@@ -355,9 +355,9 @@ flowchart TD
 
 <table>
 <tr>
-<td width="33%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%A1%8C%E5%AE%A0%E8%AE%BE%E7%BD%AE.png" alt="桌寵設定與滑桿"><br><sub>設定與滑桿</sub></td>
-<td width="33%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%A1%8C%E5%AE%A0%E8%8F%9C%E5%8D%95.png" alt="右鍵選單"><br><sub>右鍵選單</sub></td>
-<td width="33%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%A1%8C%E5%AE%A0%E5%8A%A8%E4%BD%9C.png" alt="可搜尋的動作清單"><br><sub>可搜尋的動作</sub></td>
+<td width="33%"><img src="docs/screenshots/classic/pet-settings.png" alt="桌寵設定與滑桿"><br><sub>設定與滑桿</sub></td>
+<td width="33%"><img src="docs/screenshots/classic/pet-menu.png" alt="右鍵選單"><br><sub>右鍵選單</sub></td>
+<td width="33%"><img src="docs/screenshots/classic/pet-actions.png" alt="可搜尋的動作清單"><br><sub>可搜尋的動作</sub></td>
 </tr>
 </table>
 
@@ -380,19 +380,19 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E5%A4%A7%E6%98%8E/%E9%9B%AA%E5%A2%83%E6%9C%9D%E8%87%A3.png" alt="大明·雪境朝臣"><br><sub>大明·雪境朝臣</sub></td>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E5%A4%A7%E6%98%8E/%E9%9B%AA%E5%A4%9C%E7%AC%9B%E5%A7%AC.png" alt="大明·雪夜笛姬"><br><sub>大明·雪夜笛姬</sub></td>
+<td width="50%"><img src="docs/themes/ming/snow-court-minister.png" alt="大明·雪境朝臣"><br><sub>大明·雪境朝臣</sub></td>
+<td width="50%"><img src="docs/themes/ming/snow-night-flutist.png" alt="大明·雪夜笛姬"><br><sub>大明·雪夜笛姬</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E5%A4%A7%E6%98%8E/%E6%9C%88%E5%9F%8E%E4%B9%A6%E5%A7%AC.png" alt="大明·月城書姬"><br><sub>大明·月城書姬</sub></td>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E6%98%9F%E8%88%B0/%E9%9C%9C%E6%98%9F%E9%A2%86%E8%88%AA.png" alt="星艦駕駛艙"><br><sub>星艦駕駛艙</sub></td>
+<td width="50%"><img src="docs/themes/ming/moon-city-scribe.png" alt="大明·月城書姬"><br><sub>大明·月城書姬</sub></td>
+<td width="50%"><img src="docs/themes/starship/frost-star-navigator.png" alt="星艦駕駛艙"><br><sub>星艦駕駛艙</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E5%A4%A7%E6%98%8E/%E9%80%9A%E7%94%A8%E8%AE%BE%E7%BD%AE.png" alt="大明一般設定"><br><sub>大明·一般設定</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E5%A4%A7%E6%98%8E/%E4%B8%BB%E9%A2%98%E7%9A%AE%E8%82%A4%E5%BA%93.png" alt="主題皮膚庫"><br><sub>大明·主題皮膚庫</sub></td>
+<td width="50%"><img src="docs/screenshots/ming/general-settings.png" alt="大明一般設定"><br><sub>大明·一般設定</sub></td>
+<td width="50%"><img src="docs/screenshots/ming/theme-gallery.png" alt="主題皮膚庫"><br><sub>大明·主題皮膚庫</sub></td>
 </tr>
 <tr>
-<td colspan="2"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/macos27.png" alt="macOS 27 · Liquid Ether"><br><sub>macOS 27 · Liquid Ether</sub></td>
+<td colspan="2"><img src="docs/themes/classic/macos27.png" alt="macOS 27 · Liquid Ether"><br><sub>macOS 27 · Liquid Ether</sub></td>
 </tr>
 </table>
 

@@ -36,10 +36,10 @@ test('each jelly shape is one desktop pet', async ({ page, electronApp }) => {
   const studio = page.getByTestId('tibot-pet-settings')
   await expect(studio.getByRole('button', { name: '圆形' })).toHaveCount(0)
   await expect(studio.getByText('小伙伴')).toHaveCount(0)
-  await expect(studio.getByRole('slider', { name: '活跃程度' })).toBeVisible()
-  await expect(studio.getByRole('switch', { name: '自动表演' })).toBeChecked()
-  await studio.getByRole('button', { name: '颜色 6' }).click()
-  await studio.getByRole('button', { name: '弹跳' }).click()
+  await expect(studio.getByRole('slider', { name: 'Energy' })).toBeVisible()
+  await expect(studio.getByRole('switch', { name: 'Automatic performances' })).toBeChecked()
+  await studio.getByRole('button', { name: 'Color 6' }).click()
+  await studio.getByRole('button', { name: 'Jump' }).click()
   await expect
     .poll(() =>
       page.evaluate(() => window.piSwitch.settings.get()).then((next) => ({

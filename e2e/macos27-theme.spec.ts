@@ -17,11 +17,11 @@ test.describe('macOS 27 liquid glass themes', () => {
     await expect(page.getByText('Pi-Harness').first()).toBeVisible({ timeout: 30_000 })
     await page.setViewportSize({ width: 1200, height: 780 })
     await page.locator('a[href="#/settings"]').click()
-    await expect(page.locator('h1').filter({ hasText: /通用|General/ })).toBeVisible()
+    await expect(page.locator('h1').filter({ hasText: /General/ })).toBeVisible()
 
-    const themeSelect = page.getByRole('button', { name: /主题|Theme/, exact: true })
+    const themeSelect = page.getByRole('button', { name: /Theme/, exact: true })
     await themeSelect.click()
-    await page.getByRole('option', { name: /macOS 27.*(?:深色|Dark)/, exact: true }).click()
+    await page.getByRole('option', { name: /macOS 27.*(?:Dark)/, exact: true }).click()
 
     const root = page.locator('html')
     const titlebar = page.locator('.app-titlebar')
@@ -102,10 +102,10 @@ test.describe('macOS 27 liquid glass themes', () => {
     }
 
     await page.locator('a[href="#/settings"]').click()
-    await expect(page.locator('h1').filter({ hasText: /通用|General/ })).toBeVisible()
+    await expect(page.locator('h1').filter({ hasText: /General/ })).toBeVisible()
 
     const backgroundSelect = page.getByRole('button', {
-      name: /macOS 27.*(?:背景|background)/i,
+      name: /macOS 27.*(?:background)/i,
       exact: true
     })
     for (const option of [
@@ -165,7 +165,7 @@ test.describe('macOS 27 liquid glass themes', () => {
     }
 
     await themeSelect.click()
-    await page.getByRole('option', { name: /macOS 27.*(?:浅色|Light)/, exact: true }).click()
+    await page.getByRole('option', { name: /macOS 27.*(?:Light)/, exact: true }).click()
 
     await expect(root).toHaveAttribute('data-theme', 'macos27-light')
     await expect(root).toHaveAttribute('data-appearance', 'light')
@@ -191,7 +191,7 @@ test.describe('macOS 27 liquid glass themes', () => {
       })
     }
     await page.locator('a[href="#/settings"]').click()
-    await expect(page.locator('h1').filter({ hasText: /通用|General/ })).toBeVisible()
+    await expect(page.locator('h1').filter({ hasText: /General/ })).toBeVisible()
 
     if (process.env.PI_HARNESS_DESIGN_QA_DIR) {
       await page.screenshot({
@@ -201,7 +201,7 @@ test.describe('macOS 27 liquid glass themes', () => {
     }
 
     await themeSelect.click()
-    await page.getByRole('option', { name: /^(?:深色|Dark)$/ }).click()
+    await page.getByRole('option', { name: /^(?:Dark)$/ }).click()
 
     await expect(root).toHaveAttribute('data-theme', 'dark')
     await expect

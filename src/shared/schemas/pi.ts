@@ -2,7 +2,7 @@
  * Zod schemas for Pi's native configuration.
  *
  * All object schemas use `z.looseObject` so that unknown fields are preserved
- * on round-trip (requirement: "配置必须 Round-trip Safe" — saving a model must
+ * on round-trip (requirement: "configuration must be round-trip safe" — saving a model must
  * not delete `futurePiField`). This is the Zod 4 replacement for `.passthrough()`.
  *
  * These schemas are deliberately permissive: Pi's real config carries many

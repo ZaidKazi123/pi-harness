@@ -1059,7 +1059,7 @@ export class AgentRuntimeService implements AgentRuntime {
       )
     const architectureHint = (await this.workspace?.architectureHint?.(sessionCwd)) ?? null
     // An unspecified mode keeps the legacy fail-closed containment: only an
-    // explicitly selected mode (e.g. 全自动) relaxes the workspace guards.
+    // explicitly selected mode (e.g. 'auto' / full access) relaxes the workspace guards.
     const sessionPermissionMode: PermissionMode | undefined = isPermissionMode(input.permissionMode)
       ? input.permissionMode
       : undefined

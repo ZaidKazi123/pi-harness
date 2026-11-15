@@ -29,15 +29,15 @@ describe('startup runtime checks', () => {
     } as NodeRuntimeInfo
 
     expect(runtimeStartupChecks(runtime)).toEqual({
-      node: { state: 'healthy', detail: '已就绪 · v24.15.0' },
-      npm: { state: 'warning', detail: '未检测到' }
+      node: { state: 'healthy', detail: 'Ready · v24.15.0' },
+      npm: { state: 'warning', detail: 'Not found' }
     })
   })
 
   it('reports failed checks when environment detection fails', () => {
     expect(runtimeStartupChecks(null)).toEqual({
-      node: { state: 'error', detail: '检测失败' },
-      npm: { state: 'error', detail: '检测失败' }
+      node: { state: 'error', detail: 'Check failed' },
+      npm: { state: 'error', detail: 'Check failed' }
     })
   })
 })

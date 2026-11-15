@@ -31,7 +31,12 @@ const test = base.extend<{ savedTheme: AppTheme }>({
       path.join(testUserData, 'settings.json'),
       JSON.stringify({ theme: savedTheme, language: 'zh-CN', composerFireEnabled: false })
     )
-    seedWorkspaceSession(agentDir, workspaceRoot, sessionId, '请检查界面中的文本与代码。')
+    seedWorkspaceSession(
+      agentDir,
+      workspaceRoot,
+      sessionId,
+      'Please check the text and code in the interface.'
+    )
     const sessionDir = fs.readdirSync(path.join(agentDir, 'sessions'))[0]!
     const sessionFile = fs.readdirSync(path.join(agentDir, 'sessions', sessionDir))[0]!
     fs.appendFileSync(
@@ -49,7 +54,7 @@ const test = base.extend<{ savedTheme: AppTheme }>({
           content: [
             {
               type: 'text',
-              text: '主题已准备就绪。\n\n```ts\nconst message = "Hello, Pi"\n```\n\n- 柔和的背景\n- 清晰的交互状态'
+              text: 'The theme is ready.\n\n```ts\nconst message = "Hello, Pi"\n```\n\n- Soft background\n- Clear interaction states'
             }
           ]
         }
@@ -78,7 +83,7 @@ for (const value of APP_THEMES) {
         .poll(() => electronApp.evaluate(({ nativeTheme }) => nativeTheme.themeSource))
         .toBe(themeAppearance(value))
       await page.locator('a[href="#/settings"]').click()
-      const picker = page.getByRole('button', { name: /主题|Theme/, exact: true })
+      const picker = page.getByRole('button', { name: /Theme/, exact: true })
       // Exercise a real change and change back via the existing persisted picker.
       for (const target of [
         APP_THEMES[(APP_THEMES.indexOf(value) + 1) % APP_THEMES.length]!,
@@ -140,7 +145,7 @@ for (const value of APP_THEMES) {
       await expect(composer.locator('.command-execute-button')).toHaveCSS('width', '42px')
       await page.screenshot({ path: path.join(qaDir, `theme-${value}-workspace.png`) })
       await composer.screenshot({ path: path.join(qaDir, `theme-${value}-composer.png`) })
-      await editor.fill('请检查主题')
+      await editor.fill('Please check the theme')
       await expect(composer.locator('.command-execute-button')).toBeEnabled()
       // Resolve CSS colors in Chromium (including color-mix) before contrast checks.
       const colors = await composer.evaluate((element) => {
@@ -215,8 +220,8 @@ for (const value of APP_THEMES) {
           .map((button) => button.getAttribute('aria-label'))
       })
       expect(clipped).toEqual([])
-      await composer.getByRole('button', { name: '权限模式', exact: true }).click()
-      const permissions = page.getByRole('listbox', { name: '权限模式' })
+      await composer.getByRole('button', { name: 'Permission mode', exact: true }).click()
+      const permissions = page.getByRole('listbox', { name: 'Permission mode' })
       await expect(permissions).toBeInViewport()
       await expect(permissions.getByRole('option')).toHaveCount(3)
       await permissions.screenshot({ path: path.join(qaDir, `theme-${value}-permissions.png`) })
@@ -271,7 +276,7 @@ base('keeps focus, placeholders and glass legible with reduced effects', async (
   expect(placeholder.color).not.toBe('rgba(0, 0, 0, 0)')
   await expect(composer.locator('.command-console-input')).not.toHaveCSS('box-shadow', 'none')
   await page.locator('a[href="#/settings"]').click()
-  const picker = page.getByRole('button', { name: /主题|Theme/, exact: true })
+  const picker = page.getByRole('button', { name: /Theme/, exact: true })
   for (const theme of ['macos27', 'macos27-light'] as const) {
     await picker.click()
     await page.getByRole('option').nth(APP_THEMES.indexOf(theme)).click()
@@ -299,7 +304,7 @@ base(
     try {
       for (const theme of ['purple', 'soft-dark'] as const) {
         await currentPage.locator('a[href="#/settings"]').click()
-        await currentPage.getByRole('button', { name: /主题|Theme/, exact: true }).click()
+        await currentPage.getByRole('button', { name: /Theme/, exact: true }).click()
         await currentPage.getByRole('option').nth(APP_THEMES.indexOf(theme)).click()
         await expect
           .poll(

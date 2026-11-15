@@ -16,7 +16,7 @@ test('keeps native architecture content behind the startup animation during relo
   await page.getByTestId('workspace-import-project').click()
   await page.getByTestId('workspace-architecture').click()
   await page.getByTestId('analyze-project').click()
-  await expect(page.getByTestId('architecture-status')).toContainText(/complete|完成/, {
+  await expect(page.getByTestId('architecture-status')).toContainText(/complete/, {
     timeout: 45000
   })
   const nativeVisible = () =>

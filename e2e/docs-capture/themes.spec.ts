@@ -72,7 +72,7 @@ for (const theme of APP_THEMES) {
         )
       }
 
-      await shot(page, `主题展示/经典主题/${theme}.png`)
+      await shot(page, `themes/classic/${theme}.png`)
     })
   })
 }

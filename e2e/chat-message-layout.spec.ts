@@ -63,8 +63,8 @@ test('places user messages on the right and visually separates agent output', as
   await expect(toolResult).toBeVisible()
   await expect(page.locator('[data-message-role="assistant"]')).toHaveCount(1)
   await expect(page.locator('.message-hud')).toHaveCount(2)
-  await expect(user.locator('.message-role-badge')).toHaveText('我')
-  await expect(assistant.locator('.message-role-badge')).toHaveText('助手')
+  await expect(user.locator('.message-role-badge')).toHaveText('Me')
+  await expect(assistant.locator('.message-role-badge')).toHaveText('Assistant')
 
   // The band centers the transcript; user bubbles shrink-wrap and hug the
   // trailing edge while assistant/tool rows span the full band.
@@ -124,10 +124,10 @@ test('places user messages on the right and visually separates agent output', as
   await page.locator('a[href="#/settings"]').click()
   const userNameInput = page.getByTestId('user-name-input')
   const assistantNameInput = page.getByTestId('assistant-name-input')
-  await expect(userNameInput).toHaveValue('我')
-  await expect(assistantNameInput).toHaveValue('助手')
-  await userNameInput.fill('阿明')
-  await assistantNameInput.fill('小策')
+  await expect(userNameInput).toHaveValue('Me')
+  await expect(assistantNameInput).toHaveValue('Assistant')
+  await userNameInput.fill('Alex')
+  await assistantNameInput.fill('Sage')
   await assistantNameInput.blur()
   await expect
     .poll(() =>
@@ -137,16 +137,16 @@ test('places user messages on the right and visually separates agent output', as
           .then(({ userName, assistantName }) => ({ userName, assistantName }))
       )
     )
-    .toEqual({ userName: '阿明', assistantName: '小策' })
+    .toEqual({ userName: 'Alex', assistantName: 'Sage' })
   await page.screenshot({ path: path.join(qaDir, 'chat-name-settings.png') })
 
   await page.locator('a[href="#/workspace"]').click()
   await expect(page.locator('[data-message-role="user"] .message-role-badge').first()).toHaveText(
-    '阿明'
+    'Alex'
   )
   await expect(
     page.locator('[data-message-role="assistant"] .message-role-badge').first()
-  ).toHaveText('小策')
+  ).toHaveText('Sage')
   await page.screenshot({ path: path.join(qaDir, 'chat-message-custom-names.png') })
 
   expect(pageErrors).toEqual([])
@@ -172,7 +172,8 @@ function seedSession(piAgentDir: string, workspaceRoot: string): void {
         timestamp,
         message: {
           role: 'user',
-          content: '请优化对话区域，让用户和 Agent 的消息更容易区分。',
+          content:
+            'Improve the conversation area so user and agent messages are easier to tell apart.',
           timestamp: Date.parse(timestamp)
         }
       },
@@ -185,7 +186,7 @@ function seedSession(piAgentDir: string, workspaceRoot: string): void {
           role: 'toolResult',
           toolCallId: 'role-layout-tool-call',
           toolName: 'write',
-          content: [{ type: 'text', text: '已写入示例文件' }]
+          content: [{ type: 'text', text: 'Wrote the example file' }]
         }
       },
       {
@@ -214,7 +215,7 @@ function seedSession(piAgentDir: string, workspaceRoot: string): void {
           content: [
             {
               type: 'text',
-              text: '已将用户消息放到右侧，并为用户与 Agent 使用不同的背景、气泡形状和角色标签。\n\n- 用户：强调色气泡\n- Agent：中性面板气泡'
+              text: 'Moved user messages to the right and gave the user and the agent different backgrounds, bubble shapes and role labels.\n\n- User: accent-color bubble\n- Agent: neutral panel bubble'
             }
           ]
         }

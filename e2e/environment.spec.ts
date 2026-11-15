@@ -76,13 +76,13 @@ test.describe('Environment', () => {
     })
     await expect(page.getByText('Pi-Harness').first()).toBeVisible({ timeout: 30_000 })
 
-    await page.getByRole('button', { name: /一键安装|安装 Pi|Install Pi/ }).click()
+    await page.getByRole('button', { name: /Install Pi/ }).click()
 
     await page.waitForTimeout(250)
     expect(pageErrors).toEqual([])
     expect(consoleErrors).toEqual([])
 
     await expect(page.getByRole('dialog')).toBeVisible()
-    await expect(page.getByRole('dialog')).toContainText(/安装 Pi|Install Pi/)
+    await expect(page.getByRole('dialog')).toContainText(/Install Pi/)
   })
 })

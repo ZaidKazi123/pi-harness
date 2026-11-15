@@ -13,11 +13,9 @@ test('detects an interrupted restore on reload and continues only after confirma
   testUserData
 }) => {
   const backup = await page.evaluate(() => window.piSwitch.backup.create('manual'))
-  await page.getByRole('link', { name: '备份', exact: true }).click()
-  const heading = page.getByRole('heading', { name: '备份', exact: true })
-  const interrupted = page
-    .getByRole('alert')
-    .filter({ hasText: /上次恢复未完成|previous restore/i })
+  await page.getByRole('link', { name: 'Backup', exact: true }).click()
+  const heading = page.getByRole('heading', { name: 'Backup', exact: true })
+  const interrupted = page.getByRole('alert').filter({ hasText: /previous restore/i })
   await expect(heading).toBeVisible()
   await expect(page.getByText('manual', { exact: true })).toBeVisible()
   await expect(interrupted).toHaveCount(0)
@@ -59,14 +57,14 @@ test('detects an interrupted restore on reload and continues only after confirma
   expect(await fs.readFile(path.join(piAgentDir, 'settings.json'), 'utf8')).toBe(files[1].before)
   const row = page
     .locator('li')
-    .filter({ has: page.getByText('恢复', { exact: true }) })
+    .filter({ has: page.getByText('Restore', { exact: true }) })
     .first()
-  await row.getByRole('button', { name: /恢复|Restore/, exact: true }).click()
+  await row.getByRole('button', { name: /Restore/, exact: true }).click()
   const dialog = page.getByRole('alertdialog').or(page.getByRole('dialog'))
   await expect(dialog).toBeVisible()
   expect(await fs.readFile(path.join(piAgentDir, 'settings.json'), 'utf8')).toBe(files[1].before)
   expect(JSON.parse(await fs.readFile(journal, 'utf8')).status).toBe('committing')
-  await dialog.getByRole('button', { name: /恢复|Restore/ }).click()
+  await dialog.getByRole('button', { name: /Restore/ }).click()
   for (const file of files) {
     await expect.poll(() => fs.readFile(path.join(piAgentDir, file.name), 'utf8')).toBe(file.after)
   }

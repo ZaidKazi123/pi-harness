@@ -1,14 +1,14 @@
 /* ============================================================================
- * dsh-startup-screen — 启动界面 / 启动动画样式
+ * dsh-startup-screen — startup screen / startup animation styles
  * ----------------------------------------------------------------------------
- * 风格取自参考片（Hypergryph 式开机序列）：黑色序幕 → 灰白过曝洗白 → 暖白
- * "技术档案" 底板 → 等宽字距状态行 → 环形准星扫描 → WELCOME 版式 → 色散故障。
+ * Style taken from the reference film (a Hypergryph-style boot sequence): black prologue → grey-white overexposure wash → warm-white
+ * "technical dossier" plate → monospace tracked status lines → circular reticle scan → WELCOME layout → chromatic glitch.
  *
- * 全部字体都取系统自带字体，零网络依赖：
- *   --dsu-din   Bahnschrift（Windows 10+ 自带 DIN 1451 风格，对应参考片里
- *               "RHINE LAB / SYNTHESIZE INFORMATION" 那种窄体技术字）
- *   --dsu-mono  Cascadia Mono / Consolas（对应参考片里的等宽字距小字）
- *   --dsu-zh    微软雅黑（对应参考片底部中文小字幕）
+ * All fonts are system fonts, with zero network dependency:
+ *   --dsu-din   Bahnschrift (DIN 1451 style bundled with Windows 10+, matching the reference film's
+ *               "RHINE LAB / SYNTHESIZE INFORMATION" condensed technical type)
+ *   --dsu-mono  Cascadia Mono / Consolas (matching the reference film's small monospace tracked text)
+ *   --dsu-zh    Microsoft YaHei (matching the reference film's small Chinese subtitles at the bottom)
  * ========================================================================== */
 
 #dsh-startup-root,
@@ -21,7 +21,7 @@
 }
 
 #dsh-startup-root {
-  /* —— 配色（浅色 / 参考片色板）—— */
+  /* —— Palette (light / reference-film swatches) —— */
   --dsu-bg: #e5e3df;
   --dsu-bg-2: #eceae6;
   --dsu-ink: #0a0a0a;
@@ -36,12 +36,12 @@
   --dsu-box-ink: #ffffff;
   --dsu-sub-glow: 0 0 6px rgba(255, 255, 255, 0.9);
 
-  /* 字体全部取系统自带，不下发 webfont（启动零抖动）。
-     三档回退链覆盖 Win / macOS / Linux：
-       DIN 风格窄体重黑：Bahnschrift(Win) → DIN Alternate(macOS) → Ubuntu/Roboto Condensed(Linux)
-       等宽：Cascadia Mono(Win) → SFMono/Consolas → DejaVu Sans Mono(Linux)
-       中文：微软雅黑(Win) → 苹方(macOS) → 思源/Noto/WQY(Linux)
-     完全没有时退到通用 sans-serif —— 版式不变，只是字面观感略有差异。 */
+  /* All fonts are system fonts; no webfont is served (zero jitter at startup).
+     Three-tier fallback chains cover Windows / macOS / Linux:
+       DIN-style condensed heavy: Bahnschrift (Win) → DIN Alternate (macOS) → Ubuntu/Roboto Condensed (Linux)
+       Monospace: Cascadia Mono (Win) → SFMono/Consolas → DejaVu Sans Mono (Linux)
+       CJK: Microsoft YaHei (Win) → PingFang (macOS) → Source Han/Noto/WQY (Linux)
+     With none available it falls back to generic sans-serif — the layout is unchanged, only the letterforms differ slightly. */
   --dsu-din: "Bahnschrift", "DIN Alternate", "DIN Condensed", "Archivo", "Oswald",
     "Arial Narrow", "Liberation Sans Narrow", "Ubuntu Condensed", "Roboto Condensed",
     "Noto Sans Display", "HarmonyOS Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
@@ -65,13 +65,13 @@
   cursor: default;
   -webkit-user-select: none;
   user-select: none;
-  /* 注意：这里不能写 contain: paint —— 它会把本节点变成 backdrop 根，
-     里面的 backdrop-filter 就只能采到自己内部，页面内容全被排除，
-     表现是「底板透明了但背景一点没糊」。layout/style 不影响采样。 */
+  /* Note: don't use contain: paint here — it would make this node a backdrop root,
+     so backdrop-filter inside could only sample its own contents and the page content would be excluded,
+     showing up as "the plate is transparent but the background isn't blurred at all". layout/style don't affect sampling. */
   contain: layout style;
 }
 
-/* 逐字渐显（typeIn）：用不透明度而非截断，居中排版不会左右抖动 */
+/* Per-character fade-in (typeIn): uses opacity instead of truncation so centered layout doesn't jitter */
 .dsu-status .dsu-ch,
 .dsu-sub-en .dsu-ch {
   display: inline-block;
@@ -83,11 +83,11 @@
 .dsu-status.dsu-in .dsu-ch,
 .dsu-sub-en.dsu-in .dsu-ch { opacity: 1; transform: none; }
 
-/* 中央标识与终幕标识统一取当前文字色 */
+/* The central mark and the finale mark both use the current text color */
 .dsu-logo svg,
 .dsu-w3 svg { fill: currentColor; }
 
-/* 深色主题：同一套版式，换成暗底板 */
+/* Dark theme: same layout with a dark plate */
 #dsh-startup-root.dsu-dark {
   --dsu-bg: #0b0b0c;
   --dsu-bg-2: #131315;
@@ -102,7 +102,7 @@
   background: #000;
 }
 
-/* 首屏兜底：脚本还没跑起来时也要先糊住整个窗口，避免闪出应用本体 */
+/* First-screen fallback: cover the whole window even before the script runs so the app doesn't flash through */
 #dsh-startup-root.dsu-boot::after {
   content: "";
   position: absolute;
@@ -117,7 +117,7 @@
   transition: opacity 620ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ── 底板 ───────────────────────────────────────────────────────────────── */
+/* ── Plate ───────────────────────────────────────────────── */
 .dsu-plate {
   position: absolute;
   inset: 0;
@@ -133,7 +133,7 @@
     linear-gradient(168deg, var(--dsu-bg-2) 0%, var(--dsu-bg) 42%, var(--dsu-bg) 100%);
 }
 
-/* 背景里若隐若现的档案面板（参考片右侧极淡的方块群） */
+/* Faint dossier panels in the background (the very light block cluster on the right of the reference film) */
 .dsu-watermark {
   position: absolute;
   inset: 0;
@@ -149,7 +149,7 @@
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0));
 }
 
-/* 细颗粒噪点，让大色块不"塑料" */
+/* Fine grain noise so large color areas don't look "plastic" */
 .dsu-grain {
   position: absolute;
   inset: -50%;
@@ -159,7 +159,7 @@
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='0.6'/></svg>");
 }
 
-/* ── 第一幕：黑幕 + DeepSeek 标识 ─────────────────────────────────────── */
+/* ── Act 1: black screen + DeepSeek mark ─────────────────────────────────────── */
 .dsu-black {
   position: absolute;
   inset: 0;
@@ -227,7 +227,7 @@
   text-indent: 0.42em;
   color: rgba(255, 255, 255, 0.5);
 }
-/* 扫光：一条极淡的白色横条掠过标识 */
+/* Light sweep: a very faint white bar passes over the mark */
 .dsu-sweep {
   position: absolute;
   top: 0;
@@ -252,7 +252,7 @@
   to { left: 118%; }
 }
 
-/* 过曝洗白：黑 → 灰 → 白 → 底板 */
+/* Overexposure wash: black → grey → white → plate */
 .dsu-wash {
   position: absolute;
   inset: 0;
@@ -270,9 +270,9 @@
   pointer-events: none;
 }
 
-/* ── 品牌块（左上角）──────────────────────────────────────────────────── */
-/* 黑幕结束后统一"滑到位"：左侧文字从 -22px 滑入，右侧元素从 +18px 滑入，
-   按 60ms 一档错开；不再用裁剪式擦除 */
+/* ── Brand block (top left) ──────────────────────────────────────────── */
+/* After the black screen everything "slides into place": text on the left slides in from -22px, elements on the right from +18px,
+   staggered in 60ms steps; no more clip-style wipes */
 .dsu-brand {
   position: absolute;
   left: 46px;
@@ -314,7 +314,7 @@
 .dsu-brand.dsu-in .dsu-brand-2 { opacity: 1; transform: none; transition-delay: 150ms; }
 .dsu-brand.dsu-in .dsu-brand-3 { opacity: 1; transform: none; transition-delay: 240ms; }
 
-/* 中央状态区 */
+/* Central status area */
 .dsu-center {
   position: absolute;
   left: 0;
@@ -329,8 +329,8 @@
   pointer-events: none;
   transition: opacity 340ms ease;
 }
-/* 终幕时整块中央区（状态行 / 分隔线 / 鲸鱼 / 虚线）必须整体退场，
-   否则会和 WELCOME 版式叠在一起 */
+/* In the finale the whole central area (status line / divider / whale / dashed line) must exit together,
+   otherwise it overlaps the WELCOME layout */
 .dsu-center.dsu-off { opacity: 0; }
 
 .dsu-status {
@@ -390,7 +390,7 @@
 }
 .dsu-rule.dsu-in { width: min(560px, 42vw); }
 
-/* 中央标识（鲸鱼）装配区 */
+/* Central mark (whale) assembly area */
 .dsu-logo {
   margin-top: 26px;
   height: 0;
@@ -427,11 +427,11 @@
   opacity: 0.5;
 }
 
-/* 右下角等宽信息行（对应参考片 "· ID CONFIRMED : JOYC"）
-   挂在页脚正上方、右边缘与页脚对齐（页脚 right:46px / bottom:52px），
-   和左下角的声纹条左右对称。原定位紧贴居中大标题右侧，身份编号一长或窗口一窄
-   就会和版心文字叠字，只能靠 @media 在窄窗口整行藏掉 —— 挪出版心后，碰撞在
-   几何上不再可能，窄窗口也就不必再牺牲这条读数。 */
+/* Bottom-right monospace info line (matching the reference film's "· ID CONFIRMED : JOYC")
+   sits just above the footer, right edge aligned with the footer (footer right:46px / bottom:52px),
+   mirroring the voiceprint bars at bottom-left. It was originally placed right next to the centered headline, so a long identity ID or a narrow window
+   made it overlap the main text and it had to be hidden entirely with @media on narrow windows — moved out of the main column, a collision
+   is geometrically impossible, so narrow windows no longer have to sacrifice this readout. */
 .dsu-idline {
   position: absolute;
   right: 46px;
@@ -450,9 +450,9 @@
 }
 .dsu-idline.dsu-in { opacity: 1; transform: none; }
 
-/* ── 环形准星（验证通过）───────────────────────────────────────────────── */
-/* 照原片：环居中、直径约 56vw，状态字就落在环心里，两者是一个整体。
-   关键是把两段弧的缺口都留在正下方 6 点钟方向，底部字幕永远不会被压到。 */
+/* ── Circular reticle (verification passed) ────────────────────────────────────────── */
+/* As in the original film: the ring is centered, about 56vw across, with the status text inside it; the two read as one unit.
+   The key is keeping both arcs' gaps at the bottom (6 o'clock) so the bottom subtitle is never covered. */
 .dsu-reticle {
   position: absolute;
   left: 50%;
@@ -482,7 +482,7 @@
   opacity: 0.85;
 }
 
-/* 读取阶段的十六进制瀑布：放到原片里最空的上右区，不去和主体挤中间 */
+/* Hex waterfall during the read stage: placed in the emptiest upper-right area of the original film, not crowding the center */
 .dsu-hex {
   position: absolute;
   right: 46px;
@@ -504,7 +504,7 @@
 }
 .dsu-hex.dsu-in { opacity: 0.6; }
 
-/* ── 交互区 ─────────────────────────────────────────────────────────────── */
+/* ── Interaction area ──────────────────────────────────────────────── */
 .dsu-action {
   position: absolute;
   left: 0;
@@ -552,7 +552,7 @@
 .dsu-btn:hover .dsu-btn-en { color: var(--dsu-box-ink); opacity: 1; }
 .dsu-btn > * { position: relative; z-index: 1; }
 .dsu-btn:active { transform: translateY(1px); }
-/* 根节点的 * { padding: 0 } 比 .dsu-btn 更具体，内边距必须挂在这里才会生效。 */
+/* The root node's * { padding: 0 } is more specific than .dsu-btn, so padding must be set here to take effect. */
 #dsh-startup-root .dsu-btn {
   padding: 11px 28px;
 }
@@ -583,7 +583,7 @@
   letter-spacing: 0.06em;
 }
 
-/* 身份卡（第二步）：纯中文标签 + 数字，去掉了英文双写与竖排表头，尽量干净 */
+/* Identity card (step 2): labels + numbers only, without duplicated English or a vertical header, kept as clean as possible */
 .dsu-card {
   display: flex;
   flex-direction: column;
@@ -593,8 +593,8 @@
   border-top: 1px solid var(--dsu-hair);
   border-bottom: 1px solid var(--dsu-hair);
 }
-/* 作者样式里的 display:flex 会盖掉 [hidden] 的 UA display:none，必须显式补一条，
-   否则第一步（只要按钮、不要卡片）会露出一条空的边框 */
+/* display:flex in author styles overrides the UA display:none for [hidden], so it must be added explicitly,
+   otherwise step 1 (button only, no card) shows an empty border */
 .dsu-card[hidden] { display: none; }
 .dsu-card-row {
   display: flex;
@@ -619,7 +619,7 @@
 }
 .dsu-card-row b.dsu-zhname { font-family: var(--dsu-zh); letter-spacing: 0.1em; }
 
-/* ── 终幕：WELCOME ─────────────────────────────────────────────────────── */
+/* ── Finale: WELCOME ────────────────────────────────────────────── */
 .dsu-welcome {
   position: absolute;
   left: 0;
@@ -676,10 +676,10 @@
   color: var(--dsu-ink);
 }
 
-/* 色散故障（参考片结尾的青蓝色偏）
-   做法：复制层带 0.5px 模糊 + 分片 clip-path 位移 + 混合模式，
-   读起来像镜头色散而不是"三个字叠一起"。常态必须 opacity:0，
-   否则动画跑完红蓝副本会一直压在文字上。 */
+/* Chromatic glitch (the cyan-blue color shift at the end of the reference film)
+   Approach: duplicate layers with 0.5px blur + sliced clip-path offsets + blend modes,
+   reading as lens chromatic aberration rather than "three words stacked". The resting state must be opacity:0,
+   otherwise the red/blue copies would stay over the text after the animation ends. */
 .dsu-glitch { position: relative; }
 .dsu-glitch[data-text]::before,
 .dsu-glitch[data-text]::after {
@@ -691,12 +691,12 @@
   opacity: 0;
   pointer-events: none;
   filter: blur(0.5px);
-  mix-blend-mode: multiply;      /* 浅底深字：做减色边缘 */
+  mix-blend-mode: multiply;      /* dark text on a light plate: subtractive edges */
   clip-path: inset(0 0 100% 0);
 }
 .dsu-glitch[data-text]::before { color: var(--dsu-glitch-a); }
 .dsu-glitch[data-text]::after { color: var(--dsu-glitch-b); }
-/* 黑底白字那块要换成加色，否则乘完是黑 */
+/* The white-on-black block must switch to additive blending, otherwise multiply turns it black */
 .dsu-glitch.dsu-glitch-box::before,
 .dsu-glitch.dsu-glitch-box::after { mix-blend-mode: screen; }
 
@@ -719,8 +719,8 @@
   100% { transform: none; opacity: 0; clip-path: inset(0 0 100% 0); }
 }
 
-/* ── 收尾：径向光晕 + 变形宽银幕光条 + 暗角 + 机位后撤 ─────────────────── */
-/* 暗角：给暖白底板一点纵深，别让大色块太平 */
+/* ── Closing: radial glow + anamorphic widescreen streak + vignette + camera pull-back ─────────────────── */
+/* Vignette: gives the warm-white plate some depth so the large color area isn't too flat */
 .dsu-vignette {
   position: absolute;
   inset: 0;
@@ -739,7 +739,7 @@
 }
 .dsu-vignette.dsu-in { opacity: 1; }
 
-/* 径向光晕：不是整屏糊白，而是从中心炸开一朵光，边缘仍留暖色 */
+/* Radial glow: not a full-screen white wash but a burst of light from the center, keeping warm color at the edges */
 .dsu-bloom {
   position: absolute;
   left: 50%;
@@ -769,7 +769,7 @@
   100% { opacity: 0; transform: scale(1.42); }
 }
 
-/* 变形宽银幕光条：横着抽出来的一条细光，光晕最亮那一刻扫过 */
+/* Anamorphic widescreen streak: a thin horizontal line of light that sweeps across at the glow's brightest moment */
 .dsu-streak {
   position: absolute;
   left: 50%;
@@ -798,9 +798,9 @@
   100% { opacity: 0; width: 132vw; height: 1px; }
 }
 
-/* 光晕最亮那一刻：文字带一点青色光晕（halation），颗粒变粗。
-   注意别在 .dsu-welcome 上加 filter —— 那会新建层叠上下文，
-   把色散层的 mix-blend-mode 隔离掉，故障会在中途"啪"地变回去。 */
+/* At the glow's brightest moment the text gets a slight cyan halation and the grain coarsens.
+   Don't add a filter on .dsu-welcome — it creates a new stacking context,
+   isolating the glitch layers' mix-blend-mode, and the glitch would snap back halfway through. */
 #dsh-startup-root.dsu-peak .dsu-w1,
 #dsh-startup-root.dsu-peak .dsu-w4 {
   color: var(--dsu-glitch-b);
@@ -812,7 +812,7 @@
 }
 #dsh-startup-root.dsu-peak .dsu-grain { opacity: 0.11; }
 
-/* 揭幕：整个机位后撤 + 轻微失焦，比单纯淡出更有镜头感 */
+/* Reveal: the whole camera pulls back + slight defocus, more cinematic than a plain fade-out */
 #dsh-startup-root.dsu-handoff {
   transform: scale(1.035);
   filter: blur(5px);
@@ -821,7 +821,7 @@
     transform 780ms cubic-bezier(0.4, 0, 0.2, 1), filter 780ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ── 页脚 / 字幕 / 进度条 ───────────────────────────────────────────────── */
+/* ── Footer / subtitles / progress bar ────────────────────────────────────────── */
 .dsu-foot {
   position: absolute;
   right: 46px;
@@ -884,7 +884,7 @@
 }
 .dsu-sub-en2.dsu-in { opacity: 0.85; transform: none; }
 
-/* 底部进度：照原片收成中间一小段，不再横贯整屏跟字幕抢注意力 */
+/* Bottom progress: shrunk to a short segment in the middle as in the original film, no longer spanning the screen and competing with the subtitles */
 .dsu-progress {
   position: absolute;
   left: 50%;
@@ -918,7 +918,7 @@
 }
 .dsu-progress.dsu-accent i { background: var(--dsu-accent); }
 
-/* 阶段计数（左下） */
+/* Stage counter (bottom left) */
 .dsu-stepcount {
   position: absolute;
   left: 46px;
@@ -935,7 +935,7 @@
 }
 .dsu-stepcount.dsu-in { opacity: 1; transform: none; }
 
-/* 跳过 */
+/* Skip */
 .dsu-skip {
   position: absolute;
   right: 46px;
@@ -955,8 +955,8 @@
 .dsu-skip:hover { color: var(--dsu-ink); border-color: var(--dsu-hair); }
 .dsu-skip[hidden] { display: none; }
 
-/* ── 机框装饰层（照原片的疏密：只贴边，不占中间）──────────────────────── */
-/* 四角定位标记 / 一次性扫描线 / 品牌块下单行小字（含时钟）/ 六个阶段格 */
+/* ── Frame decoration layer (following the original film's density: only along the edges, nothing in the middle) ──────────────────────── */
+/* Corner registration marks / one-time scan line / single line of small text under the brand block (with clock) / six stage cells */
 .dsu-frame {
   position: absolute;
   inset: 0;
@@ -992,7 +992,7 @@
 .dsu-frame.dsu-in .dsu-c-br { transition-delay: 180ms; }
 .dsu-frame.dsu-in .dsu-c-bl { transition-delay: 270ms; }
 
-/* 一次性扫描线：底板洗白之后自上而下扫一遍，验准时再扫一次 */
+/* One-time scan line: sweeps top to bottom after the plate wash, and again at verification */
 .dsu-scanline {
   position: absolute;
   left: 0;
@@ -1027,7 +1027,7 @@
   100% { top: 102%; opacity: 0; }
 }
 
-/* 品牌块下方的一行小字：版本 + 实时时钟（时钟点亮主题橙） */
+/* Small line under the brand block: version + live clock (the clock lights up in theme orange) */
 .dsu-meta {
   position: absolute;
   left: 46px;
@@ -1048,7 +1048,7 @@
 .dsu-meta.dsu-in { opacity: 1; transform: none; }
 .dsu-meta-2 { color: var(--dsu-accent); }
 
-/* 六个阶段格：横排在左栏小字下面，走过的压暗、当前的点亮并拉长 */
+/* Six stage cells: laid out horizontally under the left column's small text; completed ones dim, the current one lights up and lengthens */
 .dsu-slats {
   position: absolute;
   left: 46px;
@@ -1073,7 +1073,7 @@
 .dsu-slat.dsu-past { background: var(--dsu-ink); opacity: 0.3; }
 .dsu-slat.dsu-on { width: 34px; background: var(--dsu-accent); opacity: 1; }
 
-/* 女声播报指示条：出声时点亮主题橙并跳动（对应参考片里女声念状态行的时刻） */
+/* Female-voice narration indicator: lights up in theme orange and pulses while speaking (matching when the reference film's female voice reads status lines) */
 .dsu-voice {
   position: absolute;
   left: 46px;
@@ -1108,17 +1108,17 @@
   50% { height: 100%; }
 }
 
-/* 无障碍：尊重系统"减少动态效果" */
+/* Accessibility: respect the system "reduce motion" setting */
 @media (prefers-reduced-motion: reduce) {
   #dsh-startup-root .dsu-ret-rot-a,
   #dsh-startup-root .dsu-ret-rot-b { animation: none; }
   #dsh-startup-root .dsu-scanline.dsu-go { animation: none; }
 }
 
-/* ── 液态玻璃（可选图层） ───────────────────────────────────────────────
-   #dsh-startup-root 上加 .dsu-glass 时生效。只把「背景层」（底板 / 黑幕）
-   改成半透明 + 磨砂，文字、线条、鲸鱼标识、读数仍是实心 ——
-   所以稿面主体保留，只是能透过它看到后面的桌面壁纸或窗口。 */
+/* ── Liquid glass (optional layer) ─────────────────────────────────────────
+   Applies when #dsh-startup-root has .dsu-glass. Only the background layers (plate / black screen)
+   become translucent + frosted; text, lines, the whale mark and readouts stay solid —
+   so the composition remains, with the desktop wallpaper or windows visible behind it. */
 #dsh-startup-root.dsu-glass { background: transparent !important; }
 
 .dsu-glass .dsu-plate {
@@ -1151,7 +1151,7 @@
   backdrop-filter: blur(var(--dsu-glass-blur, 22px)) saturate(var(--dsu-glass-sat, 150%));
 }
 
-/* 液态感：一道缓慢漂移的斜向高光，叠在玻璃表面而不是文字上 */
+/* Liquid feel: a slowly drifting diagonal highlight on the glass surface, not on the text */
 .dsu-glass::after {
   content: '';
   position: fixed;
@@ -1177,9 +1177,9 @@
   .dsu-glass::after { animation: none; }
 }
 
-/* ── 背景层（液态玻璃的「背景模糊」） ────────────────────────────────
-   独立一层：自身透明，只带 backdrop-filter，
-   专门糊「玻璃背后的画面」，与底板/黑幕自身的磨砂(--dsu-glass-blur)互不影响。 */
+/* ── Background layer (the liquid glass "background blur") ────────────────────────────────
+   A separate layer: transparent itself, carrying only backdrop-filter,
+   dedicated to blurring "what's behind the glass", independent of the plate/black screen's own frosting (--dsu-glass-blur). */
 .dsu-backdrop {
   position: absolute;
   inset: 0;

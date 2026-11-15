@@ -19,7 +19,7 @@
 
 <br>
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E4%BD%9C%E5%8C%BA.png" width="900" alt="Pi-Harness 工作区：对话、项目文件与 Git 在同一个窗口">
+<img src="docs/screenshots/classic/workspace.png" width="900" alt="Pi-Harness 工作区：对话、项目文件与 Git 在同一个窗口">
 
 </div>
 
@@ -206,8 +206,8 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E4%BB%A3%E7%A0%81%E7%BC%96%E8%BE%91.png" alt="轻量文件编辑"><br><sub>轻量文件编辑</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/Git.png" alt="Git 差异、历史与提交"><br><sub>Git</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/file-editing.png" alt="轻量文件编辑"><br><sub>轻量文件编辑</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/Git.png" alt="Git 差异、历史与提交"><br><sub>Git</sub></td>
 </tr>
 </table>
 
@@ -226,8 +226,8 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E5%85%B7Harness-2.png" alt="Harness：会话状态与待处理指令"><br><sub>会话状态与待处理指令</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E5%85%B7Harness-1.png" alt="Harness 控制台"><br><sub>Harness 控制台</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/harness-tools-2.png" alt="Harness：会话状态与待处理指令"><br><sub>会话状态与待处理指令</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/harness-tools-1.png" alt="Harness 控制台"><br><sub>Harness 控制台</sub></td>
 </tr>
 </table>
 
@@ -239,8 +239,8 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93-%E5%9B%A2%E9%98%9F.png" alt="尚未启动的示例团队"><br><sub>尚未启动的示例团队：三个智能体空闲，任务均待处理</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93-%E4%BB%BB%E5%8A%A1%E4%BE%9D%E8%B5%96.png" alt="待处理任务、依赖与审核要求"><br><sub>任务依赖与审核要求</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/multi-agent-team.png" alt="尚未启动的示例团队"><br><sub>尚未启动的示例团队：三个智能体空闲，任务均待处理</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/multi-agent-task-dependencies.png" alt="待处理任务、依赖与审核要求"><br><sub>任务依赖与审核要求</sub></td>
 </tr>
 </table>
 
@@ -254,8 +254,8 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E4%BC%9A%E8%AF%9D%E5%8E%86%E5%8F%B2.png" alt="会话历史"><br><sub>会话历史</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E4%BC%9A%E8%AF%9D%E6%B8%85%E7%90%86.png" alt="会话清理"><br><sub>会话清理</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/session-history.png" alt="会话历史"><br><sub>会话历史</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/session-cleanup.png" alt="会话清理"><br><sub>会话清理</sub></td>
 </tr>
 </table>
 
@@ -271,7 +271,7 @@ flowchart TD
 | **覆盖范围** | JavaScript、TypeScript 和 Vue 提供本地导入关系分析，其他支持语言提供文件级索引；每次分析都会标明覆盖范围与限制 |
 | **适用范围** | 架构图展示支持范围内的静态依赖，不代表完整的函数调用关系 |
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84-1.png" width="900" alt="项目架构图">
+<img src="docs/screenshots/classic/project-architecture-1.png" width="900" alt="项目架构图">
 
 <a id="providers-and-models"></a>
 <a id="skills-extensions-packages-and-mcp"></a>
@@ -289,12 +289,12 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/Provider%E4%B8%8E%E6%A8%A1%E5%9E%8B-1.png" alt="Provider 与模型"><br><sub>Provider 与模型</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E8%83%BD%E5%8A%9B%E4%B8%AD%E5%BF%83-1.png" alt="能力中心"><br><sub>能力中心</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/providers-and-models-1.png" alt="Provider 与模型"><br><sub>Provider 与模型</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/capabilities-1.png" alt="能力中心"><br><sub>能力中心</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/ChatGPT%E6%8E%88%E6%9D%83.png" alt="ChatGPT 授权"><br><sub>ChatGPT 授权</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%85%8D%E8%B4%B9%E6%A8%A1%E5%9E%8B.png" alt="免费模型"><br><sub>免费模型</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/chatgpt-sign-in.png" alt="ChatGPT 授权"><br><sub>ChatGPT 授权</sub></td>
+<td width="50%"><img src="docs/screenshots/classic/free-models.png" alt="免费模型"><br><sub>免费模型</sub></td>
 </tr>
 </table>
 
@@ -306,7 +306,7 @@ flowchart TD
 
 市场提供 **15 个内置服务器模板**，包括 Memory、Context7、Playwright、Filesystem、GitHub，并支持官方 MCP 注册表搜索与分页。保存前可预览配置及目标范围。模板供按需安装，不代表已经全部启用；扫描导入和注册表条目保存后默认关闭，补齐配置后再启用。
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/MCP%E5%B8%82%E5%9C%BA.png" width="900" alt="MCP 市场与内置服务器模板">
+<img src="docs/screenshots/classic/mcp-market.png" width="900" alt="MCP 市场与内置服务器模板">
 
 <a id="agent-settings"></a>
 
@@ -316,13 +316,13 @@ flowchart TD
 
 | 页面 | 可以设置 | |
 | :-- | :-- | :-- |
-| **AI** | 默认思考级别、自动压缩、错误重试与工作区偏好 | [截图](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/AI.png) |
-| **实时语音** | 工作区通话使用的语音服务与账号 | [截图](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%AE%9E%E6%97%B6%E8%AF%AD%E9%9F%B3.png) |
-| **快捷键** | 为命令面板、打开设置、新建会话和关闭标签页录制组合键，或恢复默认 | [截图](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%BF%AB%E6%8D%B7%E9%94%AE.png) |
-| **指令** | 全局或项目指令 | [截图](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%8C%87%E4%BB%A4.png) |
-| **MCP** | 各作用范围内的 MCP 服务器 | [截图](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/MCP%E6%9C%8D%E5%8A%A1%E5%99%A8.png) |
-| **子智能体** | 可复用的子智能体，配置角色、指令、模型、思考级别与工具；选择共享工作区或独立 worktree，再启动任务或将模板用于团队 | [截图](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%AD%90%E6%99%BA%E8%83%BD%E4%BD%93.png) |
-| **远程主机** | 用地址和配对令牌配对运行 pi-host 的主机 | [截图](docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA.png) |
+| **AI** | 默认思考级别、自动压缩、错误重试与工作区偏好 | [截图](docs/screenshots/classic/AI.png) |
+| **实时语音** | 工作区通话使用的语音服务与账号 | [截图](docs/screenshots/classic/realtime-voice.png) |
+| **快捷键** | 为命令面板、打开设置、新建会话和关闭标签页录制组合键，或恢复默认 | [截图](docs/screenshots/classic/keyboard-shortcuts.png) |
+| **指令** | 全局或项目指令 | [截图](docs/screenshots/classic/instructions.png) |
+| **MCP** | 各作用范围内的 MCP 服务器 | [截图](docs/screenshots/classic/mcp-servers.png) |
+| **子智能体** | 可复用的子智能体，配置角色、指令、模型、思考级别与工具；选择共享工作区或独立 worktree，再启动任务或将模板用于团队 | [截图](docs/screenshots/classic/subagents.png) |
+| **远程主机** | 用地址和配对令牌配对运行 pi-host 的主机 | [截图](docs/screenshots/classic/remote-hosts.png) |
 
 <a id="realtime-voice"></a>
 
@@ -337,7 +337,7 @@ flowchart TD
 
 近期上下文共享默认关闭；主动开启后，只共享最近六条纯文本消息，不包含附件和工具结果。通话中提出的工作请求经你确认后才会发送到工作会话。
 
-<img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E5%B7%A5%E4%BD%9C%E5%8C%BA%E8%AF%AD%E9%9F%B3.png" width="900" alt="工作区语音：通话前的设置与准备">
+<img src="docs/screenshots/classic/workspace-voice.png" width="900" alt="工作区语音：通话前的设置与准备">
 
 <a id="remote-hosts"></a>
 
@@ -355,9 +355,9 @@ flowchart TD
 
 <table>
 <tr>
-<td width="33%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%A1%8C%E5%AE%A0%E8%AE%BE%E7%BD%AE.png" alt="桌宠设置与滑块调节"><br><sub>设置与滑块</sub></td>
-<td width="33%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%A1%8C%E5%AE%A0%E8%8F%9C%E5%8D%95.png" alt="右键菜单"><br><sub>右键菜单</sub></td>
-<td width="33%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/%E6%A1%8C%E5%AE%A0%E5%8A%A8%E4%BD%9C.png" alt="动作搜索与选择"><br><sub>动作搜索</sub></td>
+<td width="33%"><img src="docs/screenshots/classic/pet-settings.png" alt="桌宠设置与滑块调节"><br><sub>设置与滑块</sub></td>
+<td width="33%"><img src="docs/screenshots/classic/pet-menu.png" alt="右键菜单"><br><sub>右键菜单</sub></td>
+<td width="33%"><img src="docs/screenshots/classic/pet-actions.png" alt="动作搜索与选择"><br><sub>动作搜索</sub></td>
 </tr>
 </table>
 
@@ -380,19 +380,19 @@ flowchart TD
 
 <table>
 <tr>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E5%A4%A7%E6%98%8E/%E9%9B%AA%E5%A2%83%E6%9C%9D%E8%87%A3.png" alt="大明·雪境朝臣"><br><sub>大明·雪境朝臣</sub></td>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E5%A4%A7%E6%98%8E/%E9%9B%AA%E5%A4%9C%E7%AC%9B%E5%A7%AC.png" alt="大明·雪夜笛姬"><br><sub>大明·雪夜笛姬</sub></td>
+<td width="50%"><img src="docs/themes/ming/snow-court-minister.png" alt="大明·雪境朝臣"><br><sub>大明·雪境朝臣</sub></td>
+<td width="50%"><img src="docs/themes/ming/snow-night-flutist.png" alt="大明·雪夜笛姬"><br><sub>大明·雪夜笛姬</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E5%A4%A7%E6%98%8E/%E6%9C%88%E5%9F%8E%E4%B9%A6%E5%A7%AC.png" alt="大明·月城书姬"><br><sub>大明·月城书姬</sub></td>
-<td width="50%"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E6%98%9F%E8%88%B0/%E9%9C%9C%E6%98%9F%E9%A2%86%E8%88%AA.png" alt="星舰驾驶舱"><br><sub>星舰驾驶舱</sub></td>
+<td width="50%"><img src="docs/themes/ming/moon-city-scribe.png" alt="大明·月城书姬"><br><sub>大明·月城书姬</sub></td>
+<td width="50%"><img src="docs/themes/starship/frost-star-navigator.png" alt="星舰驾驶舱"><br><sub>星舰驾驶舱</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E5%A4%A7%E6%98%8E/%E9%80%9A%E7%94%A8%E8%AE%BE%E7%BD%AE.png" alt="大明·通用设置"><br><sub>大明·通用设置</sub></td>
-<td width="50%"><img src="docs/%E5%8A%9F%E8%83%BD%E7%95%8C%E9%9D%A2/%E5%A4%A7%E6%98%8E/%E4%B8%BB%E9%A2%98%E7%9A%AE%E8%82%A4%E5%BA%93.png" alt="主题皮肤库"><br><sub>大明·主题皮肤库</sub></td>
+<td width="50%"><img src="docs/screenshots/ming/general-settings.png" alt="大明·通用设置"><br><sub>大明·通用设置</sub></td>
+<td width="50%"><img src="docs/screenshots/ming/theme-gallery.png" alt="主题皮肤库"><br><sub>大明·主题皮肤库</sub></td>
 </tr>
 <tr>
-<td colspan="2"><img src="docs/%E4%B8%BB%E9%A2%98%E5%B1%95%E7%A4%BA/%E7%BB%8F%E5%85%B8%E4%B8%BB%E9%A2%98/macos27.png" alt="macOS 27 · Liquid Ether"><br><sub>macOS 27 · Liquid Ether</sub></td>
+<td colspan="2"><img src="docs/themes/classic/macos27.png" alt="macOS 27 · Liquid Ether"><br><sub>macOS 27 · Liquid Ether</sub></td>
 </tr>
 </table>
 
@@ -468,15 +468,15 @@ pnpm compile
 
 <table align="center">
   <tr>
-    <td align="center"><a href="docs/社区/wechat-contact.png"><img src="docs/社区/wechat-contact.png" width="240" alt="扫码添加微信好友" /></a></td>
-    <td align="center"><a href="docs/社区/qq-contact.png"><img src="docs/社区/qq-contact.png" width="240" alt="扫码添加 QQ 好友" /></a></td>
+    <td align="center"><a href="docs/community/wechat-contact.png"><img src="docs/community/wechat-contact.png" width="240" alt="扫码添加微信好友" /></a></td>
+    <td align="center"><a href="docs/community/qq-contact.png"><img src="docs/community/qq-contact.png" width="240" alt="扫码添加 QQ 好友" /></a></td>
   </tr>
 </table>
 
 欢迎加入 Pi-Harness QQ 交流群（**1109717308**），聊聊使用心得和开发问题。
 
 <p align="center">
-  <a href="docs/社区/qq-group-card.jpg"><img src="docs/社区/qq-group-card.jpg" width="320" alt="扫码加入 Pi-Harness QQ 交流群 1109717308" /></a>
+  <a href="docs/community/qq-group-card.jpg"><img src="docs/community/qq-group-card.jpg" width="320" alt="扫码加入 Pi-Harness QQ 交流群 1109717308" /></a>
 </p>
 
 如果 Pi-Harness 让你用 Pi 更顺手，**点一个 ⭐ 能帮更多人发现它。**
@@ -493,7 +493,7 @@ pnpm compile
 如果 Pi-Harness 帮你省下了时间，欢迎用微信扫码请我喝杯咖啡。金额随心，每一份支持都能帮我继续维护项目、改进功能和修复问题。谢谢你支持这个开源项目！
 
 <p align="center">
-  <a href="docs/社区/wechat-pay.png"><img src="docs/社区/wechat-pay.png" width="280" alt="微信赞赏二维码，请作者喝杯咖啡" /></a>
+  <a href="docs/community/wechat-pay.png"><img src="docs/community/wechat-pay.png" width="280" alt="微信赞赏二维码，请作者喝杯咖啡" /></a>
 </p>
 
 ## 致谢与作者

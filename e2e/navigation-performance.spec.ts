@@ -9,7 +9,7 @@ test('switches menus without rechecking executables and keeps explicit system re
 }) => {
   await page.evaluate(() => window.piSwitch.runtimes.switch('node', { source: 'system' }))
   await page
-    .getByRole('button', { name: /^(Refresh|刷新)$/ })
+    .getByRole('button', { name: /^(Refresh)$/ })
     .first()
     .waitFor()
   await page.waitForTimeout(200)
@@ -50,10 +50,10 @@ test('switches menus without rechecking executables and keeps explicit system re
     await page.locator('a[href="#/models"]').click()
     await expect(page.getByTestId('model-management-view')).toBeVisible()
     await openOverflowPage(page, 'skills')
-    await expect(page.getByRole('heading', { name: /Capability|能力/, level: 1 })).toBeVisible()
+    await expect(page.getByRole('heading', { name: /Capability/, level: 1 })).toBeVisible()
     await page.locator('a[href="#/settings"]').click()
     await page.getByTestId('settings-section-overview').click()
-    await expect(page.getByRole('heading', { name: /Overview|概览/ })).toBeVisible()
+    await expect(page.getByRole('heading', { name: /Overview/ })).toBeVisible()
     // Wait for actual capability reads as well as the painted route.
     await page.evaluate(() => window.piSwitch.skills.list())
   }
@@ -69,7 +69,7 @@ test('switches menus without rechecking executables and keeps explicit system re
   expect(await counters()).toEqual({ detects: 0, probes: 0 })
 
   await page
-    .getByRole('button', { name: /^(Refresh|刷新)$/ })
+    .getByRole('button', { name: /^(Refresh)$/ })
     .first()
     .click()
   await expect.poll(async () => (await counters()).detects).toBe(1)

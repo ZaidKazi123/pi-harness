@@ -5,8 +5,8 @@ import { _electron as electron } from '@playwright/test'
 import { test as base, expect, startFixtureSession } from './fixtures'
 
 const id = 'dots-studio/dots-3-note-preview:free'
-const marker = '来自工作区文件的内容'
-const answer = '已读取工作区文件'
+const marker = 'Content from a workspace file'
+const answer = 'Read the workspace file'
 type RequestBody = {
   model: string
   max_tokens?: number
@@ -119,7 +119,7 @@ test('selects a keyless free model, runs a Pi tool and restores the original mod
   else
     await page
       .getByTestId('composer-vendor-panel')
-      .getByRole('button', { name: '免费模型' })
+      .getByRole('button', { name: 'Free Models' })
       .click()
   await expect(panel.getByRole('option').filter({ hasText: 'Fixture Text Only' })).toBeDisabled()
   await expect(panel.getByTestId('composer-free-refresh')).toBeVisible()
@@ -130,7 +130,7 @@ test('selects a keyless free model, runs a Pi tool and restores the original mod
   await expect(page.getByTestId('free-model-privacy-continue')).toHaveCount(0)
   expect(freeRequests).toHaveLength(0)
   await search.clear()
-  await expect(panel).toContainText('尚未试过')
+  await expect(panel).toContainText('not yet tried')
   await panel.getByTestId('composer-model-search').fill('free coder')
   await panel.getByTestId('composer-model-search').press('Enter')
   await expect(page.getByRole('dialog')).toContainText('Kilo')
@@ -144,10 +144,10 @@ test('selects a keyless free model, runs a Pi tool and restores the original mod
   await thinking.press('Escape')
 
   const composer = page.getByTestId('chat-composer')
-  await composer.getByRole('button', { name: '权限模式', exact: true }).click()
-  await page.getByRole('option', { name: /完全访问权限/ }).click()
+  await composer.getByRole('button', { name: 'Permission mode', exact: true }).click()
+  await page.getByRole('option', { name: /Full access/ }).click()
   const editor = page.getByTestId('composer-editor')
-  const prompt = `请读取 ${path.join(workspaceRoot, 'demo.txt')}`
+  const prompt = `Please read ${path.join(workspaceRoot, 'demo.txt')}`
   await editor.fill(prompt)
   await editor.press('Enter')
   await expect(page.getByTestId('chat-scroller')).toContainText(answer)

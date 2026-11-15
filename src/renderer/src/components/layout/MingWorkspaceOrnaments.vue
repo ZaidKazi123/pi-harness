@@ -81,21 +81,21 @@ withDefaults(defineProps<{ zhangJuzheng?: boolean }>(), { zhangJuzheng: false })
         draggable="false"
       />
       <div v-if="!zhangJuzheng" class="ming-sidebar-scroll__copy">
-        <strong>大明 · 星图</strong>
-        <span>山河入卷 · 代码成章</span>
-        <span>清风伴思 · 长夜有灯</span>
+        <strong>Great Ming · Star Chart</strong>
+        <span>Rivers and mountains in the scroll · Code becomes prose</span>
+        <span>A breeze for thought · A lamp through the long night</span>
       </div>
-      <span v-if="!zhangJuzheng" class="ming-sidebar-scroll__footer"> 千里江山，智在掌控 </span>
+      <span v-if="!zhangJuzheng" class="ming-sidebar-scroll__footer"> A thousand miles of land, wisdom in hand </span>
     </div>
     <div v-if="zhangJuzheng" class="zhang-juzheng-maxim" data-testid="zhang-juzheng-maxim">
-      <strong>长风破浪会有时</strong>
-      <span>直挂云帆济沧海</span>
-      <small>为天下计</small>
+      <strong>A day will come to ride the wind and break the waves</strong>
+      <span>Hoist the cloud-high sail across the vast sea</span>
+      <small>For the good of all</small>
     </div>
     <div v-if="zhangJuzheng" class="zhang-juzheng-vow" data-testid="zhang-juzheng-vow">
-      <span>浩然之道</span>
-      <span>在于坚守</span>
-      <span>而不在于困顿</span>
+      <span>The noble way</span>
+      <span>lies in perseverance</span>
+      <span>not in hardship</span>
     </div>
     <template v-if="zhangJuzheng">
       <div class="zhang-edge-scroll zhang-edge-scroll--top" data-testid="zhang-edge-scroll-top">

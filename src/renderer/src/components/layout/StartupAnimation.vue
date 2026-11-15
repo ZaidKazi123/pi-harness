@@ -50,13 +50,13 @@ const leaving = ref(false)
 const status = computed(() => {
   switch (startupPhase.value) {
     case 'settings':
-      return '正在读取设置…'
+      return 'Reading settings…'
     case 'services':
-      return '正在检测运行环境与服务…'
+      return 'Checking the runtime environment and services…'
     case 'ready':
-      return '检测完成'
+      return 'Checks complete'
     default:
-      return '正在启动…'
+      return 'Starting…'
   }
 })
 
@@ -537,7 +537,7 @@ onBeforeUnmount(() => {
                 node: 'Node.js',
                 npm: 'npm',
                 pi: 'Pi Agent',
-                config: '配置文件'
+                config: 'Config file'
               }[id]
             }}
           </dt>
@@ -554,7 +554,7 @@ onBeforeUnmount(() => {
     data-testid="startup-animation"
     data-startup-variant="pending"
     role="status"
-    aria-label="正在启动…"
+    aria-label="Starting…"
   />
 </template>
 

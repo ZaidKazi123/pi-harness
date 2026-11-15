@@ -17,7 +17,7 @@ const enabled = {
 }
 
 describe('bigfish startup gate', () => {
-  it('plays when 大肥鱼 is selected and the desktop pet is on', () => {
+  it('plays when Big Fat Fish is selected and the desktop pet is on', () => {
     expect(usesBigfishStartup(enabled)).toBe(true)
   })
 
@@ -141,10 +141,10 @@ describe('bigfish startup gate', () => {
     })
     expect(startupBrandCopy('ropeGemini')?.orgZh).toBe('Google Gemini')
     expect(startupBrandCopy('ropeGpt')?.orgZh).toBe('ChatGPT')
-    expect(startupBrandCopy('ropeGlm')?.orgZh).toBe('智谱 GLM')
+    expect(startupBrandCopy('ropeGlm')?.orgZh).toBe('Zhipu GLM')
     expect(startupBrandCopy('ropeGrok')?.orgZh).toBe('xAI Grok')
-    expect(startupBrandCopy('ropeKimi')?.orgZh).toBe('月之暗面 Kimi')
-    expect(startupBrandCopy('ropeQwen')?.orgZh).toBe('通义千问')
+    expect(startupBrandCopy('ropeKimi')?.orgZh).toBe('Moonshot Kimi')
+    expect(startupBrandCopy('ropeQwen')?.orgZh).toBe('Alibaba Qwen')
     for (const style of [
       'ropeClaude',
       'ropeGemini',
@@ -160,7 +160,7 @@ describe('bigfish startup gate', () => {
     }
   })
 
-  it('keeps 大肥鱼 off a selected theme and on when no theme is selected', () => {
+  it('keeps Big Fat Fish off a selected theme and on when no theme is selected', () => {
     const petOn = { ...enabled, mascotUnlocked: true as const }
     expect(usesCinematicStartup({ ...petOn, mascotStyle: 'deepseekPoster' })).toBe(true)
     expect(usesCinematicStartup({ ...petOn, mascotStyle: 'deepseekDream' })).toBe(true)

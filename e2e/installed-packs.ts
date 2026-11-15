@@ -238,9 +238,9 @@ export function installThemeFixtures(userData: string): void {
 }
 
 const LABELED_CLIPS = [
-  { key: 'indesktop-lion-dance', label: '舞狮头', frames: 200 },
-  { key: 'classic-hug', label: '拥抱', frames: 2 },
-  { key: 'playful-sign-flip', label: '翻牌', frames: 8 }
+  { key: 'indesktop-lion-dance', label: 'Lion dance', frames: 200 },
+  { key: 'classic-hug', label: 'Hug', frames: 2 },
+  { key: 'playful-sign-flip', label: 'Sign flip', frames: 8 }
 ] as const
 
 /** Canvas jelly pets and a small BigFish pack. Official artwork stays in the market. */
@@ -288,7 +288,7 @@ export function installPetFixtures(userData: string): void {
       JSON.stringify({
         formatVersion: 1,
         id: 'bigfish',
-        name: '大肥鱼',
+        name: 'Big Fat Fish',
         nameEn: 'BigFish',
         author: 'wangmiao',
         version: '1.0.0',

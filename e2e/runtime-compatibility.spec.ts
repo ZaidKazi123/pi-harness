@@ -120,12 +120,12 @@ test('keeps thinking and tools working after a successful connection probe, with
     await expect(page.getByText('Local thinking fixture', { exact: true }).last()).toBeVisible()
     await page
       .getByTestId('model-action-cell')
-      .getByRole('button', { name: /测试|Test/, exact: true })
+      .getByRole('button', { name: /Test/, exact: true })
       .click()
     const dialog = page.getByRole('dialog')
     // Loading intentionally hides the label, so retain the same primary button locator.
     const run = dialog.locator('button[data-variant="primary"]')
-    await expect(run).toHaveText(/开始测试|运行测试|Start test|Run test/)
+    await expect(run).toHaveText(/Start test|Run test/)
     const radius = await run.evaluate((button) => getComputedStyle(button).borderTopLeftRadius)
     expect(parseFloat(radius)).toBeGreaterThan(0)
     await page.keyboard.press('Tab')
@@ -147,10 +147,7 @@ test('keeps thinking and tools working after a successful connection probe, with
       radius
     )
     await page.screenshot({ path: path.join(testInfo.outputDir, 'connection-rounded.png') })
-    await dialog
-      .getByRole('button', { name: /关闭|Close/, exact: true })
-      .last()
-      .click()
+    await dialog.getByRole('button', { name: /Close/, exact: true }).last().click()
     const started = await startFixtureSession(page, {
       cwd: workspaceRoot,
       provider: 'openai-compatible',

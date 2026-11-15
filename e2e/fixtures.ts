@@ -70,7 +70,7 @@ export const test = base.extend<Fixtures>({
   },
   testUserData: async ({ themePacks, petPacks }, use) => {
     const userData = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'pi-harness-e2e-')))
-    fs.writeFileSync(path.join(userData, 'settings.json'), JSON.stringify({ language: 'zh-CN' }))
+    fs.writeFileSync(path.join(userData, 'settings.json'), JSON.stringify({ language: 'en-US' }))
     if (themePacks) installThemeFixtures(userData)
     if (petPacks) installPetFixtures(userData)
     // Packaged builds schedule an update check during startup. Disable it before

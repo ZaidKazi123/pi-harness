@@ -14,7 +14,7 @@ import {
 } from './helpers'
 
 const sessionId = 'docs-demo-settings'
-const output = (name: string) => `功能界面/经典主题/${name}.png`
+const output = (name: string) => `screenshots/classic/${name}.png`
 
 function writeJson(file: string, value: unknown) {
   fs.mkdirSync(path.dirname(file), { recursive: true })
@@ -199,7 +199,7 @@ test('capture general, AI, voice, and keyboard settings', async ({ page }) => {
   await go(page, '#/settings/general')
   await expect(page.getByRole('button', { name: 'Theme', exact: true })).toBeVisible()
   await expect(page.getByText('Soft Light', { exact: true })).toBeVisible()
-  await cleanShot(page, '通用设置')
+  await cleanShot(page, 'general-settings')
 
   await go(page, '#/settings/ai')
   await expect(page.getByTestId('agent-settings-ai').locator('form')).toBeVisible()
@@ -209,7 +209,7 @@ test('capture general, AI, voice, and keyboard settings', async ({ page }) => {
   await go(page, '#/settings/voice')
   await expect(page.getByTestId('agent-settings-voice').locator('form')).toBeVisible()
   await expect(page.getByText('Enable realtime voice', { exact: true })).toBeVisible()
-  await cleanShot(page, '实时语音')
+  await cleanShot(page, 'realtime-voice')
 
   await go(page, '#/settings/shortcuts')
   await expect(page.getByTestId('agent-settings-shortcuts')).toBeVisible()
@@ -217,7 +217,7 @@ test('capture general, AI, voice, and keyboard settings', async ({ page }) => {
     page.getByRole('button', { name: 'Record shortcut New conversation', exact: true })
   ).toContainText('⇧')
   await expect(page.getByRole('heading', { name: 'File editor', exact: true })).toBeVisible()
-  await cleanShot(page, '快捷键')
+  await cleanShot(page, 'keyboard-shortcuts')
 })
 
 test('capture instructions, MCP, subagents, and remote hosts', async ({ page }) => {
@@ -226,31 +226,31 @@ test('capture instructions, MCP, subagents, and remote hosts', async ({ page }) 
   const instructions = page.getByRole('textbox', { name: 'Instructions', exact: true })
   await expect(instructions).toBeVisible()
   await expect(instructions).toHaveValue(/# Aurora Studio/)
-  await cleanShot(page, '指令')
+  await cleanShot(page, 'instructions')
 
   await go(page, '#/settings/mcp')
   await expect(page.getByTestId('mcp-server-memory')).toBeVisible()
   await expect(page.getByTestId('mcp-server-git')).toBeVisible()
   await expect(page.getByTestId('mcp-server-playwright')).toBeVisible()
-  await cleanShot(page, 'MCP服务器')
+  await cleanShot(page, 'mcp-servers')
 
   await page.getByRole('button', { name: 'Marketplace', exact: true }).click()
   await expect(page.getByRole('heading', { name: 'MCP marketplace', exact: true })).toBeVisible()
   await expect(page.getByText('Sequential Thinking', { exact: true })).toBeVisible()
   await expect(page.getByText(/Included catalog · 15/)).toBeVisible()
-  await cleanShot(page, 'MCP市场')
+  await cleanShot(page, 'mcp-market')
 
   await go(page, '#/settings/subagents')
   await expect(page.getByTestId('subagent-Architect')).toBeVisible()
   await expect(page.getByTestId('subagent-Reviewer')).toBeVisible()
   await expect(page.getByTestId('subagent-Documentation Writer')).toBeVisible()
-  await cleanShot(page, '子智能体')
+  await cleanShot(page, 'subagents')
 
   await go(page, '#/settings/remote')
   await expect(page.getByTestId('remote-host-Aurora Build Server')).toBeVisible()
   await expect(page.getByTestId('remote-host-Design Review workstation')).toBeVisible()
   await expect(page.getByText('Disconnected', { exact: true }).first()).toBeVisible()
-  await cleanShot(page, '远程主机')
+  await cleanShot(page, 'remote-hosts')
 })
 
 test('capture provider and model management', async ({ page }) => {
@@ -259,12 +259,12 @@ test('capture provider and model management', async ({ page }) => {
   await expect(
     page.getByTestId('provider-row').filter({ hasText: 'openai-compatible' })
   ).toBeVisible()
-  await cleanShot(page, 'Provider与模型-1')
+  await cleanShot(page, 'providers-and-models-1')
 
   await page.getByTestId('provider-tab-models').click()
   await expect(page.getByTestId('model-action-cell')).toHaveCount(2)
   await expect(page.getByText('Claude Sonnet 4', { exact: true })).toBeVisible()
-  await cleanShot(page, 'Provider与模型-2')
+  await cleanShot(page, 'providers-and-models-2')
 })
 
 async function mockCapabilities(electronApp: ElectronApplication) {
@@ -379,16 +379,16 @@ test('capture capability skills, installed packages, and featured collections', 
   await page.getByRole('tab', { name: 'Skills', exact: true }).click()
   await expect(page.getByTestId('featured-capability-native-pi')).toBeVisible()
   await expect(page.getByText('Native runtime', { exact: true })).toBeVisible()
-  await cleanShot(page, '能力中心-1')
+  await cleanShot(page, 'capabilities-1')
 
   await page.getByRole('tab', { name: 'Installed', exact: true }).click()
   await expect(page.getByText('pi-project-toolkit', { exact: true }).first()).toBeVisible()
   await expect(page.getByText('pi-browser-tools', { exact: true })).toBeVisible()
   await expect(page.getByText('2.4.1', { exact: true }).first()).toBeVisible()
-  await cleanShot(page, '能力中心-2')
+  await cleanShot(page, 'capabilities-2')
 
   await page.getByRole('tab', { name: 'Featured', exact: true }).click()
   await expect(page.getByTestId('market-collection-core-development')).toBeVisible()
   await expect(page.getByText('Skills For Real Engineers', { exact: true }).first()).toBeVisible()
-  await cleanShot(page, '能力中心-3')
+  await cleanShot(page, 'capabilities-3')
 })

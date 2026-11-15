@@ -97,13 +97,11 @@ test('continues a Codex conversation in its recorded directory without importing
     await page.getByTestId('history-continue-task').click()
     const dialog = page.getByRole('dialog')
     await expect(dialog.getByTestId('handoff-project-path')).toHaveText(project)
-    await expect(
-      dialog.getByRole('textbox', { name: /接下来希望 Pi 做什么|What should Pi do next/ })
-    ).toHaveValue(/请先熟悉这个项目和历史对话|Please familiarize yourself with this project/)
+    await expect(dialog.getByRole('textbox', { name: /What should Pi do next/ })).toHaveValue(
+      /Please familiarize yourself with this project/
+    )
     await expect(dialog.getByRole('combobox')).toHaveCount(0)
-    await expect(
-      dialog.getByRole('button', { name: /保存项目关联|Save project link/ })
-    ).toHaveCount(0)
+    await expect(dialog.getByRole('button', { name: /Save project link/ })).toHaveCount(0)
     expect(roots()).not.toContain(project)
     expect(requests).toHaveLength(0)
     await page.screenshot({ path: path.join(testInfo.outputDir, 'recorded-project-ready.png') })
@@ -121,10 +119,10 @@ test('continues a Codex conversation in its recorded directory without importing
     )
     expect(denied).toBe(true)
     await dialog
-      .getByRole('textbox', { name: /接下来希望 Pi 做什么|What should Pi do next/ })
+      .getByRole('textbox', { name: /What should Pi do next/ })
       .fill('Continue this task in the recorded project. Do not modify files.')
     const prepare = dialog.getByRole('button', {
-      name: /生成任务交接|Prepare handoff/,
+      name: /Prepare handoff/,
       exact: true
     })
     const radius = await prepare.evaluate((button) => getComputedStyle(button).borderTopLeftRadius)
@@ -147,10 +145,10 @@ test('continues a Codex conversation in its recorded directory without importing
     await prepare.click()
     await expect(dialog.getByTestId('handoff-confirm')).toBeEnabled()
     await expect(dialog.getByRole('alert')).toHaveCount(0)
-    await dialog.getByRole('button', { name: /取消|Cancel/, exact: true }).click()
+    await dialog.getByRole('button', { name: /Cancel/, exact: true }).click()
     await page.getByTestId('history-continue-task').click()
     await dialog
-      .getByRole('textbox', { name: /接下来希望 Pi 做什么|What should Pi do next/ })
+      .getByRole('textbox', { name: /What should Pi do next/ })
       .fill('Continue the same task. Do not modify files.')
     await prepare.click()
     await expect(dialog.getByTestId('handoff-confirm')).toBeEnabled()
@@ -177,10 +175,10 @@ test('continues a Codex conversation in its recorded directory without importing
     for (const theme of ['macos27-light', 'light', 'dark'] as const) {
       if (theme !== 'macos27-light') {
         await page.locator('a[href="#/settings"]').click()
-        await page.getByRole('button', { name: /主题|Theme/, exact: true }).click()
+        await page.getByRole('button', { name: /Theme/, exact: true }).click()
         await page
           .getByRole('option', {
-            name: theme === 'light' ? /^(?:浅色|Light)$/ : /^(?:深色|Dark)$/
+            name: theme === 'light' ? /^(?:Light)$/ : /^(?:Dark)$/
           })
           .click()
         await page.locator('a[href="#/workspace"]').click()
@@ -451,7 +449,7 @@ test('browses without model calls, previews evidence, and continues through the 
     await page.getByTestId('history-provider-codex').click()
     await expect(page.getByText('Universal history fixture 中文', { exact: true })).toHaveCount(0)
     await page.getByTestId('history-provider-claude').click()
-    await page.getByRole('textbox', { name: /搜索聊天记录|Search conversations/ }).fill('初步分析')
+    await page.getByRole('textbox', { name: /Search conversations/ }).fill('初步分析')
     await expect(page.getByText('Universal history fixture 中文', { exact: true })).toBeVisible()
     await page.getByText('Universal history fixture 中文', { exact: true }).click()
     await expect(page.getByTestId('history-messages')).toContainText('已完成初步分析')
@@ -459,9 +457,9 @@ test('browses without model calls, previews evidence, and continues through the 
     expect(requests).toHaveLength(0)
     // Simulate a temporarily unreadable synthetic record, then restore it before an explicit retry.
     fs.appendFileSync(originalPath, 'x'.repeat(4 * 1024 * 1024 + 1))
-    await page.getByRole('button', { name: /刷新历史|Refresh history/, exact: true }).click()
+    await page.getByRole('button', { name: /Refresh history/, exact: true }).click()
     const sourceStatus = page.getByTestId('history-source-status')
-    await expect(sourceStatus).toContainText(/扫描失败|Scan failed/)
+    await expect(sourceStatus).toContainText(/Scan failed/)
     await expect(page.getByTestId('history-messages')).toContainText('已完成初步分析')
     expect(requests).toHaveLength(0)
     await page.screenshot({ path: path.join(testInfo.outputDir, 'history-retry-scan.png') })
@@ -472,14 +470,12 @@ test('browses without model calls, previews evidence, and continues through the 
     expect(requests).toHaveLength(0)
     await page.getByTestId('history-continue-task').click()
     await page
-      .getByRole('textbox', { name: /接下来希望 Pi 做什么|What should Pi do next/ })
+      .getByRole('textbox', { name: /What should Pi do next/ })
       .fill('Read a.ts and explain its contents. Do not change files.')
-    await page.getByRole('button', { name: /生成任务交接|Prepare handoff/, exact: true }).click()
+    await page.getByRole('button', { name: /Prepare handoff/, exact: true }).click()
     const previewStatus = page.getByTestId('handoff-status')
-    await expect(previewStatus).toContainText(/交接预览已生成|Handoff preview ready/)
-    await expect(previewStatus).toContainText(
-      /尚未重新运行项目测试|Project tests have not been rerun/
-    )
+    await expect(previewStatus).toContainText(/Handoff preview ready/)
+    await expect(previewStatus).toContainText(/Project tests have not been rerun/)
     await expect(previewStatus).toHaveAttribute('role', 'status')
     await expect(page.getByTestId('handoff-confirm')).toBeEnabled()
     const claims = (await page.getByTestId('handoff-claims').allTextContents()).join('\n')
@@ -488,7 +484,7 @@ test('browses without model calls, previews evidence, and continues through the 
     expect(claims).not.toContain('已完成引用中的任务')
     expect(claims).not.toContain('Completed code example')
     expect(claims).not.toContain('The task is not completed')
-    await expect(page.getByTestId('handoff-preview')).toContainText('历史声称已完成')
+    await expect(page.getByTestId('handoff-preview')).toContainText('Claimed completed')
     await expect(page.getByTestId('handoff-preview')).toContainText(extraRoot)
     expect(requests).toHaveLength(0)
     await page.screenshot({ path: path.join(testInfo.outputDir, 'universal-handoff.png') })
@@ -681,9 +677,7 @@ test('keeps history below Git for saved navigation and filters dates with the th
   await expect(page.getByText('Calendar history older', { exact: true })).toBeVisible()
   const trigger = page.getByTestId('history-date-range')
   await expect(trigger).toHaveCount(1)
-  await expect(
-    page.getByRole('button', { name: /起始日期|From date|结束日期|To date/, exact: true })
-  ).toHaveCount(0)
+  await expect(page.getByRole('button', { name: /From date|To date/, exact: true })).toHaveCount(0)
   await trigger.click()
   const calendar = page.getByTestId('history-range-calendar')
   await expect(calendar).toBeVisible()
@@ -694,15 +688,15 @@ test('keeps history below Git for saved navigation and filters dates with the th
   // A reverse selection is normalized as one interval; the first click never applies a partial filter.
   await day(now).click()
   await expect(calendar).toBeVisible()
-  await expect(calendar).toContainText(/请选择结束日期|Select an end date/)
+  await expect(calendar).toContainText(/Select an end date/)
   await expect(page.getByText('Calendar history older', { exact: true })).toBeVisible()
   if (older.getMonth() !== now.getMonth())
-    await calendar.getByRole('button', { name: /上个月|Previous month/ }).click()
+    await calendar.getByRole('button', { name: /Previous month/ }).click()
   await day(older).click()
   await expect(calendar).toBeHidden()
   await expect(page.getByText('Calendar history newer', { exact: true })).toBeVisible()
   await expect(page.getByText('Calendar history older', { exact: true })).toBeVisible()
-  await expect(trigger).not.toHaveText(/^(日期范围|Date range)$/)
+  await expect(trigger).not.toHaveText(/^(Date range)$/)
   await trigger.click()
   await expect(day(older)).toHaveAttribute('data-selection-start', 'true')
   await page.screenshot({ path: path.join(testInfo.outputDir, 'history-range-selected.png') })
@@ -726,15 +720,15 @@ test('keeps history below Git for saved navigation and filters dates with the th
   await expect(calendar).toBeHidden()
   await trigger.click()
   await expect(day(older)).toHaveAttribute('data-selection-start', 'true')
-  await calendar.getByRole('button', { name: /清除范围|Clear range/ }).click()
-  await expect(trigger).toHaveText(/^(日期范围|Date range)$/)
+  await calendar.getByRole('button', { name: /Clear range/ }).click()
+  await expect(trigger).toHaveText(/^(Date range)$/)
   await expect(page.getByText('Calendar history newer', { exact: true })).toBeVisible()
   await trigger.click()
-  await calendar.getByRole('button', { name: /今天|Today/, exact: true }).click()
+  await calendar.getByRole('button', { name: /Today/, exact: true }).click()
   await expect(page.getByText('Calendar history newer', { exact: true })).toBeVisible()
   await expect(page.getByText('Calendar history older', { exact: true })).toHaveCount(0)
   await trigger.click()
-  await calendar.getByRole('button', { name: /清除范围|Clear range/ }).click()
+  await calendar.getByRole('button', { name: /Clear range/ }).click()
   await expect(page.getByText('Calendar history older', { exact: true })).toBeVisible()
   for (const theme of ['dark', 'macos27-light'] as const) {
     await page.evaluate((theme) => window.piSwitch!.settings.set({ theme }), theme)
@@ -769,10 +763,10 @@ test('opens history from the whole card and keeps continuation separate', async 
   const source = path.join(testUserData, 'history-home', '.codex', 'sessions')
   fs.mkdirSync(source, { recursive: true })
   const titles = [
-    '优化会话列表，让标题、项目信息和整张卡片的留白都可以点击查看历史，并保持继续任务独立',
-    '修复日期筛选，并适配浅色与深色主题',
-    '整理项目导航与会话来源',
-    '检查会话同步结果'
+    'Improve the conversation list so the title, project info and the whole card can be clicked to view history, while keeping Continue separate',
+    'Fix the date filter and support light and dark themes',
+    'Tidy project navigation and conversation sources',
+    'Check conversation sync results'
   ]
   const control = '<external_codex_apps_open_page>{"page_id":null}</external_codex_apps_open_page>'
   for (let i = 0; i < 30; i++) {
@@ -818,7 +812,7 @@ test('opens history from the whole card and keeps continuation separate', async 
   await page.getByTestId('history-provider-codex').click()
   const list = page.getByTestId('history-session-list')
   const card = (title: string) =>
-    list.getByRole('button', { name: new RegExp(`^(查看历史|View history): ${title}$`) })
+    list.getByRole('button', { name: new RegExp(`^View history: ${title}$`) })
   const header = page.getByTestId('history-detail-header')
   await card(titles[0]!).getByText(titles[0]!, { exact: true }).click()
   await expect(header.getByRole('heading')).toHaveText(titles[0]!)
@@ -844,7 +838,7 @@ test('opens history from the whole card and keeps continuation separate', async 
   await expect(page.getByTestId('history-messages')).toContainText('Read-only history for card 30')
   await page.getByTestId('history-continue-task').click()
   await expect(page.getByRole('dialog')).toBeVisible()
-  await page.getByRole('button', { name: /取消|Cancel/, exact: true }).click()
+  await page.getByRole('button', { name: /Cancel/, exact: true }).click()
   await page.evaluate(() => window.piSwitch!.settings.set({ theme: 'dark' }))
   await page.reload()
   await expect(page.getByTestId('startup-animation')).toBeHidden({ timeout: 12_000 })

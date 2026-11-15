@@ -35,7 +35,7 @@ test('loads, selects, persists, and clears a declarative custom skin', async ({
   await page.locator('a[href="#/settings"]').click()
   await page.getByTestId('settings-section-mascot').click()
   await page.getByTestId('mascot-unlock-answer').fill('1024')
-  await page.getByRole('button', { name: /解锁|Unlock/, exact: true }).click()
+  await page.getByRole('button', { name: /Unlock/, exact: true }).click()
 
   await expect(page.getByTestId('custom-skin-import')).toBeVisible()
   await expect(page.getByTestId('custom-skin-create-project')).toBeVisible()

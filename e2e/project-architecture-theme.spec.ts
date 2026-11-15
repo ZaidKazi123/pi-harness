@@ -21,7 +21,7 @@ test('architecture surfaces stay readable over scene skins and follow the active
   await page.getByTestId('workspace-import-project').click()
   await page.getByTestId('workspace-architecture').click()
   await page.getByTestId('analyze-project').click()
-  await expect(page.getByTestId('architecture-status')).toContainText(/complete|完成/, {
+  await expect(page.getByTestId('architecture-status')).toContainText(/complete/, {
     timeout: 45000
   })
   await page.evaluate(() => window.piSwitch!.settings.unlockMascot('1024'))

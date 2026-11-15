@@ -24,7 +24,7 @@ test('uses a conventional settings sidebar and displays the current application 
   const layout = page.getByTestId('settings-layout')
   const sidebar = page.getByTestId('settings-home')
   await expect(layout).toBeVisible()
-  await expect(page.locator('h1').filter({ hasText: /通用|General/ })).toBeVisible()
+  await expect(page.locator('h1').filter({ hasText: /General/ })).toBeVisible()
   await expect(page.locator('.settings-home-card')).toHaveCount(0)
   await expect(sidebar.getByTestId('settings-section-general')).toHaveAttribute(
     'aria-current',
@@ -48,7 +48,7 @@ test('uses a conventional settings sidebar and displays the current application 
   }, IPC_INVOKE.systemOpenProjectLink)
 
   await sidebar.getByTestId('settings-section-about').click()
-  await expect(page.locator('h1').filter({ hasText: /关于|About/ })).toBeVisible()
+  await expect(page.locator('h1').filter({ hasText: /About/ })).toBeVisible()
   const about = page.getByTestId('about-settings')
   await expect(about).toContainText('wangmiao')
   await expect(about).toContainText('tuziling84@gmail.com')

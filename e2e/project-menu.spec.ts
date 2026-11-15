@@ -81,7 +81,7 @@ test('project actions belong to the project row; chats only rename and delete', 
   const session = page.getByTestId(`session-row-${id}`)
   await session.getByRole('button', { name: 'hi', exact: true }).click()
   const plus = project.getByRole('button', {
-    name: /新建会话: skills|New Session: skills|New session: skills/
+    name: /New Session: skills|New session: skills/
   })
   await expect(plus).toBeVisible()
   await expect(session.locator('[data-testid^="workspace-new-session-"]')).toHaveCount(0)
@@ -115,7 +115,7 @@ test('project actions belong to the project row; chats only rename and delete', 
 
   await chooseAction(electronApp, 'rename')
   await session.click({ button: 'right' })
-  const rename = page.getByRole('dialog', { name: /重命名聊天|Rename chat/ })
+  const rename = page.getByRole('dialog', { name: /Rename chat/ })
   await expect(rename).toBeVisible()
   expect(await menuItems(electronApp)).toEqual(['rename', 'delete'])
   const input = rename.getByTestId('workspace-rename-input')
@@ -136,13 +136,13 @@ test('project actions belong to the project row; chats only rename and delete', 
 
   await session.click({ button: 'right' })
   await rename.getByTestId('workspace-rename-input').fill('cancelled name')
-  await rename.getByRole('button', { name: /取消|Cancel/, exact: true }).click()
+  await rename.getByRole('button', { name: /Cancel/, exact: true }).click()
   await expect(session).toContainText('renamed chat')
   await chooseAction(electronApp, 'delete')
   await session.click({ button: 'right' })
   await page
-    .getByRole('dialog', { name: /删除会话|Delete session/ })
-    .getByRole('button', { name: /删除|Delete/, exact: true })
+    .getByRole('dialog', { name: /Delete session/ })
+    .getByRole('button', { name: /Delete/, exact: true })
     .click()
   await expect(session).toHaveCount(0)
   await expect(project).toContainText('skills')
@@ -187,7 +187,7 @@ test('project menu pin, rename, open, reveal, export, archive and remove are sco
   expect(await menuItems(electronApp)).toContain('unpin')
   await chooseAction(electronApp, 'rename')
   await rowA.click({ button: 'right' })
-  const rename = page.getByRole('dialog', { name: /重命名项目|Rename project/ })
+  const rename = page.getByRole('dialog', { name: /Rename project/ })
   await rename.getByTestId('workspace-rename-input').fill('Project Alpha')
   await rename.getByTestId('workspace-rename-save').click()
   await expect(rowA).toContainText('Project Alpha')
@@ -233,8 +233,8 @@ test('project menu pin, rename, open, reveal, export, archive and remove are sco
   await chooseAction(electronApp, 'archive-chats')
   await rowA.click({ button: 'right' })
   await page
-    .getByRole('dialog', { name: /归档聊天|Archive chats/ })
-    .getByRole('button', { name: /归档聊天|Archive chats/, exact: true })
+    .getByRole('dialog', { name: /Archive chats/ })
+    .getByRole('button', { name: /Archive chats/, exact: true })
     .click()
   await expect(page.getByTestId(`session-row-${idA}`)).toHaveCount(0)
   await expect(page.getByTestId(`session-row-${idA2}`)).toHaveCount(0)
@@ -246,8 +246,8 @@ test('project menu pin, rename, open, reveal, export, archive and remove are sco
   await chooseAction(electronApp, 'remove')
   await renamedProject.click({ button: 'right' })
   await page
-    .getByRole('dialog', { name: /删除项目|Delete project/ })
-    .getByRole('button', { name: /删除|Delete/, exact: true })
+    .getByRole('dialog', { name: /Delete project/ })
+    .getByRole('button', { name: /Delete/, exact: true })
     .click()
   await expect(renamedProject).toHaveCount(0)
   expect(fs.readFileSync(path.join(rootA, 'keep.txt'), 'utf8')).toBe('source stays')
@@ -284,9 +284,9 @@ test('project branch action creates a permanent worktree in the selected reposit
   await page.getByTestId('workspace-import-project').click()
   await chooseAction(electronApp, 'create-worktree')
   await page.getByTestId('workspace-project-0').click({ button: 'right' })
-  const create = page.getByRole('dialog', { name: /创建分支|Create branch/ })
+  const create = page.getByRole('dialog', { name: /Create branch/ })
   await create.getByTestId('project-branch-name').fill('feature-test')
-  await create.getByRole('button', { name: /新建|Create/, exact: true }).click()
+  await create.getByRole('button', { name: /Create/, exact: true }).click()
   await expect(create).toHaveCount(0)
   await expect(page.getByTestId('workspace-project-1')).toContainText('feature-test')
   const worktrees = execFileSync('git', ['-C', root, 'worktree', 'list', '--porcelain'], {

@@ -134,12 +134,12 @@ export async function verifyFileEditing({
   await save.click()
 
   const dialog = page.getByRole('dialog')
-  await expect(dialog).toContainText(/文件已被外部修改|File changed externally/)
-  await dialog.getByRole('button', { name: /取消|Cancel/ }).click()
+  await expect(dialog).toContainText(/File changed externally/)
+  await dialog.getByRole('button', { name: /Cancel/ }).click()
   expect(fs.readFileSync(filePath, 'utf8')).toBe('external change\n')
 
   await save.click()
-  await dialog.getByRole('button', { name: /覆盖文件|Overwrite file/ }).click()
+  await dialog.getByRole('button', { name: /Overwrite file/ }).click()
   await expect.poll(() => fs.readFileSync(filePath, 'utf8')).toBe('export const value = 3\n')
 }
 

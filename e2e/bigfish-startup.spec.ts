@@ -2,7 +2,7 @@ import { expect, test } from './fixtures'
 
 test.use({ petPacks: true })
 
-test('plays the bundled boot sequence when 大肥鱼 is enabled', async ({ page }) => {
+test('plays the bundled boot sequence when Big Fat Fish is enabled', async ({ page }) => {
   await page.evaluate(async () => {
     const settings = await window.piSwitch.settings.get()
     await window.piSwitch.settings.set({
@@ -27,7 +27,7 @@ test('keeps the particle startup when the desktop pet is off', async ({ page }) 
   await page.reload()
 
   await expect(page.locator('#dsh-startup-root')).toHaveCount(0)
-  await expect(page.getByTestId('startup-animation')).toContainText('检测')
+  await expect(page.getByTestId('startup-animation')).toContainText('Check')
   await expect(page.getByTestId('startup-animation')).toBeHidden({ timeout: 12_000 })
 
   await page.locator('a[href="#/settings/desktop-pet"]').click()

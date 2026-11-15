@@ -1005,8 +1005,8 @@ export function registerIpc(services: Services): void {
     wrap(async () => {
       const window = services.getMainWindow()
       const options: OpenDialogOptions = {
-        title: '导入 Pi-Harness 皮肤',
-        buttonLabel: '导入皮肤',
+        title: 'Import Pi-Harness skin',
+        buttonLabel: 'Import skin',
         properties: ['openDirectory']
       }
       const result = window
@@ -1020,10 +1020,10 @@ export function registerIpc(services: Services): void {
     wrap(async () => {
       const window = services.getMainWindow()
       const options: SaveDialogOptions = {
-        title: '创建自定义皮肤项目',
-        buttonLabel: '创建项目',
+        title: 'Create custom skin project',
+        buttonLabel: 'Create project',
         defaultPath: customSkins.suggestedProjectPath(),
-        nameFieldLabel: '项目目录'
+        nameFieldLabel: 'Project folder'
       }
       const result = window
         ? await dialog.showSaveDialog(window, options)
@@ -1031,7 +1031,7 @@ export function registerIpc(services: Services): void {
       if (result.canceled || !result.filePath) return null
       const project = await customSkins.createProject(result.filePath)
       const error = await shell.openPath(project.path)
-      if (error) throw new FileSystemError('无法打开皮肤项目目录', { error })
+      if (error) throw new FileSystemError('Could not open the skin project folder', { error })
       return project
     })
   )

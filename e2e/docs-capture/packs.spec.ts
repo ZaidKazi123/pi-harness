@@ -208,14 +208,14 @@ test('capture Ming and Starship workspaces', async ({ page }) => {
     {
       style: 'zhangJuzhengSnow',
       skin: 'zhang-juzheng-snow',
-      output: '主题展示/大明/雪境朝臣.png'
+      output: 'themes/ming/snow-court-minister.png'
     },
-    { style: 'mingSnow', skin: 'ming-snow', output: '主题展示/大明/雪夜笛姬.png' },
-    { style: 'mingMoon', skin: 'ming-moon', output: '主题展示/大明/月城书姬.png' },
+    { style: 'mingSnow', skin: 'ming-snow', output: 'themes/ming/snow-night-flutist.png' },
+    { style: 'mingMoon', skin: 'ming-moon', output: 'themes/ming/moon-city-scribe.png' },
     {
       style: 'starshipCockpit',
       skin: 'starship-cockpit',
-      output: '主题展示/星舰/霜星领航.png'
+      output: 'themes/starship/frost-star-navigator.png'
     }
   ] as const) {
     await activateSkin(page, capture.style, capture.skin)
@@ -238,13 +238,13 @@ test('capture Ming functional pages', async ({ page, electronApp }) => {
     page.getByTestId('git-repository-sidebar').locator('[data-git-branch="main"]')
   ).toBeVisible()
   await expect(page.getByTestId('git-commit-panel')).toBeVisible()
-  await shot(page, '功能界面/大明/Git.png')
+  await shot(page, 'screenshots/ming/Git.png')
 
   await activateSkin(page, 'mingMoon', 'ming-moon')
   await page.locator('a[href="#/models"]').click()
   await expect(page.getByTestId('provider-row')).toHaveCount(2)
   await expect(page.getByTestId('providers-table-scroll')).toBeVisible()
-  await shot(page, '功能界面/大明/Provider与模型.png')
+  await shot(page, 'screenshots/ming/providers-and-models.png')
 
   await electronApp.evaluate(({ ipcMain }, channel) => {
     ipcMain.removeHandler(channel)
@@ -260,12 +260,12 @@ test('capture Ming functional pages', async ({ page, electronApp }) => {
   await cards.first().click()
   await expect(cards.first()).toContainText('Native Pi')
   await expect(page.getByTestId('featured-capability-install')).toHaveCount(0)
-  await shot(page, '功能界面/大明/能力中心.png')
+  await shot(page, 'screenshots/ming/capabilities.png')
 
   await page.locator('a[href="#/settings"]').click()
   await expect(page.locator('h1').filter({ hasText: 'General' })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Theme', exact: true })).toBeVisible()
-  await shot(page, '功能界面/大明/通用设置.png')
+  await shot(page, 'screenshots/ming/general-settings.png')
 })
 
 test('capture Ming project architecture', async ({ page, electronApp }) => {
@@ -308,7 +308,7 @@ test('capture Ming project architecture', async ({ page, electronApp }) => {
     )
   })
   await expect(page.getByTestId('architecture-module').filter({ hasText: 'main.ts' })).toBeVisible()
-  await nativeShot(page, electronApp, '功能界面/大明/项目架构.png')
+  await nativeShot(page, electronApp, 'screenshots/ming/project-architecture.png')
 })
 
 test('capture Ming and classic theme galleries', async ({ page }) => {
@@ -338,7 +338,7 @@ test('capture Ming and classic theme galleries', async ({ page }) => {
   await expect(options.first()).toBeVisible()
   await page.evaluate(() => document.fonts.ready)
   await expect(page.locator('[data-sonner-toast]:visible')).toHaveCount(0)
-  await shot(page, '功能界面/大明/主题皮肤库.png')
+  await shot(page, 'screenshots/ming/theme-gallery.png')
 
   await grid.locator('[data-mascot-option="none"]').click()
   await expect
@@ -347,5 +347,5 @@ test('capture Ming and classic theme galleries', async ({ page }) => {
   await expect(page.locator('html')).not.toHaveAttribute('data-visual-skin')
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'soft-light')
   await options.first().scrollIntoViewIfNeeded()
-  await shot(page, '功能界面/经典主题/主题皮肤库.png')
+  await shot(page, 'screenshots/classic/theme-gallery.png')
 })

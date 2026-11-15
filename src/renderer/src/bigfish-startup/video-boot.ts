@@ -53,7 +53,7 @@ function mountBoot(underSplash: boolean, clip: DeepseekBootClip): PrimedBoot {
   installStylesheet()
   const root = element('dsvs-boot')
   root.setAttribute('role', 'dialog')
-  root.setAttribute('aria-label', '启动动画')
+  root.setAttribute('aria-label', 'Startup animation')
   root.setAttribute('data-state', 'idle')
   root.style.setProperty('--dsvs-boot-fade', `${FADE_MS}ms`)
   if (underSplash) root.style.zIndex = UNDER_SPLASH_Z
@@ -68,14 +68,14 @@ function mountBoot(underSplash: boolean, clip: DeepseekBootClip): PrimedBoot {
   const fill = element('dsvs-boot-fill')
   const bar = element('dsvs-boot-bar')
   bar.appendChild(fill)
-  const hint = element('dsvs-boot-hint', underSplash ? '正在进入…' : '正在启动…')
+  const hint = element('dsvs-boot-hint', underSplash ? 'Entering…' : 'Starting…')
   const ui = element('dsvs-boot-ui')
   ui.append(bar, hint)
   const skip = element('dsvs-boot-skip')
-  skip.append(element('dsvs-boot-skip-glyph', '▶'), element('', '点击画面跳过'))
+  skip.append(element('dsvs-boot-skip-glyph', '▶'), element('', 'Click to skip'))
   const sound = element('dsvs-boot-sound')
   sound.setAttribute('data-visible', '0')
-  sound.append(element('dsvs-boot-sound-glyph', '🔇'), element('', '开启声音'))
+  sound.append(element('dsvs-boot-sound-glyph', '🔇'), element('', 'Turn on sound'))
   root.append(video, element('dsvs-boot-veil'), ui, skip, sound)
   document.body.appendChild(root)
   video.src = clipUrl(clip)
@@ -169,7 +169,7 @@ export function playVideoBoot(options: VideoBootOptions = {}): Promise<void> {
       if (leaving) return
       if (!clipDone) return
       if (!appReady) {
-        hint.textContent = '界面就绪后自动进入'
+        hint.textContent = 'Entering automatically when the interface is ready'
         return
       }
       leave(FADE_MS)
@@ -181,7 +181,7 @@ export function playVideoBoot(options: VideoBootOptions = {}): Promise<void> {
     const markReady = () => {
       if (appReady) return
       appReady = true
-      if (!leaving) hint.textContent = '正在进入…'
+      if (!leaving) hint.textContent = 'Entering…'
       maybeEnter()
     }
     const pollReady = () => {
@@ -213,7 +213,7 @@ export function playVideoBoot(options: VideoBootOptions = {}): Promise<void> {
     later(() => {
       if (leaving || appReady) return
       root.setAttribute('data-attention', '1')
-      hint.textContent = '启动较慢，正在进入…'
+      hint.textContent = 'Startup is slow, entering…'
       markReady()
       later(() => {
         if (!leaving) leave(FADE_MS)
@@ -250,7 +250,7 @@ export function playVideoBoot(options: VideoBootOptions = {}): Promise<void> {
       void played.catch(() => {
         video.muted = true
         sound.setAttribute('data-visible', '1')
-        hint.textContent = '点左下角开声音'
+        hint.textContent = 'Click bottom-left to turn on sound'
         void video.play().catch(() => markClipDone())
       })
     }

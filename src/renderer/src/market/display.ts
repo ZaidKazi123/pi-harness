@@ -38,7 +38,7 @@ export function actionPackInfo(name: string): ActionPackInfo | null {
   return { parent: `@piharness/pet-${match[1]}`, index: Number(match[2]) }
 }
 
-/** Catalog text is written as `中文 / English`; pick the half matching the UI language. */
+/** Catalog text is written as `Chinese / English`; pick the half matching the UI language. */
 export function localizedText(value: string, locale: string): string {
   const parts = value.split(' / ')
   if (parts.length !== 2 || !parts[0].trim() || !parts[1].trim()) return value

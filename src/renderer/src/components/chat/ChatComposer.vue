@@ -156,7 +156,7 @@ const permissionModeValue = computed({
 
 // `runningIds` and the loaded-session snapshots are consulted per session via
 // `isBusy`, so a task running in another conversation never marks this one as
-// busy (e.g. showing 终止 on a session that is idle).
+// busy (e.g. showing Stop on a session that is idle).
 const busy = computed(() => agent.isBusy(sessions.currentId))
 const inputLocked = computed(
   () => props.submitting || (agent.sending && agent.sendingSessionId === sessions.currentId)

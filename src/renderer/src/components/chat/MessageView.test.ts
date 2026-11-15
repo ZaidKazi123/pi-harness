@@ -14,7 +14,7 @@ describe('MessageView', () => {
     const message: UserMessage = {
       role: 'user',
       content: [
-        { type: 'text', text: '看看这个图片信息' },
+        { type: 'text', text: 'Take a look at this image' },
         { type: 'image', data: 'TQ==', mimeType: 'image/png' }
       ]
     }
@@ -28,8 +28,8 @@ describe('MessageView', () => {
       }
     })
 
-    expect(wrapper.get('.user-message-body p').text()).toBe('看看这个图片信息')
-    expect(wrapper.get('[data-message-role="user"] .message-role-badge').text()).toBe('我')
+    expect(wrapper.get('.user-message-body p').text()).toBe('Take a look at this image')
+    expect(wrapper.get('[data-message-role="user"] .message-role-badge').text()).toBe('Me')
     expect(wrapper.get('.user-message-body img').attributes('src')).toBe(
       'data:image/png;base64,TQ=='
     )
@@ -38,7 +38,7 @@ describe('MessageView', () => {
   it('copies user message text from the hover action bar', async () => {
     const writeText = vi.fn().mockResolvedValue(undefined)
     Object.assign(navigator, { clipboard: { writeText } })
-    const message: AgentMessage = { role: 'user', content: '帮我修复这个问题' }
+    const message: AgentMessage = { role: 'user', content: 'Help me fix this issue' }
     const wrapper = mount(MessageView, {
       props: { message },
       global: {
@@ -48,7 +48,7 @@ describe('MessageView', () => {
       }
     })
     await wrapper.get('[data-testid="copy-user-message"]').trigger('click')
-    expect(writeText).toHaveBeenCalledWith('帮我修复这个问题')
+    expect(writeText).toHaveBeenCalledWith('Help me fix this issue')
   })
 
   it('copies assistant markdown text without tool blocks from the action bar', async () => {
@@ -59,7 +59,7 @@ describe('MessageView', () => {
       model: 'test-model',
       provider: 'test',
       content: [
-        { type: 'text', text: '**交付摘要**' },
+        { type: 'text', text: '**Delivery summary**' },
         { type: 'toolCall', id: 't1', name: 'bash', arguments: {} } as never
       ]
     }
@@ -72,13 +72,13 @@ describe('MessageView', () => {
       }
     })
     await wrapper.get('[data-testid="copy-assistant-message"]').trigger('click')
-    expect(writeText).toHaveBeenCalledWith('**交付摘要**')
+    expect(writeText).toHaveBeenCalledWith('**Delivery summary**')
   })
 
   it('uses the configured user display name', () => {
-    const message: AgentMessage = { role: 'user', content: '请继续' }
+    const message: AgentMessage = { role: 'user', content: 'Please continue' }
     const wrapper = mount(MessageView, {
-      props: { message, userName: '阿明' },
+      props: { message, userName: 'Alex' },
       global: {
         plugins: [i18n],
         mocks: { $t: (key: string) => key },
@@ -86,7 +86,7 @@ describe('MessageView', () => {
       }
     })
 
-    expect(wrapper.get('.message-role-badge').text()).toBe('阿明')
+    expect(wrapper.get('.message-role-badge').text()).toBe('Alex')
   })
 
   it('renders expanded Pi skill content as a compact mention', () => {
@@ -119,14 +119,14 @@ describe('MessageView', () => {
         {
           type: 'text',
           text: [
-            '## 核心能力',
+            '## Core capabilities',
             '',
-            '**读取代码**并分析。',
+            '**Read code** and analyze it.',
             '',
-            '- 第一项',
-            '- 第二项',
+            '- First item',
+            '- Second item',
             '',
-            '- [x] 已完成',
+            '- [x] Done',
             '',
             '```ts',
             'const answer = 42',
@@ -152,10 +152,16 @@ describe('MessageView', () => {
     })
     await flushPromises()
 
-    expect(wrapper.get('h2').text()).toBe('核心能力')
-    expect(wrapper.get('strong').text()).toBe('读取代码')
-    expect(wrapper.get('[data-message-role="assistant"] .message-role-badge').text()).toBe('助手')
-    expect(wrapper.findAll('li').map((item) => item.text())).toEqual(['第一项', '第二项', '已完成'])
+    expect(wrapper.get('h2').text()).toBe('Core capabilities')
+    expect(wrapper.get('strong').text()).toBe('Read code')
+    expect(wrapper.get('[data-message-role="assistant"] .message-role-badge').text()).toBe(
+      'Assistant'
+    )
+    expect(wrapper.findAll('li').map((item) => item.text())).toEqual([
+      'First item',
+      'Second item',
+      'Done'
+    ])
     expect(wrapper.get('pre code').text()).toBe('const answer = 42')
     expect(wrapper.get('input[type="checkbox"]').attributes()).toMatchObject({
       checked: '',
@@ -169,10 +175,10 @@ describe('MessageView', () => {
       role: 'assistant',
       model: 'test-model',
       provider: 'test-provider',
-      content: [{ type: 'text', text: '已完成' }]
+      content: [{ type: 'text', text: 'Done' }]
     }
     const wrapper = mount(MessageView, {
-      props: { message, assistantName: '小策' },
+      props: { message, assistantName: 'Sage' },
       global: {
         plugins: [i18n],
         mocks: { $t: (key: string) => key },
@@ -181,7 +187,7 @@ describe('MessageView', () => {
     })
     await flushPromises()
 
-    expect(wrapper.get('.message-role-badge').text()).toBe('小策')
+    expect(wrapper.get('.message-role-badge').text()).toBe('Sage')
   })
 
   it('collapses tool results by default and exposes output on demand', async () => {
@@ -196,7 +202,7 @@ describe('MessageView', () => {
       props: { message },
       global: {
         plugins: [i18n],
-        mocks: { $t: (key: string) => (key === 'workspace.roleTool' ? '工具' : key) },
+        mocks: { $t: (key: string) => (key === 'workspace.roleTool' ? 'Tool' : key) },
         stubs: {
           BranchNavigator: true,
           Dialog: true
@@ -219,7 +225,7 @@ describe('MessageView', () => {
       role: 'assistant',
       model: 'test-model',
       provider: 'test-provider',
-      content: [{ type: 'thinking', thinking: '分析问题' }]
+      content: [{ type: 'thinking', thinking: 'Analyze the problem' }]
     }
 
     const wrapper = mount(MessageView, {
@@ -237,7 +243,7 @@ describe('MessageView', () => {
 
     const details = wrapper.get('[data-testid="thinking-details"]')
     expect(details.attributes('open')).toBeUndefined()
-    expect(details.text()).toContain('分析问题')
+    expect(details.text()).toContain('Analyze the problem')
 
     await details.get('summary').trigger('click')
     expect((details.element as HTMLDetailsElement).open).toBe(true)

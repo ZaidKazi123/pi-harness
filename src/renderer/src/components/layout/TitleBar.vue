@@ -135,7 +135,7 @@ async function close() {
       <img :src="titlebarIconUrl" alt="" class="starship-titlebar-identity__icon" />
       <span>
         <strong>PI-HARNESS v{{ APP_VERSION }}</strong>
-        <small>星际驾驶舱 · 就绪</small>
+        <small>Starship cockpit · Ready</small>
       </span>
     </div>
     <div
@@ -196,8 +196,8 @@ async function close() {
         draggable="false"
       />
       <span>
-        经世济民
-        <small>修身 · 齐家 · 治国 · 平天下</small>
+        Serve the world, benefit the people
+        <small>Cultivate · Family · Govern · Peace</small>
       </span>
     </div>
 
