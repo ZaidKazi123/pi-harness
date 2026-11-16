@@ -28,8 +28,17 @@ import {
   commandMatchesPattern,
   DANGEROUS_COMMAND_PATTERNS,
   DEFAULT_POLICY_CONFIG,
-  isNetworkCommand
+  isNetworkCommand,
+  normalizeCommand
 } from './policy-defaults'
+import { shellCommandSegments } from './shell-segments'
+
+const DECISION_RANK: Record<HarnessPolicyDecision, number> = { allow: 0, ask: 1, deny: 2 }
+
+/** The stricter of two evaluations (deny > ask > allow); ties keep the first. */
+export function stricter(a: PolicyEvaluation, b: PolicyEvaluation): PolicyEvaluation {
+  return DECISION_RANK[b.decision] > DECISION_RANK[a.decision] ? b : a
+}
 
 export interface PolicyEvaluation {
   decision: HarnessPolicyDecision
@@ -147,8 +156,25 @@ export class PolicyEngine {
    * Evaluate a shell command against the full policy chain:
    * deny-list → allow-list → git policy → file policy → network policy →
    * dangerous confirmation → shell default.
+   *
+   * The whole command and every simple command inside it (`a && b`, pipes,
+   * `$(…)`, `bash -c "…"`, `/usr/bin/git`, `env X=1 cmd`, `sudo cmd`) are
+   * evaluated separately and the strictest result wins, so a harmless first
+   * command can no longer hide a denied one.
    */
   shellCommandDecision(command: string): PolicyEvaluation {
+    let result = this.simpleShellDecision(command)
+    const normalized = normalizeCommand(command)
+    for (const segment of shellCommandSegments(command)) {
+      if (segment !== normalized) result = stricter(result, this.simpleShellDecision(segment))
+      const elevated = /^(?:sudo|doas|runas)\s+(?:-\S+\s+)*(.+)$/i.exec(segment)
+      if (elevated) result = stricter(result, this.simpleShellDecision(elevated[1]))
+      if (result.decision === 'deny') break
+    }
+    return result
+  }
+
+  private simpleShellDecision(command: string): PolicyEvaluation {
     const config = this.peek()
     for (const pattern of config.shell.denyCommands) {
       if (commandMatchesPattern(command, pattern)) {

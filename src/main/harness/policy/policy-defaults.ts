@@ -37,7 +37,21 @@ const NETWORK_COMMAND_TOKENS = new Set([
   'rsync',
   'ftp',
   'telnet',
-  'ping'
+  'ping',
+  'socat',
+  'tftp',
+  'aria2c',
+  'http',
+  'https',
+  'xh',
+  // Windows / PowerShell downloaders and uploaders
+  'invoke-webrequest',
+  'invoke-restmethod',
+  'iwr',
+  'irm',
+  'start-bitstransfer',
+  'bitsadmin',
+  'certutil'
 ])
 
 const GIT_FORCE_PUSH_PATTERN = /(^|\s)(--force(-with-lease)?\b|-f\b)(\s|$)/
@@ -114,7 +128,7 @@ export function commandMatchesPattern(command: string, pattern: string): boolean
 }
 
 export function isNetworkCommand(command: string): boolean {
-  const firstToken = normalizeCommand(command).split(' ')[0] ?? ''
+  const firstToken = (normalizeCommand(command).split(' ')[0] ?? '').toLowerCase()
   return NETWORK_COMMAND_TOKENS.has(firstToken)
 }
 
