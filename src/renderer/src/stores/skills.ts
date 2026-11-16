@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { reviewPackage } from '@renderer/composables/useToolInstallReview'
 import { computed, ref } from 'vue'
 import type {
   BuiltinSkillActionResult,
@@ -199,13 +200,44 @@ export const useSkillsStore = defineStore('skills', () => {
     return { source, scope, projectRoot }
   }
 
+  /** Review each package's capabilities first; declined packages are reported as skipped. */
+  async function reviewTargets(
+    targets: PiPackageTarget[],
+    action: 'install' | 'update'
+  ): Promise<{ approved: PiPackageTarget[]; declined: PiPackageActionResult[] }> {
+    const approved: PiPackageTarget[] = []
+    const declined: PiPackageActionResult[] = []
+    for (const target of targets) {
+      if (await reviewPackage({ ...target, action })) approved.push(target)
+      else
+        declined.push({
+          source: target.source,
+          scope: target.scope,
+          action,
+          ok: false,
+          skipped: true,
+          message: 'Cancelled after review',
+          stdout: '',
+          stderr: '',
+          errorCode: null,
+          logs: []
+        })
+    }
+    return { approved, declined }
+  }
+
   async function installPackages(
     sources: string[],
     scope: PiPackageScope = 'global'
   ): Promise<PiPackageActionResult[]> {
-    const results = await callApi(() =>
-      getApi().skills.installPackages(sources.map((source) => targetFor(source, scope)))
+    const { approved, declined } = await reviewTargets(
+      sources.map((source) => targetFor(source, scope)),
+      'install'
     )
+    const installed = approved.length
+      ? await callApi(() => getApi().skills.installPackages(approved))
+      : []
+    const results = [...installed, ...declined]
     packageResults.value = results
     await refresh()
     await syncRegistryAfterMutation()
@@ -270,7 +302,9 @@ export const useSkillsStore = defineStore('skills', () => {
   }
 
   async function updatePackage(pkg: PiPackageInfo): Promise<PiPackageActionResult> {
-    const result = await callApi(() => getApi().skills.updatePackage(targetForPackage(pkg)))
+    const { approved, declined } = await reviewTargets([targetForPackage(pkg)], 'update')
+    if (!approved.length) return declined[0]
+    const result = await callApi(() => getApi().skills.updatePackage(approved[0]))
     packageResults.value = [result]
     await refresh()
     await syncRegistryAfterMutation()

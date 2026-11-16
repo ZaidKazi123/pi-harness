@@ -152,16 +152,11 @@ function updateFor(pkg: PiRegistryPackage | undefined) {
 }
 
 async function install(pkg: PiRegistryPackage) {
-  const confirmed = await askConfirm({
-    title: t('capabilities.installTitle', { name: pkg.name }),
-    description: t('capabilities.thirdPartyNotice'),
-    confirmLabel: t('capabilities.install'),
-    tone: 'primary'
-  })
-  if (!confirmed) return
+  // The capability review dialog (opened by the store) is the confirmation step.
   mutationBusy.value = true
   try {
     const [result] = await store.installPackages([`npm:${pkg.name}`], installScope.value)
+    if (result?.skipped) return
     if (!result?.ok) throw new Error(result?.message || t('capabilities.installFailed'))
     toast.success(t('capabilities.installSuccess', { name: pkg.name }))
     await selectPackage(pkg, true)
@@ -175,16 +170,11 @@ async function install(pkg: PiRegistryPackage) {
 async function update(pkg: PiRegistryPackage) {
   const installed = installedPackage(pkg)
   if (!installed) return
-  const confirmed = await askConfirm({
-    title: t('capabilities.updateTitle', { name: pkg.name }),
-    description: t('capabilities.updateNotice'),
-    confirmLabel: t('capabilities.update'),
-    tone: 'primary'
-  })
-  if (!confirmed) return
+  // The update is reviewed like an install: new code, new capability review.
   mutationBusy.value = true
   try {
     const result = await store.updatePackage(installed)
+    if (result.skipped) return
     if (!result.ok) throw new Error(result.message)
     toast.success(t('capabilities.updateSuccess', { name: pkg.name }))
     await selectPackage(pkg, true)

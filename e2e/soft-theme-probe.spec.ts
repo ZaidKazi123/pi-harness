@@ -29,7 +29,7 @@ const test = base.extend<{ savedTheme: AppTheme }>({
     fs.cpSync(path.resolve('fixtures/mock-pi'), agentDir, { recursive: true })
     fs.writeFileSync(
       path.join(testUserData, 'settings.json'),
-      JSON.stringify({ theme: savedTheme, language: 'zh-CN', composerFireEnabled: false })
+      JSON.stringify({ theme: savedTheme, language: 'en-US', composerFireEnabled: false })
     )
     seedWorkspaceSession(
       agentDir,

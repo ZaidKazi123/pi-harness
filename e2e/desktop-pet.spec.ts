@@ -111,7 +111,7 @@ test('desktop pet menu and visible bubble follow application language changes', 
 }) => {
   const settings = await page.evaluate(() => window.piSwitch.settings.get())
   await page.evaluate(
-    (desktopPet) => window.piSwitch.settings.set({ language: 'zh-CN', desktopPet }),
+    (desktopPet) => window.piSwitch.settings.set({ language: 'en-US', desktopPet }),
     {
       ...settings.desktopPet,
       enabled: true,
@@ -128,15 +128,16 @@ test('desktop pet menu and visible bubble follow application language changes', 
   const menu = pet.getByRole('menu')
   await expect(menu.getByRole('menuitem', { name: 'Open Pi-Harness', exact: true })).toBeVisible()
   await expect(pet.locator('#app')).toContainText('All quiet')
+  // Ends on English, which the rest of this test uses.
   const localeCases = [
-    ['en-US', 'Open Pi-Harness', 'All quiet'],
+    ['zh-CN', '打开 Pi-Harness', '一切安静'],
     ['zh-TW', '開啟 Pi-Harness', '一切安靜'],
     ['ja-JP', 'Pi-Harness を開く', '静かに待機中'],
     ['ko-KR', 'Pi-Harness 열기', '조용히 대기 중'],
     ['ru-RU', 'Открыть Pi-Harness', 'Тихо'],
     ['fr-FR', 'Ouvrir Pi-Harness', 'Tout est calme'],
     ['de-DE', 'Pi-Harness öffnen', 'Ruhe'],
-    ['zh-CN', '打开 Pi-Harness', '一切安静']
+    ['en-US', 'Open Pi-Harness', 'All quiet']
   ] as const
   for (const [language, label, bubble] of localeCases) {
     await page.evaluate((language) => window.piSwitch.settings.set({ language }), language)
@@ -161,7 +162,7 @@ test('every desktop pet menu action performs its advertised operation', async ({
   let mainPage = page
   const settings = await mainPage.evaluate(() => window.piSwitch.settings.get())
   await mainPage.evaluate(
-    (desktopPet) => window.piSwitch.settings.set({ language: 'zh-CN', desktopPet }),
+    (desktopPet) => window.piSwitch.settings.set({ language: 'en-US', desktopPet }),
     {
       ...settings.desktopPet,
       enabled: true,
@@ -337,7 +338,7 @@ test('all manual actions play and tasks retain dragging and opening the console'
   test.setTimeout(180_000)
   const settings = await page.evaluate(() => window.piSwitch.settings.get())
   await page.evaluate(
-    (desktopPet) => window.piSwitch.settings.set({ language: 'zh-CN', desktopPet }),
+    (desktopPet) => window.piSwitch.settings.set({ language: 'en-US', desktopPet }),
     {
       ...settings.desktopPet,
       enabled: true,
@@ -375,7 +376,7 @@ test('all manual actions play and tasks retain dragging and opening the console'
   // Exercise the imported media past its first frame and through completion.
   await openMenu()
   await pet.getByRole('menuitem', { name: /Play action/ }).click()
-  await pet.getByRole('searchbox').fill('Lion dance')
+  await pet.getByRole('searchbox').fill('lion-dance')
   await expect(pet.locator('[data-clip]')).toHaveCount(1)
   await pet.locator('[data-clip="indesktop-lion-dance"]').click()
   await expect
@@ -483,7 +484,7 @@ test('pet menus keep dark scrollbars and all entries reachable at every pet size
 }, testInfo) => {
   const settings = await page.evaluate(() => window.piSwitch.settings.get())
   await page.evaluate(
-    (desktopPet) => window.piSwitch.settings.set({ language: 'zh-CN', desktopPet }),
+    (desktopPet) => window.piSwitch.settings.set({ language: 'en-US', desktopPet }),
     { ...settings.desktopPet, enabled: true, size: 160, idleVariants: false }
   )
   await expect

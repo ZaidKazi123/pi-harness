@@ -22,6 +22,8 @@ import {
   LayoutDashboard,
   PanelLeft,
   Settings2,
+  ShieldCheck,
+  Workflow,
   SlidersHorizontal,
   Sparkles,
   Store
@@ -72,6 +74,18 @@ const menuItems = computed(() => {
     { id: 'mcp', to: '/settings/mcp', label: t('agentSettings.mcp'), icon: Server },
     { id: 'subagents', to: '/settings/subagents', label: t('agentSettings.subagents'), icon: Bot },
     { id: 'remote', to: '/settings/remote', label: t('agentSettings.remote'), icon: Globe },
+    {
+      id: 'tool-security',
+      to: '/settings/tool-security',
+      label: t('toolSecurity.navLabel'),
+      icon: ShieldCheck
+    },
+    {
+      id: 'secure-planner',
+      to: '/settings/secure-planner',
+      label: t('toolSecurity.navPlanner'),
+      icon: Workflow
+    },
     { id: 'nav', to: '/settings/nav', label: t('settings.navOrder'), icon: PanelLeft },
     { id: 'mascot', to: '/settings/mascot', label: t('settings.mascot'), icon: Sparkles },
     {
@@ -132,6 +146,7 @@ const groups = computed(() => {
   const ids: Record<string, string[]> = {
     preferences: ['general', 'ai', 'voice', 'shortcuts', 'nav', 'mascot', 'desktop-pet', 'market'],
     agents: ['instructions', 'mcp', 'subagents'],
+    security: ['tool-security', 'secure-planner'],
     workspace: ['overview', 'workspace', 'session-cleanup'],
     system: ['remote', 'config', 'paths', 'backup', 'diagnostics', 'updates', 'about', 'developer']
   }

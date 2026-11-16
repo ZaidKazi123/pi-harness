@@ -94,6 +94,9 @@ export class PiRpcRuntime implements HarnessAdapter {
   private readonly listeners = new Map<string, Set<(event: HarnessEvent) => void>>()
   private readonly permissionListeners = new Set<(toolName: string) => void>()
   private readonly agentEventListeners = new Set<(event: AgentEvent) => void>()
+  private readonly sessionAgentEventListeners = new Set<
+    (sessionId: string, event: AgentEvent) => void
+  >()
   private window: () => BrowserWindow | null = () => null
   private closing = false
   private maintenance = false
@@ -133,6 +136,14 @@ export class PiRpcRuntime implements HarnessAdapter {
     this.permissionListeners.add(listener)
     return () => {
       this.permissionListeners.delete(listener)
+    }
+  }
+
+  /** Observe wire-format agent events with their session (tool security provenance). */
+  onSessionAgentEvent(listener: (sessionId: string, event: AgentEvent) => void): () => void {
+    this.sessionAgentEventListeners.add(listener)
+    return () => {
+      this.sessionAgentEventListeners.delete(listener)
     }
   }
 
@@ -959,6 +970,13 @@ export class PiRpcRuntime implements HarnessAdapter {
     if (!wire) return
     this.batcher.push({ sessionId: id, event: wire })
     for (const listener of this.agentEventListeners) listener(wire as AgentEvent)
+    for (const listener of this.sessionAgentEventListeners) {
+      try {
+        listener(id, wire as AgentEvent)
+      } catch {
+        // Observers must never break event delivery.
+      }
+    }
     for (const mapped of mapAgentEvent(wire as AgentEvent))
       for (const listener of this.listeners.get(id) ?? []) listener(mapped)
   }

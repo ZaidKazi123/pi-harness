@@ -298,7 +298,8 @@ export interface HarnessPolicySnapshot {
   updatedAt: number
 }
 
-export type HarnessPolicyDomain = 'tool' | 'file' | 'shell' | 'git' | 'network' | 'budget'
+export type HarnessPolicyDomain =
+  'tool' | 'file' | 'shell' | 'git' | 'network' | 'budget' | 'security'
 
 export interface HarnessPolicyDecisionReport {
   sessionId: string

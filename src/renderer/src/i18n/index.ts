@@ -6,6 +6,7 @@ import { liveVoiceEn, liveVoiceZh } from './live-voice'
 import { agentSettingsEn, agentSettingsZh } from './agent-settings'
 import { runtimeEn, runtimeZh } from './runtime'
 import { createI18n } from 'vue-i18n'
+import { toolSecurityEn } from './tool-security'
 import { resolveAppLocale, type AppLanguage } from '@shared/constants/language'
 import { enUS } from './locales/en-US'
 import { zhCN } from './locales/zh-CN'
@@ -45,6 +46,7 @@ const enMessages = {
   liveVoice: liveVoiceEn,
   mcpMarket: mcpMarketEn,
   runtime: runtimeEn,
+  toolSecurity: toolSecurityEn,
   intelligence: intelligenceEn
 } as const
 
@@ -58,6 +60,7 @@ const zhMessages = {
   liveVoice: liveVoiceZh,
   mcpMarket: mcpMarketZh,
   runtime: runtimeZh,
+  toolSecurity: toolSecurityEn,
   intelligence: intelligenceZh
 } as const
 
@@ -71,6 +74,7 @@ const zhTwMessages = {
   liveVoice: liveVoiceEn,
   mcpMarket: mcpMarketEn,
   runtime: runtimeEn,
+  toolSecurity: toolSecurityEn,
   intelligence: intelligenceTw
 } as const
 
@@ -84,6 +88,7 @@ const jaMessages = {
   liveVoice: liveVoiceEn,
   mcpMarket: mcpMarketEn,
   runtime: runtimeEn,
+  toolSecurity: toolSecurityEn,
   intelligence: intelligenceJa
 } as const
 
@@ -97,6 +102,7 @@ const koMessages = {
   liveVoice: liveVoiceEn,
   mcpMarket: mcpMarketEn,
   runtime: runtimeEn,
+  toolSecurity: toolSecurityEn,
   intelligence: intelligenceKo
 } as const
 
@@ -110,6 +116,7 @@ const ruMessages = {
   liveVoice: liveVoiceEn,
   mcpMarket: mcpMarketEn,
   runtime: runtimeEn,
+  toolSecurity: toolSecurityEn,
   intelligence: intelligenceRu
 } as const
 
@@ -123,6 +130,7 @@ const frMessages = {
   liveVoice: liveVoiceEn,
   mcpMarket: mcpMarketEn,
   runtime: runtimeEn,
+  toolSecurity: toolSecurityEn,
   intelligence: intelligenceFr
 } as const
 
@@ -136,6 +144,7 @@ const deMessages = {
   liveVoice: liveVoiceEn,
   mcpMarket: mcpMarketEn,
   runtime: runtimeEn,
+  toolSecurity: toolSecurityEn,
   intelligence: intelligenceDe
 } as const
 

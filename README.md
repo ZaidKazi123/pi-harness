@@ -60,6 +60,18 @@ and your Pi sessions, configuration, Skills and extensions keep working inside a
   </tr>
 </table>
 
+## Tool security (this fork)
+
+This fork adds app-store style review for Pi tools and prompt-injection defenses based on Google DeepMind's CaMeL design:
+
+- **Review before install.** Packages are scanned without being run. You see what each tool can do (network, files, commands, environment variables, credentials…), findings with file and line, and choose Allow, Ask or Block per capability. Install scripts are blocked unless you allow them, and installed code must match what you reviewed.
+- **Malware scanning.** Exfiltration endpoints, credential theft, reverse shells, miners, download-and-run and hidden payloads are flagged. Unreviewed packages with malicious indicators are quarantined before they load.
+- **Runtime enforcement.** Per-capability decisions apply to every tool call in every permission mode, and compound shell commands are checked segment by segment.
+- **Untrusted data tracking.** Content from files, web pages and tool results is labeled. Actions that would send it off the computer are blocked or asked about, and `quarantined_extract` reads untrusted content through an isolated, tool-less model.
+- **Secure planner (opt-in).** A planner that never sees tool output writes the plan, a quarantined model reads untrusted data, and policies check every value's provenance before each tool call.
+
+See [docs/tool-security.md](docs/tool-security.md) for details and limitations.
+
 ## Is Pi-Harness for you?
 
 [Pi Coding Agent](https://github.com/earendil-works/pi) works well in a terminal. On real projects you soon want more: to see what each run actually did, to get back to a good state when a run goes wrong, and to split a bigger job across several agents. Pi-Harness puts all of that in one desktop app, on top of the same Pi:

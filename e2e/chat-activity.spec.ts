@@ -13,7 +13,7 @@ const test = base.extend({
     })
     fs.writeFileSync(
       path.join(testUserData, 'settings.json'),
-      JSON.stringify({ theme: 'dark', language: 'zh-CN' })
+      JSON.stringify({ theme: 'dark', language: 'en-US' })
     )
     seed(directory, workspaceRoot)
     await use(directory)

@@ -95,6 +95,21 @@ const api: PiSwitchAPI = {
     applyTeam: (id, contributionId) =>
       invoke(IPC_INVOKE.harnessPluginsApplyTeam, { id, contributionId })
   },
+  toolSecurity: {
+    overview: () => invoke(IPC_INVOKE.toolSecurityOverview),
+    updateSettings: (settings) => invoke(IPC_INVOKE.toolSecuritySettingsUpdate, settings),
+    preview: (input) => invoke(IPC_INVOKE.toolSecurityPreview, input),
+    approve: (input) => invoke(IPC_INVOKE.toolSecurityApprove, input),
+    setDecision: (input) => invoke(IPC_INVOKE.toolSecuritySetDecision, input),
+    approveInstalled: (packageId) => invoke(IPC_INVOKE.toolSecurityApproveInstalled, { packageId }),
+    setBlocked: (packageId, blocked) =>
+      invoke(IPC_INVOKE.toolSecuritySetBlocked, { packageId, blocked }),
+    provenance: (sessionId) => invoke(IPC_INVOKE.toolSecurityProvenance, { sessionId }),
+    camelPlan: (input) => invoke(IPC_INVOKE.toolSecurityCamelPlan, input),
+    camelRun: (planId) => invoke(IPC_INVOKE.toolSecurityCamelRun, { planId }),
+    onCamelStep: (listener) =>
+      onEvent(IPC_EVENT.toolSecurityCamel, (payload) => listener(payload as never))
+  },
   runtimes: {
     diagnostics: () => invoke(IPC_INVOKE.runtimeDiagnostics),
     switch: (kind, selection) => invoke(IPC_INVOKE.runtimeSwitch, { kind, selection }),

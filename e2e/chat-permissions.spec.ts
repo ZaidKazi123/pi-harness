@@ -77,9 +77,16 @@ test('permission menu controls execution and termination remains available durin
   )
   try {
     await electronApp.evaluate(({ dialog }) => {
-      const state = globalThis as unknown as { permissionDialogs: number }
+      const state = globalThis as unknown as { permissionDialogs: number; dataChecks: number }
       state.permissionDialogs = 0
+      state.dataChecks = 0
       dialog.showMessageBox = async (_window, options) => {
+        // Tool security asks before network commands once the conversation holds
+        // outside content (here, the first curl's output). The user approves it.
+        if (options.title === 'Untrusted data check') {
+          state.dataChecks += 1
+          return { response: 0, checkboxChecked: false }
+        }
         state.permissionDialogs += 1
         return new Promise((resolve) => {
           const decline = () => resolve({ response: 1, checkboxChecked: false })
@@ -179,6 +186,11 @@ test('permission menu controls execution and termination remains available durin
     await editor.press('Enter')
     await expect(page.locator('.chat-scroller')).toContainText('Assisted access complete')
     expect(networkCalls).toBe(2)
+    expect(
+      await electronApp.evaluate(
+        () => (globalThis as unknown as { dataChecks: number }).dataChecks
+      )
+    ).toBe(1)
     await permission.click()
     await menu.getByRole('option', { name: /Full access/ }).click()
     const builtins = new Set(['bash', 'powershell', 'read', 'edit', 'write', 'grep', 'find', 'ls'])

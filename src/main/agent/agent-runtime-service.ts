@@ -774,6 +774,7 @@ export class AgentRuntimeService implements AgentRuntime {
   private registry = new Map<string, AgentSessionWrapper>()
   private sessionListeners = new Map<string, Set<SessionEventListener>>()
   private globalAgentEventListeners = new Set<SessionEventListener>()
+  private sessionAgentEventListeners = new Set<(sessionId: string, event: AgentEvent) => void>()
   private startLocks = new Map<
     string,
     Promise<{ session: AgentSessionWrapper; realSessionId: string }>
@@ -833,6 +834,14 @@ export class AgentRuntimeService implements AgentRuntime {
     return () => {
       listeners.delete(listener)
       if (!listeners.size) this.sessionListeners.delete(sessionId)
+    }
+  }
+
+  /** Observe every agent event with its session id (tool security provenance). */
+  onSessionAgentEvent(listener: (sessionId: string, event: AgentEvent) => void): () => void {
+    this.sessionAgentEventListeners.add(listener)
+    return () => {
+      this.sessionAgentEventListeners.delete(listener)
     }
   }
 
@@ -1270,6 +1279,13 @@ export class AgentRuntimeService implements AgentRuntime {
           listener(event)
         } catch (error) {
           log.agent.error('failed to deliver runtime agent event:', error)
+        }
+      }
+      for (const listener of this.sessionAgentEventListeners) {
+        try {
+          listener(realSessionId, event)
+        } catch (error) {
+          log.agent.error('failed to deliver session agent event:', error)
         }
       }
       for (const listener of this.sessionListeners.get(realSessionId) ?? []) {

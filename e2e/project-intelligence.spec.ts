@@ -81,7 +81,7 @@ test('explores all map pages, packages, localized controls and project-specific 
   await window.evaluate((w) => w.setSize(1000, 900))
   const copies = [
     ['en-US', 'Project Intelligence', 'Fullscreen'],
-    ['zh-CN', 'Project Intelligence', 'Fullscreen'],
+    ['zh-CN', '项目智能理解', '全屏'],
     ['zh-TW', '專案智慧理解', '全螢幕'],
     ['ja-JP', 'プロジェクト分析', '全画面'],
     ['ko-KR', '프로젝트 분석', '전체 화면'],

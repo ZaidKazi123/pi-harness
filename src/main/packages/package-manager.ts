@@ -933,6 +933,21 @@ export class PiPackageManager {
     return { source, scope: 'global', projectRoot: null }
   }
 
+  /**
+   * Whether npm lifecycle scripts may run while installing `source`. Tool
+   * security blocks them unless the package was approved with scripts enabled.
+   * `null` means "any package" (update-all).
+   */
+  private installScriptsAllowed: (source: string | null) => boolean = () => true
+
+  setInstallScriptPolicy(policy: (source: string | null) => boolean): void {
+    this.installScriptsAllowed = policy
+  }
+
+  private scriptEnv(source: string | null): Record<string, string> {
+    return this.installScriptsAllowed(source) ? {} : { npm_config_ignore_scripts: 'true' }
+  }
+
   private async executeCli(command: 'install' | 'remove' | 'update', target: PiPackageTarget) {
     const project = target.scope === 'project'
     const settings = this.settingsStore.peek()
@@ -941,7 +956,10 @@ export class PiPackageManager {
       args: [command, target.source, ...(project ? ['--local', '--approve'] : ['--no-approve'])],
       timeoutMs: 5 * 60_000,
       cliPath: settings.manualCliPath,
-      env: { PI_CODING_AGENT_DIR: getPiConfigDir(settings.manualConfigDir) },
+      env: {
+        PI_CODING_AGENT_DIR: getPiConfigDir(settings.manualConfigDir),
+        ...(command === 'remove' ? {} : this.scriptEnv(target.source))
+      },
       ...(project && target.projectRoot ? { cwd: target.projectRoot } : {})
     })
   }
@@ -954,7 +972,10 @@ export class PiPackageManager {
       args: ['update', '--extensions', ...(project ? ['--local', '--approve'] : ['--no-approve'])],
       timeoutMs: 10 * 60_000,
       cliPath: settings.manualCliPath,
-      env: { PI_CODING_AGENT_DIR: getPiConfigDir(settings.manualConfigDir) },
+      env: {
+        PI_CODING_AGENT_DIR: getPiConfigDir(settings.manualConfigDir),
+        ...this.scriptEnv(null)
+      },
       ...(project && projectRoot ? { cwd: projectRoot } : {})
     })
   }

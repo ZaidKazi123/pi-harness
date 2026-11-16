@@ -291,8 +291,15 @@ export default async function desktopExtension(pi) {
       await request('guard', { name: event.toolName, input: event.input }, { timeoutMs: 600_000 })
       ctx.signal?.throwIfAborted()
       return undefined
-    } catch {
-      return { block: true, reason: 'Tool access was denied by the desktop workspace policy' }
+    } catch (error) {
+      // Pass on the reason from tool security / Harness Policy so the model can explain the block.
+      const message = String(error?.message ?? '')
+      return {
+        block: true,
+        reason: /^(?:Blocked by |Declined: |Tool approval declined)/.test(message)
+          ? message.slice(0, 600)
+          : 'Tool access was denied by the desktop workspace policy'
+      }
     }
   })
   // Lifecycle navigation requires the public command-capable context.

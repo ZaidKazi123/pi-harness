@@ -97,6 +97,11 @@ export function harnessOrchestrationPath(): string {
   return path.join(userData(), 'harness-orchestration.json')
 }
 
+/** Tool security: capability approvals, scan reports and settings. */
+export function toolSecurityPath(): string {
+  return path.join(userData(), 'tool-security.json')
+}
+
 /** Pi-Harness metadata file (Electron userData). */
 export function appMetadataPath(): string {
   return path.join(userData(), 'metadata.json')

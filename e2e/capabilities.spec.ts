@@ -124,9 +124,7 @@ test.describe('Capabilities', () => {
 
     await page.getByTestId('featured-capability-ecc').click()
 
-    await expect(
-      page.getByText('pi install git:github.com/affaan-m/ECC')
-    ).toBeVisible()
+    await expect(page.getByText('pi install git:github.com/affaan-m/ECC')).toBeVisible()
     const modules = page.getByText(/Capability modules/)
     await expect(modules).toBeVisible()
     for (const name of [
@@ -140,9 +138,7 @@ test.describe('Capabilities', () => {
     ]) {
       await expect(page.getByText(name)).toBeVisible()
     }
-    await expect(
-      page.getByTestId('featured-capability-install')
-    ).toBeVisible()
+    await expect(page.getByTestId('featured-capability-install')).toBeVisible()
   })
 
   test('uses the mocked Registry for search, pagination, filters, details, install and update', async ({
@@ -206,10 +202,50 @@ test.describe('Capabilities', () => {
           channels.install,
           channels.packages,
           channels.updates,
-          channels.update
+          channels.update,
+          channels.preview,
+          channels.approve
         ]) {
           ipcMain.removeHandler(channel)
         }
+        // Capability review: a clean report for the mocked package.
+        ipcMain.handle(channels.preview, (_event, input: { source: string; scope: string }) =>
+          ok({
+            token: 'a'.repeat(48),
+            source: input.source,
+            scope: input.scope,
+            projectRoot: null,
+            packageId: 'npm:pi-mcp-adapter',
+            report: {
+              digest: 'd'.repeat(64),
+              scannedAt: '2026-01-02T00:00:00.000Z',
+              manifest: {
+                name: 'pi-mcp-adapter',
+                version: '1.1.0',
+                description: null,
+                author: 'Pi Test',
+                license: 'MIT',
+                repository: null,
+                homepage: null
+              },
+              declared: null,
+              capabilities: ['network', 'untrusted-output'],
+              undeclared: [],
+              tools: [{ name: 'mcp_call', capabilities: ['network', 'untrusted-output'] }],
+              networkHosts: ['example.test'],
+              envVars: [],
+              installScripts: {},
+              findings: [],
+              verdict: 'clean',
+              files: 3,
+              truncated: false
+            },
+            suggested: { network: 'ask' },
+            existing: null,
+            expiresAt: '2026-01-02T00:30:00.000Z'
+          })
+        )
+        ipcMain.handle(channels.approve, () => ok({ packageId: 'npm:pi-mcp-adapter' }))
         ipcMain.handle(
           channels.search,
           async (_event, input: { page?: number; query?: string; type?: string }) => {
@@ -301,7 +337,9 @@ test.describe('Capabilities', () => {
         install: IPC_INVOKE.skillsInstallPackages,
         packages: IPC_INVOKE.skillsPackages,
         updates: IPC_INVOKE.packagesCheckUpdates,
-        update: IPC_INVOKE.packagesUpdate
+        update: IPC_INVOKE.packagesUpdate,
+        preview: IPC_INVOKE.toolSecurityPreview,
+        approve: IPC_INVOKE.toolSecurityApprove
       }
     )
 
@@ -350,20 +388,19 @@ test.describe('Capabilities', () => {
       .getByRole('button', { name: /Install/, exact: true })
       .last()
       .click()
-    await page
-      .getByRole('button', { name: /Install/, exact: true })
-      .last()
-      .click()
+    // The capability review replaces the generic confirmation.
+    const review = page.getByTestId('tool-install-review')
+    await expect(review).toContainText('Internet and network access')
+    await expect(page.getByTestId('tool-review-verdict')).toContainText('No problems found')
+    await page.getByTestId('tool-review-confirm').click()
     await expect(page.getByText(/Update available/).first()).toBeVisible()
 
     await page
       .getByRole('button', { name: /Update/, exact: true })
       .last()
       .click()
-    await page
-      .getByRole('button', { name: /Update/, exact: true })
-      .last()
-      .click()
+    await expect(page.getByTestId('tool-review-confirm')).toHaveText(/Update/)
+    await page.getByTestId('tool-review-confirm').click()
     await expect(page.getByText(/Installed/).first()).toBeVisible()
 
     await search.fill('')
@@ -402,9 +439,9 @@ test.describe('Capabilities', () => {
     await page.locator('a[href="#/settings"]').click()
     await page.locator('.ui-select-trigger').first().click()
     await page.getByRole('option', { name: '简体中文' }).click()
-    await expect(page.getByText('Language', { exact: true })).toBeVisible()
+    await expect(page.getByText('语言', { exact: true })).toBeVisible()
     await openOverflowPage(page, 'skills')
-    await expect(page.getByRole('heading', { name: 'Capabilities' })).toBeVisible()
-    await expect(page.getByRole('tab', { name: 'Official Market' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: '能力中心' })).toBeVisible()
+    await expect(page.getByRole('tab', { name: '官方市场' })).toBeVisible()
   })
 })

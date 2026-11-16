@@ -6,6 +6,7 @@ import type {
   MarketSearchResult
 } from '../market/types'
 import type { HarnessPluginsAPI } from '../harness-plugins/types'
+import type { ToolSecurityAPI } from '../tool-security/types'
 import type {
   DesktopPetSettings,
   PetPackDetail,
@@ -975,6 +976,7 @@ export interface AgentPermissionDecision {
 export interface PiSwitchAPI {
   agentSettings: AgentSettingsAPI
   harnessPlugins: HarnessPluginsAPI
+  toolSecurity: ToolSecurityAPI
   runtimes: {
     diagnostics(): Promise<RuntimeDiagnostics>
     switch(kind: RuntimeKind, selection: RuntimeSelection): Promise<RuntimeDiagnostics>

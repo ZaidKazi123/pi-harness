@@ -16,6 +16,8 @@ import UpdatesSettingsSection from '@renderer/components/settings/UpdatesSetting
 import DeveloperSettingsSection from '@renderer/components/settings/DeveloperSettingsSection.vue'
 import AboutSettingsSection from '@renderer/components/settings/AboutSettingsSection.vue'
 import MarketSettingsSection from '@renderer/components/settings/MarketSettingsSection.vue'
+import ToolSecuritySettingsSection from '@renderer/components/settings/ToolSecuritySettingsSection.vue'
+import SecurePlannerSection from '@renderer/components/settings/SecurePlannerSection.vue'
 import { useSettingsDraft } from '@renderer/components/settings/useSettingsDraft'
 import { SETTINGS_DRAFT_KEY } from '@renderer/components/settings/draft-key'
 import { MASCOT_ENABLED } from '@shared/feature-flags'
@@ -39,7 +41,9 @@ const SETTINGS_SECTIONS_ALL = [
   'backup',
   'updates',
   'about',
-  'developer'
+  'developer',
+  'tool-security',
+  'secure-planner'
 ] as const
 const SETTINGS_SECTIONS = MASCOT_ENABLED
   ? SETTINGS_SECTIONS_ALL
@@ -88,6 +92,10 @@ const sectionTitle = computed(() => {
       return t('settings.about')
     case 'developer':
       return t('settings.developer')
+    case 'tool-security':
+      return t('toolSecurity.sectionTitle')
+    case 'secure-planner':
+      return t('toolSecurity.plannerTitle')
     default:
       return t('settings.title')
   }
@@ -119,6 +127,10 @@ const sectionSubtitle = computed(() => {
       return t('settings.sectionAboutHint')
     case 'developer':
       return t('settings.sectionDeveloperHint')
+    case 'tool-security':
+      return t('toolSecurity.sectionHint')
+    case 'secure-planner':
+      return t('toolSecurity.plannerHint')
     default:
       return t('settings.subtitle')
   }
@@ -183,6 +195,8 @@ onMounted(() => {
           <UpdatesSettingsSection v-else-if="section === 'updates'" />
           <AboutSettingsSection v-else-if="section === 'about'" />
           <DeveloperSettingsSection v-else-if="section === 'developer'" />
+          <ToolSecuritySettingsSection v-else-if="section === 'tool-security'" />
+          <SecurePlannerSection v-else-if="section === 'secure-planner'" />
         </div>
       </div>
     </div>

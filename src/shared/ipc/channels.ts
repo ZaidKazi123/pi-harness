@@ -193,6 +193,18 @@ export const IPC_INVOKE = {
   skillDelete: invoke('skills:delete'),
   skillsRefresh: invoke('skills:refresh'),
 
+  // Tool security: capability review, per-tool decisions, provenance, CaMeL planner
+  toolSecurityOverview: invoke('tool-security:overview'),
+  toolSecuritySettingsUpdate: invoke('tool-security:settings:update'),
+  toolSecurityPreview: invoke('tool-security:preview'),
+  toolSecurityApprove: invoke('tool-security:approve'),
+  toolSecuritySetDecision: invoke('tool-security:set-decision'),
+  toolSecurityApproveInstalled: invoke('tool-security:approve-installed'),
+  toolSecuritySetBlocked: invoke('tool-security:set-blocked'),
+  toolSecurityProvenance: invoke('tool-security:provenance'),
+  toolSecurityCamelPlan: invoke('tool-security:camel:plan'),
+  toolSecurityCamelRun: invoke('tool-security:camel:run'),
+
   // Harness operational plugins (separate from Pi extensions)
   harnessPluginsList: invoke('harness-plugins:list'),
   harnessPluginsInstall: invoke('harness-plugins:install-local'),
@@ -446,7 +458,8 @@ export const IPC_EVENT = {
   petConfig: 'pi-harness:pet:config',
   marketProgress: 'pi-harness:market:progress',
   uiCommand: 'pi-harness:ui:command',
-  chatGptConnectProgress: 'pi-harness:accounts:chatgpt-connect-progress'
+  chatGptConnectProgress: 'pi-harness:accounts:chatgpt-connect-progress',
+  toolSecurityCamel: 'pi-harness:tool-security:camel-step'
 } as const
 
 export type IpcEventName = (typeof IPC_EVENT)[keyof typeof IPC_EVENT]

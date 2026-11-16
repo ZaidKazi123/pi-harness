@@ -2,6 +2,8 @@ import { createVoiceHost } from '../agent-settings/voice-host'
 import { registerAgentSettingsIpc } from './register-agent-settings'
 import type { HarnessPluginHost } from '../harness/plugins/plugin-host'
 import { registerHarnessPluginsIpc } from './register-harness-plugins'
+import { registerToolSecurityIpc, type ToolSecurityIpcServices } from './register-tool-security'
+import { reviewedPackageMutation } from '../tool-security/install-gate'
 import fs from 'node:fs/promises'
 import type { RuntimeManager } from '../runtime/runtime-manager'
 import { runtimeSwitchSchema, runtimeMaintenanceSchema } from '@shared/runtime/schema'
@@ -157,6 +159,7 @@ export interface Services {
   environment: EnvironmentManager
   harness: HarnessRuntime
   harnessPlugins?: HarnessPluginHost
+  toolSecurity?: ToolSecurityIpcServices
   orchestrator?: OrchestratorService
   workspace: WorkspaceServices
   petRemovePack: (id: string) => Promise<void>
@@ -621,7 +624,17 @@ export function registerIpc(services: Services): void {
       if (!parsed.success) {
         throw new ValidationError('Invalid package targets', { issues: parsed.error.issues })
       }
-      return notifyPackageMutation(() => skills.installPackages(parsed.data))
+      const security = services.toolSecurity?.service
+      return notifyPackageMutation(() =>
+        security
+          ? reviewedPackageMutation(
+              security,
+              parsed.data,
+              (targets) => skills.installPackages(targets),
+              (target) => skills.removePackages([target])
+            )
+          : skills.installPackages(parsed.data)
+      )
     })
   )
   ipcMain.handle(IPC_INVOKE.packagesRegistrySearch, (_e, input: unknown) =>
@@ -650,7 +663,22 @@ export function registerIpc(services: Services): void {
     wrap(() => skills.checkPackageUpdates(parseProjectRoot(projectRoot)))
   )
   ipcMain.handle(IPC_INVOKE.packagesUpdate, (_e, target: unknown) =>
-    wrap(() => notifyPackageMutation(() => skills.updatePackage(parsePackageTarget(target))))
+    wrap(() => {
+      const parsed = parsePackageTarget(target)
+      const security = services.toolSecurity?.service
+      return notifyPackageMutation(async () =>
+        security
+          ? (
+              await reviewedPackageMutation(
+                security,
+                [parsed],
+                async ([next]) => [await skills.updatePackage(next)],
+                (rollback) => skills.removePackages([rollback])
+              )
+            )[0]
+          : skills.updatePackage(parsed)
+      )
+    })
   )
   ipcMain.handle(IPC_INVOKE.packagesUpdateAll, (_e, projectRoot: unknown) =>
     wrap(() => notifyPackageMutation(() => skills.updateAllPackages(parseProjectRoot(projectRoot))))
@@ -1123,6 +1151,7 @@ export function registerIpc(services: Services): void {
   registerHarnessIpc(ipcMain, wrap, services.harness, services.orchestrator)
   if (services.harnessPlugins)
     registerHarnessPluginsIpc(ipcMain, wrap, services.harnessPlugins, services.workspace.access)
+  if (services.toolSecurity) registerToolSecurityIpc(ipcMain, wrap, services.toolSecurity)
 
   void app
 }
