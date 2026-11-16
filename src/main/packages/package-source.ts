@@ -41,7 +41,8 @@ export function resolvePackageSource(baseDir: string, source: string): ResolvedP
       managedRoot
     }
   }
-  if (path.isAbsolute(source) || source.startsWith('./') || source.startsWith('../')) {
+  // Pi writes relative local paths with the platform separator (`..\pkg` on Windows).
+  if (path.isAbsolute(source) || /^\.\.?[\\/]/.test(source)) {
     const installPath = path.isAbsolute(source)
       ? path.resolve(source)
       : path.resolve(baseDir, source)

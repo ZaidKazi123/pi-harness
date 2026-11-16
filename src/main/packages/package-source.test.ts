@@ -3,6 +3,15 @@ import path from 'node:path'
 import { parseGitSource, parseNpmSource, resolvePackageSource } from './package-source'
 
 describe('package source security', () => {
+  it('resolves relative local paths written with either separator', () => {
+    const base = path.resolve('/pi/agent')
+    for (const source of ['../pkgs/weather', '..\\pkgs\\weather', './weather', '.\\weather']) {
+      const resolved = resolvePackageSource(base, source)
+      expect(resolved.type).toBe('local')
+      expect(resolved.installPath).toBe(path.resolve(base, source.replace(/\\/g, '/')))
+    }
+  })
+
   it('accepts normal npm package names and versions', () => {
     expect(parseNpmSource('npm:pi-tool')).toEqual({ name: 'pi-tool', version: null })
     expect(parseNpmSource('npm:@scope/pi-tool@1.2.3')).toEqual({
